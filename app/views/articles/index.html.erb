@@ -1,29 +1,29 @@
 <h1>Home#index</h1>
-<%= @m %>
+
 <div id="cate" class="categories">
 	 <div class="container">
 		 <h3>CATEGORIES</h3>
-		 <div class="categorie-grids">
+		 <div class="categories-grids">
 			 <% @categories.each.with_index do |category, i| %>
 			 	<div class="col-md-4 cate-grid grid<%= i+1 %>">
 					<h4><%= category.name %></h4>
 					<p>Venez les découvrir !</p>
-          <%= link_to "Boutique", article_path(id: category.id), class: "store" %>
+          <%= link_to "article", article_path(id: category.id), class: "store" %>
 				</div>
 			 <% end %>
-			 <div class="clearfix"></div>
-		 </div>
+			
+		
 	 </div>
 </div>
 <!--bikes-->
-<div id="boutique" class="products">
-    <h3>POPULAR products</h3>
-    <div class="products-grid">
+<div id="boutique" class="articless">
+    <h3>POPULAR articles</h3>
+    <div class="articles-grid">
       <ul id="flexiselDemo1">
         <% @articles.first(8).each do |article| %>
         <li>
           <%= image_tag "#{article.image_url}1.png" %>
-          <div class="products-info">
+          <div class="articless-info">
             <div class="model">
               <h4><%= article.title %><span><%= article.price %>€</span></h4>
             </div>
