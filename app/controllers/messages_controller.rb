@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /messages
   # GET /messages.json
@@ -41,8 +42,8 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1.json
   def update
     respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+      if @message.update(content: params[:message][:content])
+        format.html { redirect_to messages_path }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit }
