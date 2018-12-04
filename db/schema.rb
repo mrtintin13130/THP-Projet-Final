@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
 
   create_table "articles", force: :cascade do |t|
     t.text "description"
+    t.string "image_url"
     t.integer "size"
     t.boolean "status"
     t.bigint "user_id"
@@ -27,11 +28,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,11 +35,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
