@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.boolean "premium_user", default: false
     t.boolean "sex"
     t.integer "code_confirm"
+    t.string "image"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
