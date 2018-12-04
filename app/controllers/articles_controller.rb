@@ -5,8 +5,10 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @categories = Category.all
   end
+
 def create
-	@article = Article.new(articles_params)
+	Article.create!( description: params["article"]["description"], size:params["article"]["size"], status:params["article"]["status"], image: params["article"]["file"])
+redirect_to articles_url
 end
 
   def show
@@ -14,4 +16,16 @@ end
     @random_articles = Article.all.sample(3)
   end
 
- end
+  
+  #private   #test sur les params articles et category
+
+  #def articles_params
+    #params.permit(:description, :size, :status, :image)
+  #end
+
+  #def category_params
+    #params.require(:Category)
+  #end
+
+end
+ 
