@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :premium_user, default: false
       t.boolean :sex
       t.integer :code_confirm
+      t.string :image
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
