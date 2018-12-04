@@ -2,6 +2,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
   def change
     create_table :articles do |t|
       t.text :description
+      t.string :image_url
       t.integer :size
       t.boolean :status
       t.belongs_to :user

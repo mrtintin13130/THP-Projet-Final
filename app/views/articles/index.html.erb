@@ -7,7 +7,7 @@
 			 	<div class="col-md-4 cate-grid grid<%= i+1 %>">
 					<h4><%= category.name %></h4>
 					<p>Venez les découvrir !</p>
-          <%= link_to "Boutique", articles_path(id: category.id), class: "store" %>
+          <%= link_to "Boutique", article_path(id: category.id), class: "store" %>
 				</div>
 			 <% end %>
 			 <div class="clearfix"></div>

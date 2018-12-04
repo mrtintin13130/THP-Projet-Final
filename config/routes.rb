@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
- root to: 'home#index'
+ root to: 'articles#index'
 	resources :home
-
+resources :articles
+resources :products
   resources :messages
   devise_for :users
 
