@@ -1,5 +1,5 @@
 <% @user.each do |user| %>
-  Prénom: <%= user.first_name %>
+  Prénom: <%= link_to "#{user.first_name}", user_path(user) %>
   <br>
   Nom: <%= user.last_name %>
   <br>
@@ -8,3 +8,5 @@
   <% end %>
   <br>
 <% end %>
+
+
