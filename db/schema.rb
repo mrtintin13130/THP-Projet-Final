@@ -17,9 +17,8 @@ ActiveRecord::Schema.define(version: 2018_12_05_123356) do
 
   create_table "articles", force: :cascade do |t|
     t.text "description"
-    t.string "image_url"
     t.integer "size"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.bigint "user_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
