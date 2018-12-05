@@ -4,4 +4,10 @@ class ArticlesController < ApplicationController
     @category = Category.all
     @user = User.all
   end
+
+  def index
+    @article = Article.all
+    @user = User.all
+    @category = Category.all
+  end
 end

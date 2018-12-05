@@ -16,5 +16,5 @@ end
 end
 
 15.times do
-  Article.create(description: Faker::LeagueOfLegends.quote, size: Faker::Number.between(30, 45), status: true, user_id: Faker::Number.between(1, 10), category_id: Faker::Number.between(1, 5))
+  Article.create(title: Faker::Esport.game, description: Faker::LeagueOfLegends.quote, size: Faker::Number.between(30, 45), status: true, user_id: Faker::Number.between(1, 10), category_id: Faker::Number.between(1, 5))
 end
