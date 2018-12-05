@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.boolean "sex"
     t.integer "code_confirm"
     t.string "image"
+    t.string "phone"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -69,5 +70,5 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-  
+
 end
