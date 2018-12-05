@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_123356) do
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
+    t.string "title"
     t.text "description"
     t.integer "size"
     t.boolean "status", default: true
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_123356) do
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id"
     t.text "content"
+    t.integer "dest_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_123356) do
     t.boolean "sex"
     t.integer "code_confirm"
     t.string "image"
+    t.boolean "phone_verified"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
