@@ -1,1 +1,27 @@
-<%= @articles %>
+
+    <div class="articles-grid">
+      <ul id="flexiselDemo1">
+        
+        <li>
+          <img src = "<%= @article.image %>">
+          <div class="<%= @article%>-info">
+          	<div class = "<%= @article%>-size">
+          		<%= @article.size %>
+          	</div>
+
+            <div class="model">
+              <h4><p<%= @article.description %><span><%= @article.description %></p></span></h4>
+            </div>
+            <div class="model-info">
+              <%= link_to "home", "/" %>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="look">
+          <%= link_to "Show", new_article_path(@article.id) %>
+          </div>
+        </li>
+      
+      </ul>
+	</div>
+</div>

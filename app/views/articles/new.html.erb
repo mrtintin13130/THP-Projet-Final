@@ -1,11 +1,16 @@
 
       <h2><center>Ajouter une nouvelle image</center></h2>
      
-        <%= simple_form_for Article.create do |f| %>
+        <%= simple_form_for (@article) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
           <%= f.input :size %>
           <%= f.input :description %>
+          <% if @article.image? %>
+          <p>
+            <%= image_tag @article.image.url %>
+          </p>
+          <%end%>
           <%= f.input :image, as: :file %>
         </div>
         <div class= "form-actions">
