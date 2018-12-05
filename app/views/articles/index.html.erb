@@ -1,34 +1,18 @@
 <h1>Home#index</h1>
 
-<div id="cate" class="categories">
-	 <div class="container">
-		 <h3>CATEGORIES</h3>
-		 <div class="categories-grids">
-			 <% @categories.each.with_index do |category, i| %>
-			 	<div class="col-md-4 cate-grid grid<%= i+1 %>">
-					<h4><%= category.name %></h4>
-					<p>Venez les découvrir !</p>
-          <%= link_to "article", article_path(id: category.id), class: "store" %>
-				</div>
-			 <% end %>
-			
-		
-	 </div>
-</div>
-<!--bikes-->
 <div id="boutique" class="articless">
     <h3>POPULAR articles</h3>
     <div class="articles-grid">
       <ul id="flexiselDemo1">
-        <% @articles.first(8).each do |article| %>
+        <% @articles.each do |article| %>
         <li>
-          <%= image_tag "#{article.image_url}1.png" %>
-          <div class="articless-info">
+          <img src = "<%= article.image %>">
+          <div class="articles-info">
             <div class="model">
-              <h4><%= article.title %><span><%= article.price %>€</span></h4>
+              <h4><p<%= article.description %><span><%= article.description %></p></span></h4>
             </div>
             <div class="model-info">
-              <%= link_to "Buy now", article_path(article) %>
+              <%= link_to "contact", "#" %>
             </div>
             <div class="clearfix"></div>
           </div>

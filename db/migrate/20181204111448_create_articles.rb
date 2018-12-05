@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :image
       t.integer :size
-      t.boolean :status
+      t.boolean :status, default: true
       t.belongs_to :user
       t.belongs_to :category
 

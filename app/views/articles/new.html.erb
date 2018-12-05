@@ -1,30 +1,17 @@
 
       <h2><center>Ajouter une nouvelle image</center></h2>
-      <table class="m-5">
-        <%= form_for @article, :url => {:action => "create"} do |f| %>
-        <tr>
-          <td><%= f.label ("size:") %></td>
-          <td><%= f.text_field :size %></td>
-        </tr>
-        <tr>
-          <td><%= f.label ("Description:") %></td>
-          <td><%= f.text_area(:description, cols: 35, rows: 10) %></td>
-        </tr>
-        <tr>
-          <td><%= f.label ("Prix:") %></td>
-          <td><%= f.text_field :status %></td>
-        </tr>
-        <tr>
-          <td><%= f.label ("Votre image:") %></td>
-          <td><%= f.file_field :image %></td>
-        </tr>
-        <tr>
-          <td colspan="2"><%= f.submit "Envoyer", class: "btn btn-primary" %></td>
-        </tr>
+     
+        <%= simple_form_for Article.create do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :size %>
+          <%= f.input :description %>
+          <%= f.input :image, as: :file %>
+        </div>
+        <div class= "form-actions">
+        <%= f.button :submit %>
+        </div>
         <% end %>
-      </table>
-    </div>
-    <div class="col">
-    </div>
-  </div>
-</div>
+    
+   
+  
