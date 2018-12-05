@@ -27,6 +27,7 @@
 #   t.datetime "updated_at", null: false
 #   t.index ["category_id"], name: "index_articles_on_category_id"
 #   t.index ["user_id"], name: "index_articles_on_user_id"
+
 User.create(first_name: 'Gilles', last_name: 'Hejonn', birth_date: '21/03/1990', admin: 'false', sex: 'Non genré.e.s', email: 'jonlajoie@mail.com')
 Category.create(name: 'T-shirt')
 Article.create(description: 'Article de test', size: 'M', status: true, user_id: '0', category_id: '0' )
