@@ -1,0 +1,16 @@
+
+<h1>Le User</h1>
+
+<%= @user.first_name %> 
+
+<%= @user.last_name %> <br>
+
+<% @user.articles.each do |article| %>
+________________________________ <br>
+
+Taille de l'article : <%= article.size %> <br>
+Categorie de l'article : <%= article.category.name %> <br>
+Description de l'article : <%= article.description %> <br>
+<% end %>
+
+
