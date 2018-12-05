@@ -1,0 +1,10 @@
+<% @user.each do |user| %>
+  Prénom: <%= user.first_name %>
+  <br>
+  Nom: <%= user.last_name %>
+  <br>
+  <% @article.where(user_id: user.id).take(3).each do |a| %>
+    <%= a.id %>
+  <% end %>
+  <br>
+<% end %>

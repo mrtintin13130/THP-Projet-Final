@@ -11,6 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :sex
       t.integer :code_confirm
       t.string :image
+      t.boolean :phone_verified
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
