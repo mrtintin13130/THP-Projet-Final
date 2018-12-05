@@ -10,14 +10,24 @@ class ArticlesController < ApplicationController
   end
 
 def create
-	@articles = Article.all
-	Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
-	redirect_to articles_url
+	#@articles = Article.all
+	#@article = Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
+	
+@article = Article.new(articles_params)
+ 
+    if @article.save
+      redirect_to @article, notice: 'Upload was successfully created.'
+    else
+      render :new
+    end
+  
+
+	
 
 end
 
   def show
-    @articles = Article.find(params[:id])
+    @article = Article.find(params[:id])
     @random_articles = Article.all.sample(3)
   end
 
