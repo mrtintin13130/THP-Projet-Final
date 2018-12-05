@@ -1,26 +1,2 @@
 <h1>Home#index</h1>
 
-<div id="boutique" class="articless">
-    <h3>POPULAR articles</h3>
-    <div class="articles-grid">
-      <ul id="flexiselDemo1">
-        <% @articles.each do |article| %>
-        <li>
-          <img src = "<%= article.image %>">
-          <div class="articles-info">
-            <div class="model">
-              <h4><p<%= article.description %><span><%= article.description %></p></span></h4>
-            </div>
-            <div class="model-info">
-              <%= link_to "contact", "#" %>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="look">
-          <%= link_to "Show", article_path(article.id) %>
-          </div>
-        </li>
-        <% end %>
-      </ul>
-	</div>
-</div>
