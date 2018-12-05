@@ -4,7 +4,7 @@
   Nom: <%= user.last_name %>
   <br>
   <% @article.where(user_id: user.id).take(3).each do |a| %>
-    <%= a.id %>
+    <%= link_to "#{a.id}", article_path(a) %>
   <% end %>
   <br>
 <% end %>
