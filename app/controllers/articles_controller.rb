@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
  	
     @articles = Article.all
     @categories = Category.all
+    @user = User.all
   end
   def new
   	@article = Article.new
@@ -28,6 +29,8 @@ def create
 end
 
   def show
+  	@user = User.all
+  	@category = Category.all
     @article = Article.find(params[:id])
     @random_articles = Article.all.sample(3)
   end
@@ -36,7 +39,7 @@ end
   private   #test sur les params articles et category
 
   def articles_params
-    params.require(:article).permit(:description, :size, :image)
+    params.require(:article).permit(:description, :size, :image, :title)
   end
 
   #def category_params

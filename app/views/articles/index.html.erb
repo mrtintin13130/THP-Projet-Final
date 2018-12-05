@@ -1,13 +1,11 @@
 
 <h1>Home#index</h1>
 
-<% @article.each do |article| %>
+<% @articles.each do |article| %>
   <h3><%= article.title %></h3>
+  <img src = "<%= article.image %>">
   <%= article.description %>
   <br>
-  <% first_name = @user.find(article.user_id).first_name %>
-  <% last_name =  @user.find(article.user_id).last_name %>
-  - <%= link_to "#{first_name} #{last_name}", user_path(article) %>
 
 <% end %>
 
