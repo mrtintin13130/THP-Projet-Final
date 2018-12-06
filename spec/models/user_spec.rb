@@ -24,28 +24,33 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it 'It should save' do
-  art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
-  expect(art).to eq(true)
+  context 'validation tests' do
+
+    it 'It should save' do
+    art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
+    expect(art).to eq(true)
+    end
+
+    it 'It should not save without mail' do
+    art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, password: "ZEZEZE"  ).save
+    expect(art).to eq(false)
+    end
+
+    it 'It should not save without password' do
+    art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com' ).save
+    expect(art).to eq(false)
+    end
+
+    it 'It should not save without first_name' do
+    art = User.new(last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
+    expect(art).to eq(false)
+    end
+
+    it 'It should not save without last_name' do
+    art = User.new(first_name: 'Bobby', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
+    expect(art).to eq(false)
+    end
   end
 
-  it 'It should not save without mail' do
-  art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, password: "ZEZEZE"  ).save
-  expect(art).to eq(false)
-  end
 
-  it 'It should not save without password' do
-  art = User.new(first_name: 'Bobby', last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com' ).save
-  expect(art).to eq(false)
-  end
-
-  it 'It should not save without first_name' do
-  art = User.new(last_name: 'Lajoie', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
-  expect(art).to eq(false)
-  end
-
-  it 'It should not save without last_name' do
-  art = User.new(first_name: 'Bobby', birth_date: '02/03/89', sex: false, email: 'bobbylajoie@mail.com', password: "ZEZEZE"  ).save
-  expect(art).to eq(false)
-  end
 end
