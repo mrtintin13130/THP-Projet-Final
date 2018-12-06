@@ -1,11 +1,16 @@
 <!-- PAGE D'ACCEUIL -->
 
-
+<% unless user_signed_in? %>
 <div style="float: right;"><h2><%= link_to 'Se connecter', new_user_session_path %> <%= link_to "S'enregistrer" , new_user_registration_path%> 
 
-	<% if user_signed_in? %>
+	<% else %>
+	
 
-	<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
+	<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %><br>
+	
+<%= link_to 'mon profil', user_path(current_user.id) %><br>
+
+
 
 	<%end%>
 
@@ -18,10 +23,12 @@
 <center><h1>Page d'accueil Titre du site</h1></center>
 <h2>Banniere avec une explication en une phrase d'accroche</h2>
 <h3>Texte explicatif</h3>
+<%= link_to 'Les messages', new_message_path %><br>
+<%= link_to 'Les Users', users_path %><br>
+<%= link_to "les articles", articles_path %>
 
 
 
 
-<%= link_to 'Les messages', new_message_path %>
-<%= link_to 'Les Users', users_path %>
+
 
