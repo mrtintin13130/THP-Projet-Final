@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :code_confirm
       t.string :image
       t.string :phone
-      t.boolean :phone_verified
+      t.boolean :phone_verified, default: false
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

@@ -1,17 +1,17 @@
 class ChargesController < ApplicationController
     def new
-        @amount = params[:amount]
+        #@amount = params[:amount]
     end
 
     def create
-        @amount = params[:amount]
+        @amount = 5000
         customer = Stripe::Customer.create(
             :email => params[:stripeEmail],
             :source  => params[:stripeToken]
             )
         charge = Stripe::Charge.create(
             :customer    => customer.id,
-            :amount      => @amount.to_i * 100,
+            :amount      => @amount,
             :description => 'Rails Stripe customer',
             :currency    => 'usd'
             )
@@ -20,4 +20,3 @@ class ChargesController < ApplicationController
         redirect_to new_charge_path
     end
 end
-

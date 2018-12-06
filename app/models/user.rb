@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :articles
   has_one :favorite
   has_many :messages
-  def code_create
+  def self.code_create(user)
     if user.code_confirm == nil || user.updated_at < DateTime.now - 1.minutes
       user.code_confirm = rand(1000..9999)
       user.save
@@ -23,12 +23,14 @@ class User < ApplicationRecord
       phone = "33" + phone
       phone.slice!(2)
     end
-  return phone
+    phone_indent = phone
+  return phone_indent
   end
 
   def self.sms_send(user, phone)
-    authenticate(phone)
-    client = Nexmo::Client.new(api_key: "b5d67031", api_secret: "zGuhQACL1j2OsAO0")
-    client.sms.send(from: "SWAT", to: phone, text: "Voici votre code secret #{user.code_confirm}")
+    phone_indent = authenticate(phone)
+    code_create(user)
+    client = Nexmo::Client.new(api_key: ENV['NEXMO_API_KEY'], api_secret: ENV['NEXMO_API_SECRET'])
+    client.sms.send(from: "SWAT", to: phone_indent, text: "Voici votre code secret #{user.code_confirm}")
   end
 end
