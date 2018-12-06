@@ -5,13 +5,23 @@
 <%= simple_form_for (@user) do |f| %>
 <%= devise_error_messages! %>
         <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.input :first_name  %>
-          <%= f.input :last_name%>
-          <%= f.label :email %>
+        <div class="field">
+          <%= f.label :first_name  %><br>
+          <%= f.text_field :first_name %>
+          </div>
+          <div class="field">
+          <%= f.label :last_name  %><br>
+          <%= f.text_field :last_name %>
+          </div>
+          <div class="field">
+          <%= f.label :email %><br>
           <%= f.email_field :email%>
+          </div>
+          <div class="field">
 
-          <%= f.input :birth_date %>
+          <%= f.label :date_de_naissance  %><br>
+          <%= f.text_field :birth_date %>
+          </div>
           <% if @user.avatar? %>
           <p>
             <%= image_tag @user.avatar %>
@@ -22,10 +32,20 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.input :password, autocomplete: "new-password" %>
+    <div class="field">
+    <%= f.label :Mot_de_passe %><br>
+    <%= f.password_field :password, autocomplete: "new-password" %>
   
 
   </div>
+
+
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.phone_field :phone, autocomplete: "phone" %>
+  </div>
+
   <div class="actions">
     <%= f.button :submit %>
   </div>
