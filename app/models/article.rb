@@ -14,9 +14,10 @@ class Article < ApplicationRecord
   belongs_to :category
   has_one :favorite
 
+
+# validation to pass tests
   validates :description, presence: true
   validates :size, presence: true
-  validates :status, presence: true
   validates :status, presence: true
   validates :user_id, presence: true
   validates :category_id, presence: true
