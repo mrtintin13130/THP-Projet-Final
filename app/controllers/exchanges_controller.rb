@@ -5,6 +5,18 @@ class ExchangesController < ApplicationController
     @my_exchange = Exchange.where(owner_user_id: current_user.id)
     @article = Article.all
     @user = User.all
-    puts @asked_exchange
+  end
+
+  def create
+    exchanges = Exchange.all
+    article_id = params[:article_id]
+    owner_id = params[:owner_id]
+    trade_exist = exchanges.find_by(owner_user_id: owner_id)
+    if trade_exist.blank?
+      puts "AAAAAAAAAAA"
+      new = Exchange.new(applicant_user_id: current_user.id, owner_user_id: owner_id, owner_article_id: article_id)
+      new.save
+    end
+    redirect_to request.referer
   end
 end

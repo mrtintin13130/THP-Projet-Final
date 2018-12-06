@@ -19,6 +19,6 @@ end
   Article.create(title: Faker::Esport.game, description: Faker::LeagueOfLegends.quote, size: Faker::Number.between(30, 45), status: true, user_id: Faker::Number.between(1, 10), category_id: Faker::Number.between(1, 5))
 end
 
-150.times do
-  Exchange.create(applicant_user_id: Faker::Number.between(1, 11), owner_user_id: Faker::Number.between(1, 11), applicant_article_id: Faker::Number.between(1, 15), owner_article_id: Faker::Number.between(1, 15), applicant_status: Faker::Boolean.boolean(0.5), owner_status: Faker::Boolean.boolean(0.4))
-end
+# 150.times do
+#   Exchange.create(applicant_user_id: Faker::Number.between(1, 11), owner_user_id: Faker::Number.between(1, 11), applicant_article_id: Faker::Number.between(1, 15), owner_article_id: Faker::Number.between(1, 15), applicant_status: Faker::Boolean.boolean(0.5), owner_status: Faker::Boolean.boolean(0.4))
+# end

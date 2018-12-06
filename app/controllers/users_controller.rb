@@ -12,13 +12,15 @@ end
     @user = User.new(user_params)
  
     if @user.save
-      redirect_to @user, notice: 'Upload was successfully created.'
+      redirect_to user_path(params[:id]) 
     else
       render :new
     end
+end
  
-  end
+ 
   def show
+  	current_user
   	@user = User.find(params[:id])
   	@article = Article.find(params[:id])
   end

@@ -1,3 +1,4 @@
+
 <h2>Creer son profil</h2>
 
 
@@ -7,7 +8,9 @@
         <div class="form-inputs">
           <%= f.input :first_name  %>
           <%= f.input :last_name%>
+          <%= f.label :email %>
           <%= f.email_field :email%>
+
           <%= f.input :birth_date %>
           <% if @user.avatar? %>
           <p>
@@ -19,18 +22,15 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.input :password, autocomplete: "new-password" %>
+  
 
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.button :submit %>
   </div>
         <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
 

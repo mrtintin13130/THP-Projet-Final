@@ -1,15 +1,17 @@
+<% user = @user %>
 <h2>Mes échanges</h2>
 <h3>Articles demandés</h3>
 <% @asked_exchange.each do |asked| %>
-  Vous avez demandé: <%= @article.find_by(id: asked.owner_article_id).title %>
+  Vous avez demandé: <%= link_to "#{@article.find_by(id: asked.owner_article_id).title}", article_path(@article.find_by(id: asked.owner_article_id)) %>
   <br>
-  à: <%= @user.find(asked.owner_user_id).first_name %> <%= @user.find(asked.owner_user_id).last_name %>
+  à: <%= link_to "#{user.find(asked.owner_user_id).first_name} #{user.find(asked.owner_user_id).last_name}", user_path(user.find(asked.owner_user_id)) %>
+
   <br>
 <% end %>
 <h3>On m'a demandé</h3>
 <% @my_exchange.each do |exc| %>
-  <%= @user.find(exc.applicant_user_id).first_name %> <%= @user.find(exc.applicant_user_id).last_name %>
+  <%= link_to "#{user.find(exc.applicant_user_id).first_name} #{user.find(exc.applicant_user_id).last_name}", user_path(user.find_by(id: exc.applicant_user_id)) %>
   <br>
-  aimerait votre: <%= @article.find_by(id: exc.owner_article_id).title %>
+  aimerait votre: <%= link_to "#{@article.find_by(id: exc.owner_article_id).title}", article_path(@article.find_by(id: exc.owner_article_id)) %>
   <br>
 <% end %>

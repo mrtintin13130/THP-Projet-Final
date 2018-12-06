@@ -32,7 +32,11 @@ end
   	@user = User.all
   	@category = Category.all
     @article = Article.find(params[:id])
+
     @random_articles = Article.all.sample(3)
+
+    @exchange = Exchange.all
+
   end
 
   

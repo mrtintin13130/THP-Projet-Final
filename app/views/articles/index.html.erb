@@ -1,12 +1,16 @@
 
+
 <h1>Home#index</h1>
-<%= link_to 'modifier mon profil', edit_user_url %>
+<%= link_to 'modifier mon profil', user_path(current_user.id) %>
 
 <% @articles.each do |article| %>
+<h3><%= link_to "#{article.title}", article_path(article) %></h3>
+<img src = "<%= article.image %>">
   <h3><%= article.title %></h3>
-  <img src = "<%= article.image %>">
+  
   <%= article.description %>
-  <br>
+
+
 
 <% end %>
 
