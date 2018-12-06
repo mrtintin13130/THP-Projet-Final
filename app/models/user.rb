@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :articles
   has_one :favorite
   has_many :messages
+  mount_uploader :avatar, AvatarUploader
 end
+

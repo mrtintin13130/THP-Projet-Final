@@ -1,7 +1,10 @@
 <% @user.each do |user| %>
+
   Prénom: <%= link_to "#{user.first_name}", user_path(user) %>
   <br>
   Nom: <%= user.last_name %>
+  <br>
+  <img src = "<%= user.avatar %>">
   <br>
   <% @article.where(user_id: user.id).take(3).each do |a| %>
     <%= link_to "#{a.id}", article_path(a) %>

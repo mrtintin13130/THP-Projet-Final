@@ -5,17 +5,17 @@
         
         <li>
              <div class = "<%= @article%>-title">
-          <h2><%= @article.title %></h2>
+          <h2><strong><%= @article.title %></strong></h2>
         </div>
           <img src = "<%= @article.image %>">
           <br>
           <div class="<%= @article%>-info">
          
             <div class="model">
-              <h2><p<%= @article.description %><span><%= @article.description %></p></span></h2>
+              <h3><p<%= @article.description %><span><%= @article.description %></p></span></h3>
             </div>
           	<div class = "<%= @article%>-size">
-          		<h4>Size: <i><%= @article.size %></i></h4>
+          		<h5><i>Size: <%= @article.size %></i></h5>
           	</div>
 
 
@@ -26,7 +26,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="look">
-          <%= link_to "Show", article_path %>
+          <%= link_to "Voir tous les articles", article_path %>
           </div>
         </li>
       

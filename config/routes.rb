@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	devise_for :users
 	resources :users
 	resources :articles
+	resources :exchanges
 
 	as :user do
 		get 'users/profile', :to => 'devise/registrations#edit', :as => :user_root

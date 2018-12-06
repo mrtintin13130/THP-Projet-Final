@@ -1,15 +1,19 @@
 
 <h1>Le User</h1>
+<img src = "<%= @user.avatar %>">
 
 <%= @user.first_name %> 
 
 <%= @user.last_name %> <br>
+<%= @user.birth_date %> <br>
+<i><%= @user.email %></i><br>
 
 <% @user.articles.each do |article| %>
 ________________________________ <br>
 
 Taille de l'article : <%= article.size %> <br>
-Categorie de l'article : <%= article.category.name %> <br>
+<img src = "<%= article.image %>">
+
 Description de l'article : <%= article.description %> <br>
 <% end %>
 

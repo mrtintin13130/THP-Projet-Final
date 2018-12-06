@@ -1,5 +1,6 @@
 
 <h1>Home#index</h1>
+<%= link_to 'modifier mon profil',user, edit_user_url, remote: true,{ method: :edit} %>
 
 <% @articles.each do |article| %>
   <h3><%= article.title %></h3>
