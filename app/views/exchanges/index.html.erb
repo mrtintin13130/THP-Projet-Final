@@ -12,6 +12,6 @@
 <% @my_exchange.each do |exc| %>
   <%= link_to "#{user.find(exc.applicant_user_id).first_name} #{user.find(exc.applicant_user_id).last_name}", user_path(user.find_by(id: exc.applicant_user_id)) %>
   <br>
-  aimerait votre: <%= link_to "#{@article.find_by(id: exc.owner_article_id).title}", article_path(@article.find_by(id: exc.owner_article_id)) %>
+  Aimerait votre article: <%= link_to "#{@article.find_by(id: exc.owner_article_id).title}", article_path(@article.find_by(id: exc.owner_article_id)) %>
   <br>
 <% end %>

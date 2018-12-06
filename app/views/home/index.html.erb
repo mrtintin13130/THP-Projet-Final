@@ -1,7 +1,7 @@
 <!-- PAGE D'ACCEUIL -->
 
 
-<div style="float: right;"><h2><%= link_to 'Se connecter', new_user_session_path %> <%= link_to "S'enregistrer" , new_user_registration_path%> 
+<div style="float: right;"><h2><%= link_to 'Se connecter', new_user_session_path %> <%= link_to "S'enregistrer" , new_user_registration_path%>
 
 	<% if user_signed_in? %>
 
@@ -23,5 +23,7 @@
 
 
 <%= link_to 'Les messages', new_message_path %>
+<br>
 <%= link_to 'Les Users', users_path %>
-
+<br>
+<%= link_to 'Mes échanges', exchanges_path %>

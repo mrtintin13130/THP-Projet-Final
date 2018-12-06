@@ -1,6 +1,6 @@
-<% category = @category %>
-<% article = @article %>
-<% user = @user %>
+<% category = @category %> <!-- Category.all -->
+<% article = @article %> <!-- Article.find(params[:id]) -->
+<% user = @user %> <!-- User.all -->
 <h1>Article</h1>
 Titre: <%= article.title %>
 <br>
@@ -12,8 +12,9 @@ Taille: <%= article.size %>
 <br>
 Catégorie: <%= category.find(article.category_id).name %>
 <br>
-<% if (@exchange.find_by(owner_article_id: article.id).blank?) %>
-  <%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id)), method: "post" %>
+<% if (@exchange.find_by(owner_article_id: article.id).blank? && user.find(article.user_id).id != current_user.id) %>
+  <%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id).id), method: "post" %>
+<% elsif (user.find(article.user_id).id == current_user.id) %>
 <% else %>
   <b>En attente</b>
 <% end %>
