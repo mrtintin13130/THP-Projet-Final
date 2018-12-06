@@ -2,6 +2,8 @@
 <% article = @article %>
 <% user = @user %>
 <h1>Article</h1>
+Titre: <%= article.title %>
+<br>
 Propirétaire: <%= user.find(article.user_id).first_name %> <%= user.find(article.user_id).last_name %>
 <br>
 Description: <%= article.description %>
@@ -9,3 +11,9 @@ Description: <%= article.description %>
 Taille: <%= article.size %>
 <br>
 Catégorie: <%= category.find(article.category_id).name %>
+<br>
+<% if (@exchange.find_by(owner_article_id: article.id).blank?) %>
+  <%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id)), method: "post" %>
+<% else %>
+  <b>En attente</b>
+<% end %>
