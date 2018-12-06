@@ -1,32 +1,13 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Messages</h1>
-
-
-
-
-
-
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.content.upcase %></td>
-
-
-
-
-
-
-
-
-
-
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<h1>Messagesssss</h1>
+<tbody>
+  <% @messages.each do |message| %>
+  <tr>
+    <td><%= message.content.upcase %></td>
+    <td><%= link_to 'Edit', edit_message_path(message) %></td>
+    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <br>
     <% end %>
-
-
-
-<%= render 'form', message: @message %>
-
-<%= link_to 'New Message', new_message_path %>
+    <div style="position: absolute; bottom: 0; margin-bottom: 2%">
+      <%= render 'form', message: @message %>
+    </div>
