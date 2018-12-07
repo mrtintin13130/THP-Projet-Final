@@ -22,6 +22,10 @@
           <%= f.label :date_de_naissance  %><br>
           <%= f.text_field :birth_date %>
           </div>
+           <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.phone_field :phone, autocomplete: "phone" %>
+  </div>
           <% if @user.avatar? %>
           <p>
             <%= image_tag @user.avatar %>
@@ -41,10 +45,7 @@
 
 
 
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.phone_field :phone, autocomplete: "phone" %>
-  </div>
+ 
 
   <div class="actions">
     <%= f.button :submit %>

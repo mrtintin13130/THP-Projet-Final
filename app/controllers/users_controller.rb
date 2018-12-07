@@ -2,38 +2,23 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
+    
   end
 def index
-	@user = User.all
-	@article = Article.all
+	
 end
 
   def create
-    @user = User.new(user_params)
- 
-    if @user.save
-      redirect_to user_path(params[:id]) 
-    else
-      render :new
-    end
+   
 end
  
  
 	  def show
-	   if user_signed_in?
-		    @user = current_user
-	  else
+	   
+@user = current_user
+	  
+	end
 
-	    @user = User.find(params[:id])
-	    if @user.destroy
-	      log_out
-	      flash[:success] = 'User has been successfuly deleted'
-	      redirect_to root_path
-	    
-	  end
-	end
-	end
 	  
 
 
@@ -58,9 +43,9 @@ end
 
 	before_action :set_user
 
-	 
+	 end
 
-	  private
+	
 
 	 
 
@@ -72,6 +57,7 @@ end
 			User.sms_send(@user, @user.phone)
 	  end
 		end
+
 		def new_verification_number
 			if params[:new] != nil
 				@user.phone = params[:new]
@@ -88,9 +74,7 @@ end
 		end
 		private
 
-	  def user_params
-	    params.require(:user).permit(:last_name, :first_name, :birth_date, :email, :password, :avatar)
-	  end
+	  
 		def set_user
 			@user = current_user
 		end

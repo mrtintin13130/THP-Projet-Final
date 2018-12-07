@@ -1,14 +1,18 @@
 
-<h1>Le User</h1>
+<h2><center><strong><i>Le User</i></strong></center></h2>
+
+<img src = "<%= @user.avatar %>">
+<h3>Nom: <%= @user.first_name %><br>
+
+Prenom: <%= @user.last_name %> </h3><br>
+
+<i>Tel: <%= @user.phone %> <br>
+date de naissance: <%= @user.birth_date %></i><br>
+<br>
+email: <%= @user.email %><br>
 
 
-<%= @user.first_name %> 
-
-<%= @user.last_name %> <br>
-<img src = "<%= @user.avatar %>"><br>
-<%= @user.birth_date %> <br>
-<i><%= @user.email %></i><br>
-
+mes articles:<br>
 <% @user.articles.each do |article| %>
 ________________________________ <br>
 
