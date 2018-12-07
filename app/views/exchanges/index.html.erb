@@ -1,6 +1,6 @@
 <% user = @user %> <!-- @user.all -->
-<% asked = @asked_exchange.where(applicant_article_id: nil) %> <!-- they asked to me -->
-<% my_exchange = @my_exchange.where(applicant_article_id: nil) %> <!-- I asked to them (without ) -->
+<% they_asked = @they_asked.where(applicant_article_id: nil) %> <!-- they asked to me -->
+<% i_asked = @i_asked.where(applicant_article_id: nil) %> <!-- I asked to them (without ) -->
 <% awaiting_exchange = @exchange.
                                 where.not(applicant_article_id: [nil, ""]).
                                 where(owner_user_id: current_user.id).
@@ -8,23 +8,22 @@
                                             where.not(applicant_article_id: [nil, ""]).
                                             where(applicant_user_id: current_user.id)) %>
 
-<% puts "AAAAAAAAAAAAAAA" %>
 <% print awaiting_exchange %>
 
 <h2>Mes échanges</h2>
 <h3>Articles demandés</h3>
-<% asked.each do |ask| %>
-  Vous avez demandé: <%= link_to "#{@article.find_by(id: ask.owner_article_id).title}", article_path(@article.find_by(id: ask.owner_article_id)) %>
+<% they_asked.each do |they| %>
+  Vous avez demandé: <%= link_to "#{@article.find_by(id: they.owner_article_id).title}", article_path(@article.find_by(id: they.owner_article_id)) %>
   <br>
-  à: <%= link_to "#{user.find(ask.owner_user_id).first_name} #{user.find(ask.owner_user_id).last_name}", user_path(user.find(ask.owner_user_id)) %>
+  à: <%= link_to "#{user.find(they.owner_user_id).first_name} #{user.find(they.owner_user_id).last_name}", user_path(user.find(they.owner_user_id)) %>
 
   <br>
 <% end %>
 <h3>On m'a demandé</h3>
-<% my_exchange.each do |exc| %>
-  <%= link_to "#{user.find(exc.applicant_user_id).first_name} #{user.find(exc.applicant_user_id).last_name}", user_path(user.find_by(id: exc.applicant_user_id)) %>
+<% i_asked.each do |i| %>
+  <%= link_to "#{user.find(i.applicant_user_id).first_name} #{user.find(i.applicant_user_id).last_name}", user_path(user.find_by(id: i.applicant_user_id)) %>
   <br>
-  Aimerait votre article: <%= link_to "#{@article.find_by(id: exc.owner_article_id).title}", article_path(@article.find_by(id: exc.owner_article_id)) %>
+  Aimerait votre article: <%= link_to "#{@article.find_by(id: i.owner_article_id).title}", article_path(@article.find_by(id: i.owner_article_id)) %>
 
   <br>
 <% end %>

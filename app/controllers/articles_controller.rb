@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @category = Category.all
     @user = User.all
-    @exchange = Exchange.all
   end
 
   def index
