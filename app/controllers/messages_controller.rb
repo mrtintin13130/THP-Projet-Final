@@ -3,15 +3,26 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @messages = Message.all
+    @messages_get = Message.where(dest_user_id: current_user.id)
+    @messages_sent = Message.where(user_id: current_user.id)
+
     @user = current_user
-    @user_names = @user.first_name + " " + @user.last_name
+    if @user != nil && @user.last_name != nil && @user.first_name != nil
+      @user_names = @user.first_name + " " + @user.last_name
+    end 
     @id = params[:id]
   end
 
   def show
     @user = current_user
     @messages = Message.all
+    message_info = Message.find(params[:id])
+    @destinataire_id = message_info.dest_user_id
+    @destinataire = User.find(@destinataire_id).last_name
+    @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) || Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
+
+
+
   end
 
   def new
@@ -57,10 +68,10 @@ class MessagesController < ApplicationController
   end
 
   private
-    def set_message
-      @message = Message.find(params[:id])
-    end
-    def message_params
-      params.fetch(:message, {})
-    end
+  def set_message
+    @message = Message.find(params[:id])
   end
+  def message_params
+    params.fetch(:message, {})
+  end
+end

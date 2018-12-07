@@ -9,7 +9,7 @@
 			<tr>
 				<% if @messages != nil %>
 				<% @messages.each do |message| %>
-
+				
 				<% if message.dest_user_id == @user.id %>
 				<td><%= message.content %></td>
 				<td></td>
