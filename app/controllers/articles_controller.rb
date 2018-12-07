@@ -14,12 +14,7 @@ class ArticlesController < ApplicationController
 def create
 	#@articles = Article.all
 	#@article = Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
-	@user = User.find(params[:id])
-    if @user.id == current_user.id
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
+
 @article = Article.new(articles_params)
  
     if @article.save
@@ -34,9 +29,9 @@ def create
 end
 
   def show
-  	@user = User.find(params[:id])
+  	@user = User.all
   	@category = Category.all
-    @article = Article.find(params[:id])
+    @article = Article.all
 
     @random_articles = Article.all.sample(3)
 
@@ -48,7 +43,7 @@ end
   private   #test sur les params articles et category
 
   def articles_params
-    params.require(:article).permit(:description, :size, :image, :title)
+    params.require(:article).permit(:description, :size, :image, :title, :user_id)
   end
 
   #def category_params

@@ -1,6 +1,6 @@
 
   class UsersController < ApplicationController
-	
+
 	def show
 		@user = User.find(params[:id])
 		if @user.id == current_user.id
@@ -8,9 +8,9 @@
 		else
 			@user = User.find(params[:id])
 		end
-		if @user != nil
-			@user_names = @user.last_name.capitalize + " " + @user.first_name.capitalize
-		end
+		# if @user != nil
+		# 	@user_names = @user.last_name + " " + @user.first_name
+		# end
 	end
 
 	def index

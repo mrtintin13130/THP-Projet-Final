@@ -15,7 +15,20 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
 
 
-
+ *= require vendor/swiper/css/swiper.min
+ *= require vendor/hamburgers/hamburgers.min
+ *= require vendor/animate/animate.min
+ *= require vendor/fancybox/css/jquery.fancybox.min
+ *= require fonts/font-awesome/css/font-awesome.min
+ *= require fonts/ionicons/css/ionicons.min
+ *= require fonts/line-icons/line-icons
+ *= require fonts/line-icons-pro/line-icons-pro
+ *= require fonts/linea/arrows/linea-icons
+ *= require fonts/linea/basic/linea-icons
+ *= require fonts/linea/ecommerce/linea-icons
+ *= require fonts/linea/software/linea-icons
+ *= require css/boomerang.min
+ *= require css/custom-style
 
  *= require_tree .
  *= require_self
