@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature "signing in" do
+feature "Get Premium" do
   let(:user) {FactoryBot.build(:user)}
 
-  scenario "user connect and pay", :js => true do
+  scenario "user can connect and pay", :js => true do
     visit new_user_session_path
     fill_in 'Email', :with => user.email
     fill_in 'Password', :with => user.password
@@ -13,17 +13,15 @@ feature "signing in" do
     click_button "Pay with Card"
 
     Capybara.within_frame 'stripe_checkout_app' do
-
-
       fill_in 'Email', :with => 'persona@example.com'
       fill_in "Card number", :with => "4242424242424242"
       fill_in 'CVC', :with => '123'
       fill_in 'MM / YY', :with => '11/20'
-
       click_button 'Pay'
-      Capybara.default_max_wait_time = 10
-      driver.switchTo().defaultContent();
-      expect(page).to have_text("Thanks, you paid ")
     end
+
+    Capybara.default_max_wait_time = 10
+    expect(user).to have_attributes(:premium_user => true)
+    #.to have_content("Thanks, you paid ")
   end
 end
