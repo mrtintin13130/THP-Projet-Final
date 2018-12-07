@@ -37,5 +37,6 @@ class User < ApplicationRecord
     client.sms.send(from: "SWAT", to: phone_indent, text: "Voici votre code secret #{user.code_confirm}")
   end
 
+
 end
 

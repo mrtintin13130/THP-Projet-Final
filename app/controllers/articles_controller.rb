@@ -14,7 +14,12 @@ class ArticlesController < ApplicationController
 def create
 	#@articles = Article.all
 	#@article = Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
-	
+	@user = User.find(params[:id])
+    if @user.id == current_user.id
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
 @article = Article.new(articles_params)
  
     if @article.save
