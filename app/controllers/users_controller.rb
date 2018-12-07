@@ -20,6 +20,7 @@ before_action :set_user
 		User.sms_send(@user, @user.phone)
   end
 	end
+
 	def new_verification_number
 		if params[:new] != nil
 			@user.phone = params[:new]
@@ -34,7 +35,9 @@ before_action :set_user
 			format.html { redirect_to request.referrer}
 		end
 	end
+
 	private
+
 	def set_user
 		@user = current_user
 	end
