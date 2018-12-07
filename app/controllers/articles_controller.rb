@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-	before_action :authenticate_user!  #this line is for login before post
+	#before_action :authenticate_user!  #this line is for login before post
  def index
  	
     @articles = Article.all
@@ -31,7 +31,7 @@ end
   def show
   	@user = User.all
   	@category = Category.all
-    @article = Article.all
+    @article =  Article.find(params[:id])
 
     @random_articles = Article.all.sample(3)
 

@@ -3,6 +3,7 @@
 
 	def show
 		@user = User.find(params[:id])
+		@article =  Article.find(params[:id])
 		if @user.id == current_user.id
 			@user = current_user
 		else

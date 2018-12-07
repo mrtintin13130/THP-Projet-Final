@@ -27,7 +27,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="look">
-          <%= link_to "Voir tous les articles", article_path %>
+          <%= link_to "Voir tous les articles", articles_path %>
           </div>
         </li>
       
@@ -35,11 +35,6 @@
 	</div>
 </div>
 
-<% if (@exchange.find_by(owner_article_id: article.id).blank?) &&
-      user.find(article.user_id).id != current_user.id %>
-  <%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id).id), method: "post" %>
-<% elsif user.find(article.user_id).id == current_user.id %>
-<% else %>
-  <b>En attente</b>
-<% end %>
+
+
 
