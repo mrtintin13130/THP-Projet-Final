@@ -1,21 +1,40 @@
 
-<% category = @category %> <!-- Category.all -->
-<% article = @article %> <!-- Article.find(params[:id]) -->
-<% user = @user %> <!-- User.all -->
 
-<h1>Article</h1>
-Titre: <%= article.title %>
-<br>
-Propriétaire: <%= user.find(article.user_id).first_name %> <%= user.find(article.user_id).last_name %>
-<br>
-<img src = "<%= article.image %>">
-<br>
-Description: <%= article.description %>
-<br>
-Taille: <%= article.size %>
-<br>
-Catégorie: <%= category.find(article.category_id).name %>
-<br>
+
+    <div class="articles-grid">
+      <ul id="flexiselDemo1">
+        
+        <li>
+             <div class = "<%= @article%>-title">
+          <h2><strong><%= @article.title %></strong></h2>
+        </div>
+          <img src = "<%= @article.image %>">
+          <br>
+          <div class="<%= @article%>-info">
+         
+            <div class="model">
+              <h3><p<%= @article.description %><span><%= @article.description %></p></span></h3>
+            </div>
+          	<div class = "<%= @article%>-size">
+          		<h5><i>Size: <%= @article.size %></i></h5>
+          	</div>
+
+
+            
+            <div class="model-info">
+              <%= link_to "home", "/" %>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="look">
+          <%= link_to "Voir tous les articles", article_path %>
+          </div>
+        </li>
+      
+      </ul>
+	</div>
+</div>
+
 <% if (@exchange.find_by(owner_article_id: article.id).blank?) &&
       user.find(article.user_id).id != current_user.id %>
   <%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id).id), method: "post" %>
