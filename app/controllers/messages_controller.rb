@@ -14,21 +14,26 @@ class MessagesController < ApplicationController
   end
 
   def show
+
     @user = current_user
-    @messages = Message.all
-    message_info = Message.find(params[:id])
-    @destinataire_id = message_info.dest_user_id
-    @destinataire = User.find(@destinataire_id).last_name
-    @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) || Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
+    @message_info = Message.find(params[:id])
+    @destinataire_id = @message_info.dest_user_id
 
+    if @message_info.dest_user_id != @user.id
+      @destinataire = User.find(@destinataire_id).last_name
+      @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) + Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
+    else
+      @expediteur = User.find(@message_info.user_id).last_name
+      @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
 
-
+    end
   end
 
   def new
     @user = current_user
-    @message = Message.new
-    @messages = Message.all
+    @destinataire_id = params[:id]
+    @destinataire = User.find(@destinataire_id).last_name
+    @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) + Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
   end
 
   def edit

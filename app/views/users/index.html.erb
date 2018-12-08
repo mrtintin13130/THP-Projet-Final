@@ -1,12 +1,37 @@
-<% @user.each do |user| %>
-  Prénom: <%= link_to "#{user.first_name}", user_path(user) %>
-  <br>
-  Nom: <%= user.last_name %>
-  <br>
-  <% @article.where(user_id: user.id).take(3).each do |a| %>
-    <%= link_to "#{a.id}", article_path(a) %>
-  <% end %>
-  <br>
-<% end %>
-
-
+<div><h1>Liste des echangeur SW&T</h1></div>
+<div class="widget mt-4">
+	<div class="row-wrapper">
+		<div class="row cols-md-space cols-sm-space cols-xs-space">
+			<% @user.each do |user| %>
+			<div class="col-lg-4">
+				<div class="block block--style-3">
+					<div class="profile-picture profile-picture--style-2">
+						<img src="../../assets/images/prv/people/person-1.jpg" >
+					</div>
+					<div class="block-body text-center">
+						<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= user.last_name%> <%= user.first_name%>
+						</h3>
+						<h3 class="heading heading-light heading-sm strong-300">
+							<% @article.where(user_id: user.id).take(3).each do |a| %>
+							<%= link_to "#{a.id}", article_path(a) %>
+							<% end %>
+						</h3>
+						<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
+					</div>
+					<div class="aux-info-wrapper border-top">
+						<ul class="aux-info">
+							<li class="heading strong-400 text-center">Size
+								<span class="d-block strong-600"><%= user.last_name%></span>
+							</li>
+							<li class="heading strong-400 text-center">
+								<span class="d-block strong-600">5</span>
+								Like
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

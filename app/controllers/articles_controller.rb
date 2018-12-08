@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
     @category = Category.all
     @user = User.all
     @exchange = Exchange.all
+    category = @category 
+    article = @article 
+    user = @user
+    @suggestions = @article.category.articles 
   end
 
   def index
