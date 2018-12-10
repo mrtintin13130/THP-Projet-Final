@@ -1,5 +1,5 @@
 
-
+ALOLAOALAO
 <% if @destinataire_id != @user.id -%>
 
 <h1> Chat box entre vous et <%= @destinataire %> </h1>
@@ -55,7 +55,7 @@
   <%= form.label :content, "Saisisssez votre message :" %>
   <%= form.text_field :content, id: 'message_tag' %>
 
-  <%= hidden_field_tag "dest_id", params[:id] %>
+  <%= hidden_field_tag "dest_id", params[:format] %>
   <div class="actions">
     <%= form.submit %>
   </div>

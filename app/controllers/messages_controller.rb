@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
 
   def new
    @user = current_user
-   @message_info = Message.find(params[:id])
+   @message_info = Message.find(params[:format])
    @destinataire_id = @message_info.dest_user_id
 
    if @message_info.dest_user_id != @user.id
