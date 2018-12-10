@@ -4,6 +4,10 @@
         <%= simple_form_for @article do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
+          <%= f.fields_for :category do |a| %>
+      <%= a.text_field :name %>
+   <% end %>
+
           <%= f.input :title %>
           <%= f.input :size %>
           <%= f.input :description %>

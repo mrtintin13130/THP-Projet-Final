@@ -16,9 +16,10 @@ def create
 	#@article = Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
 
 @article = Article.new(articles_params)
+@article.user = current_user
  
     if @article.save
-      redirect_to @article, notice: 'Upload was successfully created.'
+      redirect_to @article, notice: 'Votre article a bien été ajouté.'
     else
       render :new
     end
@@ -43,7 +44,7 @@ end
   private   #test sur les params articles et category
 
   def articles_params
-    params.require(:article).permit(:description, :size, :image, :title, :user_id)
+    params.require(:article).permit(:description, :size, :image, :title, category_attributes:[:name])
   end
 
   #def category_params

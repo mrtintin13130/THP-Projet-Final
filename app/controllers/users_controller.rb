@@ -6,6 +6,7 @@
 		
 		if @user.id == current_user.id
 			@user = current_user
+			
 		else
 			@user = User.find(params[:id])
 		end
@@ -20,7 +21,8 @@
 
 end
 
-  
+ 
+
 	
 
 	 

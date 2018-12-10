@@ -6,7 +6,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.string :image
       t.integer :size
       t.boolean :status, default: true
-      t.belongs_to :user
+      t.belongs_to :user, index: true
       t.belongs_to :category
 
       t.timestamps
