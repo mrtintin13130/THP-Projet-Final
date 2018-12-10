@@ -14,7 +14,7 @@
 <% @articles.each do |article| %><br><br>
 <h3><%= link_to "#{article.title}", article_path(article) %></h3>
 <img src = "<%= article.image %>">
-  <h3><%= article.title %></h3>
+  <h3><%= article.size %></h3>
   
   <%= article.description %>
 

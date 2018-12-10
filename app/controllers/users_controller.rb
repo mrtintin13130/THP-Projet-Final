@@ -20,39 +20,7 @@
 
 end
 
-  def create
-   
-end
- 
- 
-
-
-	  
-
-
-	  def edit
-	current_user
-	    @user = User.find(params[:id])
-	    
-	    
-	    
-	  end
-
-	  def update
-	    @user = User.find(params[:id])
-	    if @user.update(user_params)
-	      flash[:success] = 'User information successfully updated'
-	      redirect_to user_path(params[:id])
-	    
-	  end
-	end
-
-	  def destroy
-
-	before_action :set_user
-
-	 end
-
+  
 	
 
 	 
