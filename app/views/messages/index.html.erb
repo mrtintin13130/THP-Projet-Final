@@ -1,32 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Messages</h1>
-
-
-
-
-
-
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.content.upcase %></td>
-
-
-
-
-
-
-
-
-
-
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<center> <h1>MESSAGERIE de <%= User.find(current_user.id).last_name%> </h1></center>
+<br>
+<h2>Messages Envoyés</h2>
+<table class="table table-striped table-bordered">
+  <th>Destinataire</th>
+  <th>Message</th>
+  <th></th>
+  <% @messages_sent.each do |message| %>
+  <tr>
+    <td> <%= User.find(message.dest_user_id).last_name %></td>
+    <% if message.content.size >= 30 %> 
+    <td><%= message.content.first(30)+"..." %></td> 
+    <% else %>
+    <td><%= message.content%></td> 
+    <% end -%>    
+    <td><%= link_to "voir", message_path(message) %>
+    </tr>
     <% end %>
+  </table>
+  <br><br>
+  <h2>Messages Recus</h2>
+  <table class="table table-striped table-bordered">
+    <th>Expediteur</th>
+    <th>Message</th>
+    <th></th>
+    <% @messages_get.each do |message| %>
+    <tr>
+      <% if message.dest_user_id == current_user.id%>
+      <td><%= User.find(message.user_id).last_name %></td>
+      <% if message.content.size >= 30 %> 
+      <td><%= message.content.first(30)+"..." %></td> 
+      <% else %>
+      <td><%= message.content%></td> 
+      <% end -%>
+      <td><%= link_to "voir", message_path(message) %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>
 
-
-
-<%= render 'form', message: @message %>
-
-<%= link_to 'New Message', new_message_path %>
