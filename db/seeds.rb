@@ -19,8 +19,9 @@
 # 	Article.create(title: Faker::Esport.game, description: Faker::LeagueOfLegends.quote, size: Faker::Number.between(30, 45), status: true, user_id: Faker::Number.between(1, 10), category_id: Faker::Number.between(1, 5))
 # end
 
-100.times do
 
-	Message.create(content: Faker::LeagueOfLegends.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
-	
-end
+	#Category.create(name: "Tshirt")
+	Category.create(name: "pantalon")
+	Category.create(name: "sweat")
+	Category.create(name: "chaussure")
+	Category.create(name: "lunette")
