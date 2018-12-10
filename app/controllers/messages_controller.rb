@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :set_user, only: [:new, :show] 
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -30,12 +31,18 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = Message.new
-    @user = current_user
-    @destinataire_id = params[:id]
+   @user = current_user
+   @message_info = Message.find(params[:id])
+   @destinataire_id = @message_info.dest_user_id
+
+   if @message_info.dest_user_id != @user.id
     @destinataire = User.find(@destinataire_id).last_name
     @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) + Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
-  end
+  else
+    @expediteur = User.find(@message_info.user_id).last_name
+    @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
+
+  end  end
 
   def edit
   end
@@ -74,6 +81,10 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
   def set_message
     @message = Message.find(params[:id])
   end

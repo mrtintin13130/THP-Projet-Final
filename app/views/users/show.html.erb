@@ -25,6 +25,8 @@
 													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
 													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
 												</div>
+												<%if user_signed_in?%>
+
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
 													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
@@ -34,6 +36,7 @@
 												<div class="profile-connect mt-4">
 													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
 												</div>
+												<%end%>
 												<%end%>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">

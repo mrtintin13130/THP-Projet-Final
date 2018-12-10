@@ -31,7 +31,7 @@
               <% else %>
               <td><%= message.content%></td> 
               <% end -%>    
-              <td><%= link_to "voir", message_path(message) %>
+              <td><%= link_to "voir", new_message_path(message) %>
               </tr>
               <% end -%>    
               <% end %>
