@@ -1,10 +1,17 @@
 
 
+
 <h3><center>Articles#index</center></h3><br>
 <h2> les derniers articles</h2>
-<%= link_to 'mon profil', user_path(current_user.id) %>
-
-<% @articles.each do |article| %>
+<% unless user_signed_in? %>
+      <%= link_to 'Se connecter', new_user_session_path %></li>
+<%= link_to "S'enregistrer" , new_user_registration_path%></li>
+<%else%>
+<%= link_to 'Mon profil', user_path(current_user.id) %>
+<%= link_to 'Ajouter un article', new_article_path %>
+<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<%end%>
+<% @articles.each do |article| %><br><br>
 <h3><%= link_to "#{article.title}", article_path(article) %></h3>
 <img src = "<%= article.image %>">
   <h3><%= article.title %></h3>
@@ -14,4 +21,3 @@
 
 
 <% end %>
-

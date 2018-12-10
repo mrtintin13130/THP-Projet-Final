@@ -88,9 +88,15 @@
 									<div class="col-md-6">
 										<span class="aux-text d-none d-md-inline-block">
 											<ul class="inline-links inline-links--style-1">
+												<% unless user_signed_in? %>
 												<li class="d-none d-lg-inline-block">
-													Bonjour <%= @user_names %></li>
+
+													Bonjour </li>
+													<%else %>
+													Bonjour <%= @user.first_name %>
+
 													<li>
+														<% end %>
 														<i class="fa fa-envelope"></i>
 														<a href="#">support@webpixels.io</a>
 													</li>
@@ -150,17 +156,7 @@
 																		</div>
 																	</div>
 
-<<<<<<< HEAD
-</div>
-<br>
-<center><h1>Page d'accueil Titre du site</h1></center>
-<h2>Banniere avec une explication en une phrase d'accroche</h2>
-<h3>Texte explicatif</h3>
-<%= link_to 'Les messages', new_message_path %><br>
-<%= link_to 'Les Users', users_path %><br>
-<%= link_to "les articles", articles_path %>
 
-=======
 																	<div class="dc-item">
 																		<div class="d-flex align-items-center">
 																			<div class="dc-image">
@@ -197,7 +193,7 @@
 																						Brown leather wallet
 																					</a>
 																				</span>
->>>>>>> e3099a7f0cd9caae7e5cfdb9652e953cdc0a5f34
+
 
 																				<span class="dc-quantity">x1</span>
 																				<span class="dc-price">$99.00</span>
@@ -291,8 +287,8 @@
 										</li>
 									</ul>
 
-<<<<<<< HEAD
-=======
+
+
 									<div class="d-inline-block">
 										<!-- Navbar toggler  -->
 										<button class="navbar-toggler hamburger hamburger-js hamburger--spring" type="button" data-toggle="collapse" data-target="#navbar_main" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -1448,5 +1444,5 @@
 			</div><!-- END: st-pusher -->
 		</div><!-- END: st-container -->
 </div><!-- END: body-wrap -->
->>>>>>> e3099a7f0cd9caae7e5cfdb9652e953cdc0a5f34
+
 

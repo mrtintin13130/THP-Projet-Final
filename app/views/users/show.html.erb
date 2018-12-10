@@ -23,13 +23,13 @@
 
 												<!-- Profile details -->
 												<div class="profile-details">
-													<h2 class="heading heading-4 strong-500 profile-name"><%= @user_names %></h2>
-													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
-													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
+													<h2 class="heading heading-4 strong-500 profile-name"><%= @user.first_name %><%= @user.last_name %></h2>
+													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">echangeur fou</h3>
+													<h3 class="heading heading-light heading-6 strong-400 profile-location">bled paumé</h3>
 												</div>
 
 
-												<%= @user.first_name %>
+												<%= @user.articles.count %>
 
 
 

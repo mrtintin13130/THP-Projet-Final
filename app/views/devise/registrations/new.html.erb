@@ -26,12 +26,9 @@
     <%= f.label :phone %><br />
     <%= f.phone_field :phone, autocomplete: "phone" %>
   </div>
-          <% if @user.avatar? %>
-          <p>
-            <%= image_tag @user.avatar %>
-          </p>
-          <%end%>
+         
           <%= f.input :avatar, as: :file %>
+           
           
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
