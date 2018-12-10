@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @message = Message.new
     @user = current_user
     @destinataire_id = params[:id]
     @destinataire = User.find(@destinataire_id).last_name

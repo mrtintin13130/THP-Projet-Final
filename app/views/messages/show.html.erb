@@ -48,3 +48,16 @@
   <% end -%>
   <% end -%>
 </table>
+
+<%= form_with(model: @message, local: true) do |form| %>
+
+<div class="field">
+  <%= form.label :content, "Saisisssez votre message :" %>
+  <%= form.text_field :content, id: 'message_tag' %>
+
+  <%= hidden_field_tag "dest_id", params[:id] %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
+</div>
