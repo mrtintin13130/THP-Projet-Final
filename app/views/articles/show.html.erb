@@ -12,4 +12,4 @@ Taille: <%= article.size %>
 <br>
 Catégorie: <%= category.find(article.category_id).name %>
 <br>
-<%= link_to "Echanger", exchanges_path(article_id: article.id, owner_id: user.find(article.user_id).id), method: "post" %>
+<%= link_to "Echanger", new_exchange_path(article_id: article.id, owner_id: user.find(article.user_id).id) %>

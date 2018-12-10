@@ -1,31 +1,31 @@
 class ExchangesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @i_asked = Exchange.where(applicant_user_id: current_user.id)
-    @they_asked = Exchange.where(owner_user_id: current_user.id)
-    @exchange = Exchange.all
-    @article = Article.all
+    @i_asked = Exchange.where(applicant_user_id: current_user.id).where(status: nil)
+    @they_asked = Exchange.where(owner_user_id: current_user.id).where(status: nil)
     @user = User.all
+    @article = Article.all
+  end
+
+  def new
+    @exchange = Exchange.new
+    @article = Article.find(params[:article_id])
+    @user = User.find(params[:owner_id])
+    @options = Article.where(user_id: current_user.id)
   end
 
   def create
-    # exchanges = Exchange.all
-    article_id = params[:article_id]
-    owner_id = params[:owner_id]
-    trade_exist = Exchange.where(owner_user_id: owner_id).where(applicant_user_id: current_user.id).where(owner_article_id: article_id)
-
     puts current_user.id
-    puts article_id
-    puts owner_id
-    puts trade_exist
+    puts params[:exchange][:owner_id]
+    puts params[:article_id]
+    puts params[:exchange][:owner_article_id]
 
-    if trade_exist.blank?
-      new = Exchange.new(applicant_user_id: current_user.id, owner_user_id: owner_id, owner_article_id: article_id)
-      new.save
-    else
-      trade_exist.update(applicant_article_id: article_id)
-    end
-    redirect_to request.referer
+    @exchange = Exchange.create(
+      applicant_user_id: current_user.id,
+      owner_user_id: params[:exchange][:owner_id],
+      applicant_article_id: params[:article_id],
+      owner_article_id: params[:exchange][:owner_article_id])
+    # redirect_to request.referer
   end
 
   def show
