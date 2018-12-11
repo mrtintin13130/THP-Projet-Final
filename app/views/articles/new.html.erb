@@ -4,17 +4,17 @@
 <%= simple_form_for @article do |f| %>
   <div class="field">
     <%= f.label :Title %><br />
-    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    <%= f.text_field :title%>
   </div>
 
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description, autocomplete: "description" %>
+    <%= f.text_field :description %>
   </div>
 
   <div class="field">
     <%= f.label :size %><br />
-    <%= f.text_field :size, autocomplete: "size" %>
+    <%= f.text_field :size %>
   </div>
 
   <div class="field">
@@ -24,11 +24,11 @@
 
   <div class="field">
   <%= f.label :image %><br>
-  <%= f.file_field :image,as: :file, autocomplete: "image" %>
+  <%= f.file_field :image,as: :file %>
 </div>
 
   <div class="actions">
-    <%= f.submit "Créer" %>
+    <%= f.button :submit%>
   </div>
 <% end %>
 
