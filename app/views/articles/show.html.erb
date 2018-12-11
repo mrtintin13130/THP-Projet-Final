@@ -1,11 +1,199 @@
-<% category = @category %>
-<% article = @article %>
-<% user = @user %>
-<h1>Article</h1>
-Propirétaire: <%= user.find(article.user_id).first_name %> <%= user.find(article.user_id).last_name %>
-<br>
-Description: <%= article.description %>
-<br>
-Taille: <%= article.size %>
-<br>
-Catégorie: <%= category.find(article.category_id).name %>
+<section class="slice sct-color-1">
+	<div class="container">
+		<!-- Product gallery and Description -->
+		<div class="row cols-xs-space cols-sm-space cols-md-space">
+			<div class="col-lg-6">
+				<div class="gallery-container">
+					<div id="slideshow" class="gallery-top no-padding bg-transparent"></div>
+					<div class="swiper-container" data-swiper-items="5" data-swiper-space-between="10" data-swiper-xs-items="3" data-swiper-xs-space-between="10" data-swiper-sm-items="4" data-swiper-sm-space-between="10">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="../../assets/images/prv/shop/electronics/img-product-lg-1.jpg" data-desoslide-index="0">
+									<img src="../../assets/images/prv/shop/electronics/img-product-sm-1.jpg" alt="Bird">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="px-2">
+					<!-- Product description -->
+					<div class="product-description-wrapper px-1">
+						<!-- Product title -->
+						<h2 class="product-title">
+							<%= @article.title %><br> Cet article appartient à <%= @users.find(@article.user_id).first_name %> <%= @users.find(@article.user_id).last_name %>
+						</h2>
+
+						<hr>
+
+						<div class="row align-items-center">
+							<div class="col-6">
+								<!-- Rating stars -->
+								<div class="rating">
+									<span class="star voted" rel="1"></span>
+									<span class="star voted" rel="2"></span>
+									<span class="star voted" rel="3"></span>
+									<span class="star" rel="4"></span>
+									<span class="star" rel="5"></span>
+
+									<span class="rating-count">(2 customer reviews)</span>
+								</div>
+							</div>
+
+							<div class="col-6 text-right">
+								<ul class="inline-links inline-links--style-1 align-items-center">
+									<li class="">
+										<span class="badge badge-md badge-pill bg-blue">ID: <%= @article.id %></span>
+									</li>
+									<li>
+										<% if @article.status == true %>
+										<span class="badge badge-md badge-pill bg-green">Disponible</span>
+										<% else -%>
+										<span class="badge badge-md badge-pill bg-green">Echangé</span>
+										<% end -%>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Product description -->
+						<div class="product-short-text mt-3">
+							<h3 class="heading heading-xs strong-500 text-uppercase">
+								Description:
+							</h3>
+							<p>
+								<%= @article.description -%>
+							</p>
+						</div>
+
+						<hr>
+
+						<table class="table table-specs">
+							<tbody>
+								<tr>
+									<td>
+										<span class="c-gray-light strong-600">Categorie</span>
+									</td>
+									<td>
+										<%= @article.category.name -%>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span class="c-gray-light strong-600">Taille</span>
+									</td>
+									<td>
+										<%= @article.size -%>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<hr>
+
+						<div class="row row-no-padding no-margin">
+							<div class="col-lg-8">
+								<form class="form-default">
+									<div class="d-table product-quantity width-100 mt-3">
+										<div class="d-table-cell">
+
+											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
+
+											<span type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
+												<i class="icon ion-bag"></i>
+												<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id) %></span>
+
+												<% elsif (@users.find(@article.user_id).id == current_user.id) %>
+												<% else %>
+												<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
+													<i class="icon ion-bag"></i><b>En attente</b></button>
+
+													<% end %>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slice sct-color-2">
+			<div class="container">
+				<div class="section-title section-title--style-1 text-center mt-1">
+					<h3 class="section-title-inner heading-3 strong-600 line-height-1_6">
+						<span>Suggestions</span>
+					</h3>
+					<span class="section-title-delimiter clearfix d-none"></span>
+				</div>
+
+				<div class="row cols-xs-space cols-sm-space cols-md-space">
+					<%@suggestions.each do |product|%>
+					<div class="col-lg-3 col-md-6">
+
+						<div class="card card-product z-depth-1-top">
+							<div class="card-body">
+								<h2 class="heading heading-6 strong-600 mt-2 mb-3">
+
+									<a href="#"><%= product.title -%> </a>
+								</h2>
+
+								<div class="card-image swiper-js-container">
+									<div class="">
+										<div class="swiper-container" data-swiper-items="1" data-swiper-space-between="0">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<img src="../../assets/images/prv/shop/electronics/img-1.png" class="img-fluid img-center img-primary">
+												</div>
+												<div class="swiper-slide">
+													<img src="../../assets/images/prv/shop/electronics/img-1.png" class="img-fluid img-center img-primary">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="mt-3">
+									<div class="price-wrapper">
+										<span class="price price-sm c-gray-dark">
+											<span class="strong-300">$</span><span class="price-value strong-600">65.</span><small class="strong-300">00</small>
+										</span>
+										<span class="clearfix"></span>
+									</div>
+									<h6 class="heading heading-sm strong-400 c-red">Save 10%</h6>
+									<p class="product-description mt-3 mb-0">
+										<%= product.description -%>
+									</p>
+								</div>
+							</div>
+							<div class="card-footer">
+								<div class="product-buttons">
+									<div class="row align-items-center">
+										<div class="col-2">
+											<button type="button" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
+												<i class="ion-ios-heart"></i>
+											</button>
+										</div>
+										<div class="col-2">
+											<button type="button" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Compare">
+												<i class="ion-ios-browsers-outline"></i>
+											</button>
+										</div>
+										<div class="col-8">
+											<button type="button" class="btn btn-block btn-base-1 btn-circle btn-icon-left">
+												<i class="icon ion-android-cart"></i>Add to cart
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</section>

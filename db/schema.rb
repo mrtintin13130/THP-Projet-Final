@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_120615) do
+ActiveRecord::Schema.define(version: 2018_12_06_103337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.boolean "status"
     t.bigint "user_id"
     t.bigint "category_id"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
@@ -32,6 +33,20 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.bigint "applicant_user_id"
+    t.bigint "owner_user_id"
+    t.bigint "applicant_article_id"
+    t.bigint "owner_article_id"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_article_id"], name: "index_exchanges_on_applicant_article_id"
+    t.index ["applicant_user_id"], name: "index_exchanges_on_applicant_user_id"
+    t.index ["owner_article_id"], name: "index_exchanges_on_owner_article_id"
+    t.index ["owner_user_id"], name: "index_exchanges_on_owner_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -54,9 +69,10 @@ ActiveRecord::Schema.define(version: 2018_12_04_120615) do
     t.string "birth_date"
     t.boolean "admin", default: false
     t.boolean "premium_user", default: false
-    t.boolean "sex"
+    t.string "sex"
     t.integer "code_confirm"
     t.string "image"
+    t.string "avatar"
     t.string "phone"
     t.boolean "phone_verified", default: false
     t.string "email", default: "", null: false

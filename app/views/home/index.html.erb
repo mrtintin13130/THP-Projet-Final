@@ -1,27 +1,516 @@
-<!-- PAGE D'ACCEUIL -->
 
+	<div id="st-container" class="st-container">
+		<!-- <nav class="st-menu st-effect-1" id="menu-1">
+			<div class="st-profile">
+				<div class="st-profile-user-wrapper">
+					<div class="profile-user-image">
+						<img src="../../assets/images/prv/people/person-1.jpg" class="img-circle" />
+					</div>
+					<div class="profile-user-info">
+						<span class="profile-user-name">Bertram Ozzie</span>
+						<span class="profile-user-email">username@example.com</span>
+					</div>
+				</div>
+			</div>
 
-<div style="float: right;"><h2><%= link_to 'Se connecter', new_user_session_path %> <%= link_to "S'enregistrer" , new_user_registration_path%> 
+			<div class="st-menu-list mt-2">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="ion-ios-bookmarks-outline"></i> Theme documentation
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="ion-ios-cart-outline"></i> Purchase Tribus
+						</a>
+					</li>
+				</ul>
+			</div>
+			<h3 class="st-menu-title">Account</h3>
+			<div class="st-menu-list">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="ion-ios-person-outline"></i> User profile
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="ion-ios-location-outline"></i> My addresses
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="ion-card"></i> My cards
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="ion-ios-unlocked-outline"></i> Password update
+						</a>
+					</li>
+				</ul>
+			</div>
 
-	<% if user_signed_in? %>
+			<h3 class="st-menu-title">Support center</h3>
+			<div class="st-menu-list">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="ion-ios-information-outline"></i> About Tribus
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="ion-ios-email-outline"></i> Contact &amp; support
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-camera"></i> Getting started
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav> -->
 
-	<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
+		<div class="st-pusher">
+			<div class="st-content">
+				<div class="st-content-inner">
+					<!-- Header -->
+					
 
-	<%end%>
+					<!-- Slider -->
+					<section class="swiper-js-container background-image-holder" data-holder-type="fullscreen" data-holder-offset=".navbar">
+						<div class="swiper-container" data-swiper-autoplay="true" data-swiper-effect="slide" data-swiper-items="1" data-swiper-space-between="0">
+							<div class="swiper-wrapper">
+								<!-- Slide -->
+								<div class="swiper-slide" data-swiper-autoplay="8000">
+									<div class="slice holder-item holder-item-light has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-16.jpg); background-position: bottom center;">
+										<span class="mask mask-dark--style-2"></span>
+										<div class="container d-flex align-items-center">
+											<div class="col">
+												<div class="row text-center">
+													<div class="col-12">
+														<h2 class="heading heading-xl strong-400 text-uppercase animated" data-animation-in="fadeInDownBig" data-animation-delay="200">
+															Bienvenus sur <br><strong>Street Wear & Trade</strong>
+														</h2>
+														<p class="lead animated" data-animation-in="fadeInUpBig" data-animation-delay="200">
+															Une plateforme d'echange Street Wear comme vous ne l'avez jamais vu.
+														</p>
 
-</h2>
+														<a href='<%= users_path %>' class="btn btn-lg btn-white btn-circle btn-outline mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
+															Tradeurs
+														</a>
+														<a href='<%= articles_path %>' class="btn btn-lg btn-white btn-circle btn-outline mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
+															Articles
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Slide -->
+								<div class="swiper-slide" data-swiper-autoplay="8000">
+									<div class="slice holder-item holder-item-dark has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-3.jpg); background-position: bottom center;">
+										<div class="container d-flex align-items-center">
+											<div class="col">
+												<div class="row row-cols-xs-spaced align-items-center py-5">
+													<div class="col-12 col-sm-7 col-md-6">
+														<h2 class="heading heading-1 strong-500 animated" data-animation-in="bounceInDown" data-animation-delay="200">
+															<i>Personne n'est jamais devenu pauvre en donnant.</i>
+														</h2>
+														<cite class="heading heading-5 strong-300 animated" data-animation-in="slideInRight" data-animation-delay="1000">— Anne Frank</cite>
+														<p class="lead mt-4 animated" data-animation-in="fadeInUp" data-animation-delay="1800">
+															Grace à <i>Street Wear & Trade</i> profitez des meilleures opportunités possibles et faites l'acquisition de produits vraiment uniques.
+														</p>
 
+														<a href="#" class="btn btn-styled btn-base-1 btn-circle mt-4 animated" data-animation-in="bounceInUp" data-animation-delay="2600" data-scroll-to="#scrollToSection">En savoir plus</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
+							<!-- Add Pagination -->
+							<div class="swiper-pagination"></div>
 
-</div>
-<br>
-<center><h1>Page d'accueil Titre du site</h1></center>
-<h2>Banniere avec une explication en une phrase d'accroche</h2>
-<h3>Texte explicatif</h3>
+							<!-- Add Arrows -->
+							<div class="swiper-button swiper-button-next"></div>
+							<div class="swiper-button swiper-button-prev"></div>
+						</div>
+					</section>
 
+					<section class="slice-lg sct-color-1">
+						<div class="container">
+							<div class="row cols-xs-space cols-md-space cols-sm-space">
+								<div class="col-lg-4">
+									<div class="icon-block icon-block--style-2-v1 text-center">
+										<div class="block-icon circle bg-base-1">
+											<i class="ion-tshirt-outline"></i>
+										</div>
+										<h2 class="heading heading-4 strong-500">Trouvez votre bonheur</h2>
+										<p class="px-4">
+											<h6>Visitez les boutiques des tradeurs pour trouver le produit qui vous plait.</h6>
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="icon-block icon-block--style-2-v1 text-center">
+										<div class="block-icon circle bg-base-1">
+											<i class="ion-shuffle"></i>
+										</div>
+										<h2 class="heading heading-4 strong-500">Faites une proposition</h2>
+										<p class="px-4">
+											<h6>Faites une demande d'échange contre un vetement de votre boutique.</h6>
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="icon-block icon-block--style-2-v1 text-center">
+										<div class="block-icon circle bg-base-1">
+											<i class="ion-ios-chatboxes-outline"></i>
+										</div>
+										<h2 class="heading heading-4 strong-500">Finalisez le tout</h2>
+										<p class="px-4">
+											<h6>Communiquez ensuite avec votre tradeur pour convenir d'un rendez vous.</h6>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
 
+					<!-- <section class="slice-lg sct-color-2 border-top border-bottom">
+						<div class="container">
+							<div class="section-title section-title--style-1 text-center mb-2">
+								<h3 class="section-title-inner">
+									<span>Our services</span>
+								</h3>
+								<span class="section-title-delimiter clearfix d-none"></span>
+							</div>
 
+							<span class="clearfix"></span>
 
-<%= link_to 'Les messages', new_message_path %>
-<%= link_to 'Les Users', users_path %>
+							<div class="fluid-paragraph fluid-paragraph-sm c-gray-light strong-300 text-center">
+								Start building fast, beautiful and modern looking websites in no time using our theme.
+							</div>
+
+							<span class="space-xs-xl"></span>
+
+							<div class="row cols-xs-space cols-sm-space cols-md-space">
+								<div class="col-lg-4">
+									<div class="block block--style-3">
+										<div class="block-image relative">
+											<div class="view view-second view--rounded">
+												<img src="../../assets/images/prv/news/creative/img-1.jpg">
+												<div class="mask mask-base-1--style-2">
+													<div class="view-buttons text-center">
+														<div class="view-buttons-inner text-center">
+															<a href="../../assets/images/prv/work/creative/img-1.jpg" class="c-white" data-fancybox>
+																<i class="icon ion-plus"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="block-body">
+											<h3 class="heading heading-5 strong-500">
+												<a href="">Advanced design tecniques</a>
+											</h3>
+											<p>
+												Lorem ipsum dolor sit amet consectetur elit.
+											</p>
+											<a href="#" class="link link-sm link--style-2 mt-3">
+												<i class="fa fa-long-arrow-right"></i> Learn more
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-4">
+									<div class="block block--style-3">
+										<div class="block-image relative">
+											<div class="view view-second view--rounded">
+												<img src="../../assets/images/prv/news/creative/img-2.jpg">
+												<div class="mask mask-base-1--style-2">
+													<div class="view-buttons text-center">
+														<div class="view-buttons-inner text-center">
+															<a href="../../assets/images/prv/work/creative/img-2.jpg" class="c-white" data-fancybox>
+																<i class="icon ion-plus"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="block-body">
+											<h3 class="heading heading-5 strong-500">
+												<a href="">Advanced design tecniques</a>
+											</h3>
+											<p>
+												Lorem ipsum dolor sit amet consectetur elit.
+											</p>
+											<a href="#" class="link link-sm link--style-2 mt-3">
+												<i class="fa fa-long-arrow-right"></i> Learn more
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-4">
+									<div class="block block--style-3">
+										<div class="block-image relative">
+											<div class="view view-second view--rounded">
+												<img src="../../assets/images/prv/news/creative/img-3.jpg">
+												<div class="mask mask-base-1--style-2">
+													<div class="view-buttons text-center">
+														<div class="view-buttons-inner text-center">
+															<a href="../../assets/images/prv/work/creative/img-3.jpg" class="c-white" data-fancybox>
+																<i class="icon ion-plus"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="block-body">
+											<h3 class="heading heading-5 strong-500">
+												<a href="">Advanced design tecniques</a>
+											</h3>
+											<p>
+												Lorem ipsum dolor sit amet consectetur elit.
+											</p>
+											<a href="#" class="link link-sm link--style-2 mt-3">
+												<i class="fa fa-long-arrow-right"></i> Learn more
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section> -->
+
+					<section class="bg-base-1">
+						<div class="sct-inner">
+							<div class="row row-no-padding align-items-center">
+								<div class="col-lg-6 order-lg-2">
+									<img src="../../assets/images/prv/other/img-88-1000x900.jpg" class="img-fluid img-center">
+								</div>
+
+								<div class="col-lg-6 order-lg-1">
+									<div class="col-wrapper--spaced-x py-5 text-center text-lg-left">
+										<h3 class="heading heading-2 c-base-text-1 strong-500">
+											"La simplicité est l'habit de la perfection".
+										</h3>
+										<footer class="blockquote-footer c-base-text-1">
+											<cite title="Source Title">Wladimir Wolf-Gozin</cite>
+										</footer>
+										<p class="lead mt-4">
+											Donnez une nouvelle chance a vos anciens vetements et échangez-les avec d'autres personnes passionnés StreetWear.
+										</p>
+										<a href="#" class="btn btn-styled btn-white btn-circle btn-outline mt-4">Read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="slice-lg sct-color-1">
+						<div class="container">
+							<div class="section-title section-title--style-1 text-center mb-2">
+								<h3 class="section-title-inner">
+									<span>Le podium des tradeurs</span>
+								</h3>
+								<span class="section-title-delimiter clearfix d-none"></span>
+							</div>
+							<span class="clearfix"></span>
+							<div class="fluid-paragraph fluid-paragraph-sm c-gray-light strong-300 text-center">
+								<p class="text-lg line-height-1_8">
+									Visiter le profil des tradeurs les plus les plus actifs.
+								</p>
+							</div>
+							<span class="space-xs-xl"></span>
+							<div class="row cols-xs-space cols-sm-space cols-md-space">
+
+								<%n = 1%>
+								<% User.all.last(3).each do |user|  %>
+								<div class="col-lg-4">
+									<div class="block block--style-3">
+										<div class="block block-image">
+											<div class="view view-second">
+												<img src="../../assets/images/prv/team/business/img-b-2.jpg">
+												<div class="mask mask-base-1--style-2">
+													<div class="view-buttons">
+														<div class="view-buttons-inner text-center">
+															<a href="#" class="c-white" data-toggle="tooltip" data-original-title="View profile" date-placement="top">
+																<i class="icon ion-ios-paper-outline"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="block-body">
+											<h4 class="heading heading-xs strong-400 text-uppercase letter-spacing-2 c-gray-light">TOP <%= n %></h4>
+											<h3 class="heading heading-5 strong-500"><%=user.last_name%></h3>
+											<p class="mt-1">
+												A procede a X echanges et propose X autres articles! ALlez jetez un oeil !
+											</p>
+										</div>
+									</div>
+								</div>
+								<% n = n + 1 -%>
+								<% end -%>
+
+							</div>
+						</div>
+					</section>
+
+					<section class="slice sct-color-2 border-top border-bottom">
+						<div class="container text-center">
+							<div class="section-title section-title--style-1 text-center mb-2">
+								<h3 class="section-title-inner">
+									<span>Les derniers articles ajoutés</span>
+								</h3>
+								<span class="section-title-delimiter clearfix d-none"></span>
+							</div>
+							<span class="space-xs-xl"></span>
+
+							<!-- PORTFOLIO -->
+							<div class="masonry">
+								<div class="row">
+									<% Article.last(6).each do |article| %>
+									<div class="masonry-item col-sm-6 col-lg-4 design">
+										<a href="#">
+											<div class="block block--style-5 mb-0">
+												<div class="block-image">
+													<img src="../../assets/images/prv/work/agency/img-1.jpg">
+												</div>
+												<div class="block-mask-caption--over flex flex-items-xs-top">
+													<div class="flex-wrap-item">
+														<div class="text-xs-left">
+															<h3 class="heading heading-3 strong-500 c-white">
+																<%=article.title  %>                                                          </h3>
+																<h4 class="heading heading-xs strong-300 text-uppercase c-white">
+																	<%=article.description%>
+																</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<% end -%>
+									</div>
+								</div>
+
+								<div class="delimiter--style-1">
+									<div class="delimiter-title-wrapper">
+										<div class="delimiter-title">
+											<h3 class="heading heading-xs mb-0 text-uppercase strong-600">Numbers don't lie</h3>
+										</div>
+									</div>
+								</div>
+								<span class="space-xs-xl"></span>
+
+								<div class="row">
+									<div class="col-md-3 col-sm-6">
+										<div class="milestone-counter text-center">
+											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="<%=@articles_sum %>" data-speed="3000" data-refresh-interval="100"></div>
+											<h4 class="milestone-info heading-6 c-gray-light text-normal">Articles</h4>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="milestone-counter text-center">
+											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="<%=@users_sum%>" data-speed="5000" data-refresh-interval="50"></div>
+											<h4 class="milestone-info heading-6 c-gray-light text-normal">Tradeurs</h4>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="milestone-counter text-center">
+											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="33" data-speed="5000" data-refresh-interval="80"></div>
+											<h4 class="milestone-info heading-6 c-gray-light text-normal">Echanges</h4>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="milestone-counter text-center">
+											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="<%=@messages_sum%>" data-speed="5000" data-refresh-interval="80"></div>
+											<h4 class="milestone-info heading-6 c-gray-light text-normal">Messages</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="slice-lg sct-color-1 border-top">
+							<div class="container">
+								<span class="space-xs-xl"></span>
+								<div class="row cols-xs-space cols-md-space cols-lg-space">
+									<div class="col-lg-4">
+										<div class="card card-blockquote">
+											<div class="card-body">
+												<div class="block-author">
+													<div class="author-image ">
+														<img src="../../assets/images/prv/people/person-1.jpg">
+													</div>
+													<div class="author-info">
+														<span class="d-block heading-6 author-name strong-600 c-base-1">Cliff Simon</span>
+														<span class="heading-xs author-desc">Membre depuis <%=User.find(6).created_at.strftime("%d/%m/%y")%></span>
+													</div>
+												</div>
+
+												<p class="mt-4 line-height-1_8">
+													Super site web ! Vraiment tres pratique, j'ai enfin pu trouver de quoi echanger tous mes vieux vetement ! Ma garde robe est comme neuve !
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="card card-blockquote">
+											<div class="card-body">
+												<div class="block-author">
+													<div class="author-image ">
+														<img src="../../assets/images/prv/people/person-2.jpg">
+													</div>
+													<div class="author-info">
+														<span class="d-block heading-6 author-name strong-600 c-base-1">Elisabeth Alanna</span>
+														<span class="heading-xs author-desc">Membre depuis <%=User.find(4).created_at.strftime("%d/%m/%y")%></span>
+													</div>
+												</div>
+
+												<p class="mt-4 line-height-1_8">
+													Le site ideal, il nous suffit de proposer des echanges jusqu'a trouver le bon deal, et c'est vraiment plus facile car les gens ici ont les meme gouts que nous pour le StreetWear!
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="card card-blockquote">
+											<div class="card-body">
+												<div class="block-author">
+													<div class="author-image ">
+														<img src="../../assets/images/prv/people/person-3.jpg">
+													</div>
+													<div class="author-info">
+														<span class="d-block heading-6 author-name strong-600 c-base-1">Bertram Ozzie</span>
+														<span class="heading-xs author-desc">Membre depuis <%=User.find(3).created_at.strftime("%d/%m/%y")%></span>
+													</div>
+												</div>
+
+												<p class="mt-4 line-height-1_8">
+													Depuis que j'utilise ce site, j'ai du trouver 5 fois plus de personnes ici qu'auparavant. On est vraiment tous reunis autour d'une meme passion et c'est beaucoup plus agreable !
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
 

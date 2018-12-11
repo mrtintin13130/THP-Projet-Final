@@ -8,9 +8,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :birth_date
       t.boolean :admin, default: false
       t.boolean :premium_user, default: false
-      t.boolean :sex
+      t.string :sex
       t.integer :code_confirm
       t.string :image
+      t.string :avatar
       t.string :phone
       t.boolean :phone_verified, default: false
       ## Database authenticatable

@@ -1,32 +1,69 @@
-<p id="notice"><%= notice %></p>
+<center> <h1>Votre messagerie</h1></center>
+  <div class="tabs tabs--style-2" role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
 
-<h1>Messages</h1>
+      <li class="nav-item" role="presentation">
+        <a href="#tabTwo-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-normal strong-600">Messages Envoyés</a>
+      </li>
 
+      <li class="nav-item" role="presentation">
+        <a href="#tabTwo-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-normal strong-600">Messages Recus</a>
+      </li>
+    </ul>
 
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="tabTwo-1">
+        <div class="tab-body">
+          <table class="table table-striped table-bordered">
+            <th id="date_message" width="25%">Date d'envoi</th>
+            <th width="15%">Destinataire</th>
+            <th width="45%">Message</th>
+            <th></th>
+            <% @messages_sent.sort_by(&:created_at).reverse.each do |message| %>
+            <tr>
+              <% if message.dest_user_id != @user.id%>
+              <td><%=message.created_at.strftime("%A at %T")%></td>
+              <td> <%= User.find(message.dest_user_id).last_name %></td>
+              <% if message.content.size >= 30 %> 
+              <td><%= message.content.first(30)+"..." %></td> 
+              <% else %>
+              <td><%= message.content%></td> 
+              <% end -%>    
+              <td><%= link_to "voir", new_message_path(message) %>
+              </tr>
+              <% end -%>    
+              <% end %>
+            </table>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabTwo-2">
+          <div class="tab-body">
+            <table class="table table-striped table-bordered">
+              <th id="date_message" width="25%">Date de reception</th>
+              <th width="15%" >Expediteur</th>
+              <th width="45%">Message</th>
+              <th></th>
+              <% @messages_get.sort_by(&:created_at).reverse.each do |message| %>
+              <tr>
+                <% if message.user_id != @user.id%>
+                <% if message.dest_user_id == current_user.id%>
+                <td><%=message.created_at.strftime("%A at %T")%></td>
+                <td><%= User.find(message.user_id).last_name %></td>
+                <% if message.content.size >= 30 %> 
+                <td><%= message.content.first(30)+"..." %></td> 
+                <% else %>
+                <td><%= message.content%></td> 
+                <% end -%>
+                <td><%= link_to "voir", new_message_path(message) %></td>
+              </tr>
+              <% end %>
+              <% end %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.content.upcase %></td>
-
-
-
-
-
-
-
-
-
-
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-
-
-
-<%= render 'form', message: @message %>
-
-<%= link_to 'New Message', new_message_path %>
