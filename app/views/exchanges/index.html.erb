@@ -1,6 +1,6 @@
 <h2>J'ai demandé (en attente)</h2>
 <% @i_asked.each do |i| %>
-J'ai demandé <%= @article.find(i.owner_article_id).title %> à <%= @user.find(i.owner_user_id).first_name %>
+J'ai demandé <%= @article.find(i.owner_article_id).title %> à <%= @users.find(i.owner_user_id).first_name %>
 <br>
 Contre mon article: <%= @article.find(i.applicant_article_id).title %>
 <br>
@@ -9,7 +9,7 @@ Contre mon article: <%= @article.find(i.applicant_article_id).title %>
 
 <h2>Ils m'ont demandé (en attente)</h2>
 <% @they_asked.each do |t| %>
-<%= @user.find(t.applicant_user_id).first_name %> me demande: <%= @article.find(t.owner_article_id).title %>
+<%= @users.find(t.applicant_user_id).first_name %> me demande: <%= @article.find(t.owner_article_id).title %>
 <br>
 Contre: <%= @article.find(t.applicant_article_id).title %>
 <br>

@@ -4,8 +4,9 @@ class ExchangesController < ApplicationController
     @i_asked = Exchange.where(applicant_user_id: current_user.id).where(status: nil)
     @they_asked = Exchange.where(owner_user_id: current_user.id).where(status: nil)
     @transactions = Exchange.where(owner_user_id: current_user.id).where.not(status: nil).or(Exchange.where(applicant_user_id: current_user.id)).where.not(status: nil)
-    @user = User.all
+    @users = User.all
     @article = Article.all
+    @user = current_user
   end
 
   def new
