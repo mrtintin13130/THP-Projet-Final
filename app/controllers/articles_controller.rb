@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
         redirect_to new_article_path, alert: "Error creating article."
     end
   end
-  
+
   def article_params
     params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
   end
