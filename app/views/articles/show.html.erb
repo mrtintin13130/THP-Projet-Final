@@ -102,16 +102,15 @@
 											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 
 											<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
-												<i class="icon ion-bag"></i><%= link_to "Faire une demande d'échange", exchanges_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), method: "post" %></button>
+												<i class="icon ion-bag"></i>
+												<%= link_to "Faire une demande d'échange", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id) %></button>
+
 												<% elsif (@users.find(@article.user_id).id == current_user.id) %>
 												<% else %>
 												<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
 													<i class="icon ion-bag"></i><b>En attente</b></button>
 
 													<% end %>
-
-
-
 												</div>
 											</div>
 										</form>
