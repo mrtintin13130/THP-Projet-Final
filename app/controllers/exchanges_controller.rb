@@ -3,6 +3,7 @@ class ExchangesController < ApplicationController
   def index
     @i_asked = Exchange.where(applicant_user_id: current_user.id).where(status: nil)
     @they_asked = Exchange.where(owner_user_id: current_user.id).where(status: nil)
+    @transactions = Exchange.where(owner_user_id: current_user.id).where.not(status: nil).or(Exchange.where(applicant_user_id: current_user.id)).where.not(status: nil)
     @user = User.all
     @article = Article.all
   end
@@ -29,6 +30,10 @@ class ExchangesController < ApplicationController
   end
 
   def show
-
+    exchange = Exchange.find(params[:id])
+    exchange.update(status: params[:valid])
+    redirect_to request.referer
   end
+
+
 end

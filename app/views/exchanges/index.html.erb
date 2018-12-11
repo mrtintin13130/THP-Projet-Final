@@ -13,6 +13,25 @@ Contre mon article: <%= @article.find(i.applicant_article_id).title %>
 <br>
 Contre: <%= @article.find(t.applicant_article_id).title %>
 <br>
-<%= link_to 'Accepter', exchange_path(t.id), :data => {:confirm => 'Etes-vous sur de vouloir accepter l\'échange'} %>
+<%= link_to 'Accepter', exchange_path(id: t.id, valid: true), :data => {:confirm => 'Etes-vous sur de vouloir accepter l\'échange'} %>
+<%= link_to 'Refuser', exchange_path(id: t.id, valid: false), :data => {:confirm => 'Etes-vous sur de vouloir refuser l\'échange'} %>
 <br>
 <% end %>
+
+<h2>Historique de transaction</h2>
+
+<% @transactions.each do |t| %>
+<%= User.find(t.applicant_user_id).first_name %> et <%= User.find(t.owner_user_id).first_name %>
+<br>
+Ont échangé l'artice: <%= @article.find(t.applicant_article_id).title %> contre l'article: <%= @article.find(t.owner_article_id).title %>
+<br>
+<% if t.status == true %>
+Echange validé
+<% else %>
+Echange annulé
+<% end %>
+<br>
+<br>
+<% end %>
+
+<h2></h2>
