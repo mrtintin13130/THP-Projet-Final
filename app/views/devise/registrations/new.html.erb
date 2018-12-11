@@ -30,7 +30,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :Pseudonyme %><br />
-                  <%= f.text_field :phone, autocomplete: "Pseudonyme", class:"form-control form-control-lg" %>
+                  <%= f.text_field :username, autocomplete: "Pseudonyme", class:"form-control form-control-lg" %>
                 </div>
               </div>
               <div class="col-md-6">
@@ -44,7 +44,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :Mot_de_passe %><br />
-                  <%= f.password_field :password_confirmation, autocomplete: "mot de passe", class:"form-control form-control-lg" %>
+                  <%= f.password_field :password, autocomplete: "mot de passe", class:"form-control form-control-lg" %>
                 </div>
               </div>
               <div class="col-md-6">
@@ -59,9 +59,10 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :ville %><br />
-                  <%= f.text_field :phone, autocomplete: "ville", class:"form-control form-control-lg" %>
+                  <%= f.text_field :city, autocomplete: "ville", class:"form-control form-control-lg" %>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :telephone %><br />
@@ -69,13 +70,11 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="form-group">
-                  <%= f.label :avatar %><br />
-                  <%= f.file_field :avatar, autocomplete: "avatar", class:"custom-input-file", :data => { :description => {count} files selected}
-                   %>
-                  class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
-                  :data => { :description => entry.caption, :title => entry.caption }
-                </div>
+                <input autocomplete="avatar" type="file" name="user[avatar]" id="user_avatar" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                <label for="user_avatar">
+                  <i class="fa fa-upload"></i>
+                  <span>Choose a file&hellip;</span>
+                </label>
               </div>
             </div>
             <div class="actions">
