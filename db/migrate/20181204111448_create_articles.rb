@@ -7,6 +7,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.boolean :status
       t.belongs_to :user
       t.belongs_to :category
+      t.string :image
 
       t.timestamps
     end

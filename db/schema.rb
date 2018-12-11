@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.boolean "status"
     t.bigint "user_id"
     t.bigint "category_id"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
@@ -68,6 +69,10 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.string "sex"
     t.integer "code_confirm"
     t.string "image"
+<<<<<<< HEAD
+=======
+    t.string "avatar"
+>>>>>>> 150e25078394997493b8505217e29592c7677a5a
     t.string "phone"
     t.boolean "phone_verified", default: false
     t.string "email", default: "", null: false
