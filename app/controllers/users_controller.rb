@@ -31,6 +31,23 @@ class UsersController < ApplicationController
 
 
 
+	  def edit
+	current_user
+	    @user = User.find(params[:id])
+	    
+	    
+	    
+	  end
+
+	  def update
+	    @user = User.find(params[:id])
+	    if @user.update(user_params)
+	      flash[:success] = 'Votre profil a bien eté modifié'
+	      redirect_to user_path(params[:id])
+	    
+	  end
+	end
+
   private
 
   def set_user

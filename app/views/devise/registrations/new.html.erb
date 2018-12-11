@@ -45,13 +45,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :Mot_de_passe %><br />
-                  <%= f.password_field :password_confirmation, autocomplete: "mot de passe", class:"form-control form-control-lg" %>
+                  <%= f.input :password %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :Confirmation_du_mot_de_passe %><br />
-                  <%= f.password_field :password_confirmation, autocomplete: "confirmation du mot de passe", class:"form-control form-control-lg" %>
+                  <%= f.input :password_confirmation %>
                 </div>
               </div>
             </div>
@@ -72,15 +72,10 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :avatar %><br />
-<<<<<<< HEAD
+                  
+
                   <%= f.input :avatar, as: :file %>
-=======
-                  <%= f.file_field :avatar, "avatar", class:"custom-input-file", :data => { :description => {count} files selected}
-                   %>
-                  class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
-                  :data => { :description => entry.caption, :title => entry.caption }
->>>>>>> edaff7bb598337799ee1e9bca0161164a27a8e43
+
                 </div>
               </div>
             </div>
@@ -88,7 +83,7 @@
               <%= f.button :submit, class: "btn btn-styled btn-base-1 mt-3" %>
             </div>
             <% end %>
-            <%= render "devise/shared/links" %>
+           
           </div>
         </div>
       </div>

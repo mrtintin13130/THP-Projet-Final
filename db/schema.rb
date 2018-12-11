@@ -75,11 +75,9 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.boolean "admin", default: false
     t.boolean "premium_user", default: false
     t.string "sex"
+    t.string "ville"
+    t.string "pseudo"
     t.integer "code_confirm"
-<<<<<<< HEAD
-=======
-    t.string "image"
->>>>>>> ed13e8d2b4b8522fcfdcbd882283d88156e0de33
     t.string "avatar"
     t.string "phone"
     t.boolean "phone_verified", default: false
