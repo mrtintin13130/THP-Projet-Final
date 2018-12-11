@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
 
-
->>>>>>> temp
 <!-- PAGE PROFIL -->
 <div class="body-wrap" data-template-mode="cards">
 	<div id="st-container" class="st-container">
@@ -34,13 +30,13 @@
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
-													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
+													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Suivre</a>
 													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
 												</div>
 												<% else %>
 												<div class="profile-connect mt-4">
 													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié Mon Téléphone</a>
+													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier mon Téléphone</a>
 												</div>
 												<%end%>
 												<%end%>
@@ -163,24 +159,24 @@
 																			<div class="card no-border bg-transparent">
 																				<div class="card-title px-0 pb-0 no-border">
 																					<h3 class="heading heading-6 strong-600">
-																						General information
+																						Information générale
 																					</h3>
 																					<p class="mt-1 mb-0">
-																						You can help us, by filling your data, create you a much better experience using our website.
+																						Vous pouvez nous aidez en remplissant vos informations, à créer une meilleurs expérience utilisateur.
 																					</p>
 																				</div>
 																				<div class="card-body px-0">
 																					<div class="row">
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">First name</label>
+																								<label class="control-label">Prénom</label>
 																								<input type="text" class="form-control form-control-lg">
 																							</div>
 																						</div>
 
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">Last name</label>
+																								<label class="control-label">Nom de famille</label>
 																								<input type="text" class="form-control form-control-lg">
 																							</div>
 																						</div>
@@ -197,7 +193,7 @@
 																						Account info
 																					</h3>
 																					<p class="mt-1 mb-0">
-																						Edit your email and also, your newsletter subscriptions.
+																						Editez votre adresse mail et votre cycle de notifications
 																					</p>
 																				</div>
 																				<div class="card-body px-0">
@@ -210,18 +206,18 @@
 																						</div>
 
 																						<div class="col-md-6 col-lg-4">
-																							<a href="#" class="link link-sm link--style-2 mt-2">Change email</a>
+																							<a href="#" class="link link-sm link--style-2 mt-2">Changer</a>
 																						</div>
 																					</div>
 
 																					<div class="row">
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">Email frequency</label>
+																								<label class="control-label">Fréquence Email</label>
 																								<select class="form-control form-control-lg">
-																									<option value="">Daily</option>
-																									<option value="">Weekly</option>
-																									<option value="">Monthly</option>
+																									<option value="">Journalière</option>
+																									<option value="">Hebdomadaire</option>
+																									<option value="">Mensuel</option>
 																								</select>
 																							</div>
 																						</div>
@@ -235,35 +231,35 @@
 																			<div class="card no-border bg-transparent">
 																				<div class="card-title px-0 pb-0 no-border">
 																					<h3 class="heading heading-6 strong-600">
-																						Change password
+																						Changement de mot de passe
 																					</h3>
 																				</div>
 																				<div class="card-body px-0">
 																					<div class="row">
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">Current password</label>
+																								<label class="control-label">Mot de passe actuel</label>
 																								<input type="text" class="form-control form-control-lg">
 																							</div>
 																						</div>
 
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">New password</label>
+																								<label class="control-label">Nouveau mot de passe</label>
 																								<input type="text" class="form-control form-control-lg">
 																							</div>
 																						</div>
 
 																						<div class="col-md-6 col-lg-4">
 																							<div class="form-group">
-																								<label class="control-label">Confirm password</label>
+																								<label class="control-label">Confirmer mot de passe</label>
 																								<input type="text" class="form-control form-control-lg">
 																							</div>
 																						</div>
 																					</div>
 
 																					<div class="text-right">
-																						<a href="#" class="btn btn-base-1">Change password</a>
+																						<a href="#" class="btn btn-base-1">Changer</a>
 																					</div>
 																				</div>
 																			</div>
@@ -275,7 +271,7 @@
 
 																<!-- Addresses -->
 																<div class="py-4">
-																	<h3 class="heading heading-6 strong-600">My addresses</h3>
+																	<h3 class="heading heading-6 strong-600">Mes adresses</h3>
 																</div>
 
 																<div class="row cols-md-space cols-sm-space cols-xs-space">
@@ -300,7 +296,7 @@
 
 																				<ul class="inline-links inline-links--style-2">
 																					<li class="d-none d-lg-inline-block">
-																						<a href="#" class="link link--style-2 strong-600">Edit address</a>
+																						<a href="#" class="link link--style-2 strong-600">Editer adresse</a>
 																					</li>
 																					<li>
 																						<a href="#" class="link link--style-2 strong-600">Add new</a>
@@ -340,11 +336,7 @@
 																			</div>
 																		</div>
 																	</div>
-<<<<<<< HEAD
-																	
-=======
 
->>>>>>> temp
 																</div>
 
 															</div>
@@ -361,13 +353,10 @@
 								</div>
 							</div>
 						</div>
-<<<<<<< HEAD
 					</section>
-=======
 					</div>
 				</div>
 			</div>
 		</div><!-- END: st-pusher -->
 	</div><!-- END: st-container -->
 </div><!-- END: body-wrap -->
->>>>>>> temp
