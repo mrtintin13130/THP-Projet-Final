@@ -12,10 +12,10 @@ class ArticlesController < ApplicationController
     end
     @users = User.all
     @exchange = Exchange.all
-    category = @category 
-    article = @article 
+    category = @category
+    article = @article
     user = @user
-    @suggestions = @article.category.articles 
+    @suggestions = @article.category.articles
   end
 
   def index
@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @article = Article.new
   end
 
@@ -51,6 +52,7 @@ class ArticlesController < ApplicationController
         redirect_to new_article_path, alert: "Error creating article."
     end
   end
+
   def article_params
     params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
   end
