@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
-  has_one :category
-  
+ has_one :category
+  validates :title, :description, :size, :image, presence: true
   has_one :favorite
   
   mount_uploader :image, ImageUploader

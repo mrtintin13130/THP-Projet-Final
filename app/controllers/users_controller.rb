@@ -6,7 +6,6 @@
 		
 		if @user.id == current_user.id
 			@user = current_user
-			
 		else
 			@user = User.find(params[:id])
 		end
@@ -21,7 +20,38 @@
 
 end
 
+  def create
+   
+end
  
+ 
+
+
+	  
+
+
+	  def edit
+	current_user
+	    @user = User.find(params[:id])
+	    
+	    
+	    
+	  end
+
+	  def update
+	    @user = User.find(params[:id])
+	    if @user.update(user_params)
+	      flash[:success] = 'User information successfully updated'
+	      redirect_to user_path(params[:id])
+	    
+	  end
+	end
+
+	  def destroy
+
+	before_action :set_user
+
+	 end
 
 	
 
@@ -51,7 +81,9 @@ end
 			end
 		end
 		private
-
+		def user_params
+			params.require(:user).permit(:first_name, :last_name, :email, :password, :birth_date, :phone, :avatar)
+end
 	  
 		def set_user
 			@user = current_user
