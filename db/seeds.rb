@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# puts "AJOUT CATEGORIES"
 
+<<<<<<< HEAD
 # puts "Done!"
 # puts "AJOUT USERS"
 
@@ -26,19 +26,28 @@
 
 # puts "Done!"
 puts "AJOUT USERS"
+=======
+puts "AJOUT CATEGORY"
+>>>>>>> a06741469c0102226fc0818acfd3ea7362194f58
 
+Category.create(name: "pantalon")
+Category.create(name: "sweat")
+Category.create(name: "chaussure")
+Category.create(name: "lunette")
+Category.create(name: "casquette")
+Category.create(name: "chaussette")
+Category.create(name: "veste")
+Category.create(name: "echarpe")
 
+puts "Done !"
+puts "AJOUT USER"
 
-	#Category.create(name: "Tshirt")
-	Category.create(name: "pantalon")
-	Category.create(name: "sweat")
-	Category.create(name: "chaussure")
-	Category.create(name: "lunette")
 
 10.times do
 	user = User.new(email: Faker::Internet.email, password: "testtest", password_confirmation: "testtest", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, sex: Faker::Gender.binary_type)
 	user.save!
 end
+
 puts "Done !"
 
 puts "AJOUT ARTICLES"
@@ -57,6 +66,7 @@ n = 1
 
 end
 
+<<<<<<< HEAD
 
 
 
@@ -70,4 +80,7 @@ end
 # 	n = n + 1
 # end
 
+=======
+
+>>>>>>> a06741469c0102226fc0818acfd3ea7362194f58
 puts "Done!"

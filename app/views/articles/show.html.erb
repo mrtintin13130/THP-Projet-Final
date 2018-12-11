@@ -10,9 +10,8 @@
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 
-								<a href="../../assets/images/prv/shop/electronics/img-product-lg-1.jpg" data-desoslide-index="0"> 
-									
-									<center><img src ="<%= @article.image %>"></center>
+								<a href="../../assets/images/prv/shop/electronics/img-product-lg-1.jpg" data-desoslide-index="0">
+									<img src="<%= @article.image %>" alt="Bird">
 
 								</a>
 							</div>
@@ -102,6 +101,7 @@
 								<form class="form-default">
 									<div class="d-table product-quantity width-100 mt-3">
 										<div class="d-table-cell">
+											<% if user_signed_in? %>
 
 											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 
@@ -115,6 +115,7 @@
 													<i class="icon ion-bag"></i><b>En attente</b></button>
 
 													<% end %>
+													<% end -%>
 												</div>
 											</div>
 										</form>

@@ -44,14 +44,18 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :Mot_de_passe %><br />
-                  <%= f.input :password %>
+
+                  <%= f.label :mot_de_passe %>
+                  <%= f.password_field :password, autocomplete: "new-password", class:"form-control form-control-lg"  %>
+
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :Confirmation_du_mot_de_passe %><br />
-                  <%= f.input :password_confirmation %>
+
+                  <%= f.label :confirmation_du_mot_de_passe %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-lg"  %>
+
                 </div>
               </div>
             </div>
@@ -60,7 +64,9 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :ville %><br />
-                  <%= f.text_field :ville, autocomplete: "ville", class:"form-control form-control-lg" %>
+
+                  <%= f.text_field :city, autocomplete: "ville", class:"form-control form-control-lg" %>
+
                 </div>
               </div>
 
@@ -72,9 +78,9 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  
 
-                  <%= f.input :avatar, as: :file %>
+                  <%= f.label :avatar %><br />
+                  <%= f.file_field :avatar, autocomplete: "avatar"%>
 
                 </div>
               </div>
