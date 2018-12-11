@@ -30,7 +30,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :Pseudonyme %><br />
-                  <%= f.text_field :username, autocomplete: "Pseudonyme", class:"form-control form-control-lg" %>
+                  <%= f.text_field :phone, autocomplete: "Pseudonyme", class:"form-control form-control-lg" %>
                 </div>
               </div>
               <div class="col-md-6">
@@ -43,14 +43,14 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :Mot_de_passe %><br />
-                  <%= f.password_field :password, autocomplete: "mot de passe", class:"form-control form-control-lg" %>
+                  <%= f.label :mot_de_passe %>
+                  <%= f.password_field :password, autocomplete: "new-password", class:"form-control form-control-lg"  %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :Confirmation_du_mot_de_passe %><br />
-                  <%= f.password_field :password_confirmation, autocomplete: "confirmation du mot de passe", class:"form-control form-control-lg" %>
+                  <%= f.label :confirmation_du_mot_de_passe %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-lg"  %>
                 </div>
               </div>
             </div>
@@ -70,11 +70,10 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <input autocomplete="avatar" type="file" name="user[avatar]" id="user_avatar" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
-                <label for="user_avatar">
-                  <i class="fa fa-upload"></i>
-                  <span>Choose a file&hellip;</span>
-                </label>
+                <div class="form-group">
+                  <%= f.label :avatar %><br />
+                  <%= f.file_field :avatar, autocomplete: "avatar"%>
+                </div>
               </div>
             </div>
             <div class="actions">
