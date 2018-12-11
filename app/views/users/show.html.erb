@@ -1,3 +1,5 @@
+					
+
 <!-- PAGE PROFIL -->
 <div class="body-wrap" data-template-mode="cards">
 	<div id="st-container" class="st-container">
@@ -25,7 +27,7 @@
 													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
 													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
 												</div>
-												<%= @user.first_name %>
+												<%if user_signed_in?%>
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
@@ -38,6 +40,7 @@
                           <a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié Mon Téléphone</a>
 												</div>
 												<%end%>
+												<%end%>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
 													<div class="stats-entry">
@@ -49,218 +52,304 @@
 														<span class="stats-label text-uppercase">Followers</span>
 													</div>
 												</div>
-												<!-- Profile connected accounts -->
-												<div class="profile-useful-links clearfix">
-													<div class="useful-links">
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-social-instagram-outline"></i>
-															instagram.com/webpixels_io
-														</a>
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-social-dribbble"></i>
-															dribbble.com/webpixels
-														</a>
-
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-earth"></i>
-															webpixels.io
-														</a>
-													</div>
-												</div>
-
-
 											</div>
 										</div>
 									</div>
 
 									<div class="col-lg-8">
 										<div class="main-content">
-											<!-- Page title -->
-											<div class="page-title">
-												<div class="row align-items-center">
-													<div class="col-lg-6 col-12">
-														<h2 class="heading heading-6 strong-600 mb-0 text-capitalize strong-500 mb-0">
-															<a href="#" class="link text-underline--none">
-																<i class="ion-ios-arrow-back"></i> Orders
-															</a>
-														</h2>
-													</div>
-													<div class="col-lg-6 col-12">
+											<div class="tabs tabs--style-1" role="tabpanel">
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
+													</li>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
+													</li>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-3" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Favoris</a>
+													</li>
+													<%if user_signed_in?%>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Parametres</a>
+													</li>
+													<% end -%>
+												</ul>
 
-													</div>
-												</div>
-											</div>
+												<!-- Tab panes -->
+												<div class="tab-content">
+													<div role="tabpanel" class="tab-pane active" id="tabFour-1">
+														<div class="tab-body">
+															<div class="widget mt-4">
+																<div class="row-wrapper">
+																	<div class="row cols-md-space cols-sm-space cols-xs-space">
 
-											<div class="link-menu link-menu--style-3 py-4 border-bottom">
-												<a href="../../pages/profile/account-settings.html">Settings</a>
-												<a href="../../pages/profile/account-orders.html">Orders</a>
-												<a href="../../pages/profile/account-cards.html">Cards</a>
-												<a href="../../pages/profile/account-security.html">Security</a>
-												<a href="../../pages/profile/account-connections.html" class="active">Connections</a>
-											</div>
+																		<% @user.articles.each do |article| %>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<div class="profile-picture profile-picture--style-2">
+																					<img src="../../assets/images/prv/people/person-1.jpg" >
+																				</div>
+																				<div class="block-body text-center">
 
-											<!-- Order history table -->
-											<div class="widget mt-4">
-												<div class="row-wrapper">
-													<div class="row cols-md-space cols-sm-space cols-xs-space">
+																					<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= article.title.first(14)%>
+																						<% if article.title.size >= 13 %>
+																						<%="..."%>
+																						<%end%>
+																					</h3>
 
-														<% @user.articles.each do |article| %>
-														<div class="col-lg-4">
-															<div class="block block--style-3">
-																<div class="profile-picture profile-picture--style-2">
-																	<img src="../../assets/images/prv/people/person-1.jpg" >
-																</div>
-																<div class="block-body text-center">
+																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
 
-																	<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= article.title.first(14)%>
-																		<% if article.title.size >= 13 %>
-																		<%="..."%>
-																		<%end%>
-																	</h3>
+																					<a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
+																				</div>
+																				<div class="aux-info-wrapper border-top">
+																					<ul class="aux-info">
+																						<li class="heading strong-400 text-center">Size
+																							<span class="d-block strong-600"><%= article.size %></span>
 
-																	<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
-
-																	<a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
-																</div>
-																<div class="aux-info-wrapper border-top">
-																	<ul class="aux-info">
-																		<li class="heading strong-400 text-center">Size
-																			<span class="d-block strong-600"><%= article.size %></span>
-
-																		</li>
-																		<li class="heading strong-400 text-center">
-																			<span class="d-block strong-600">5</span>
-																			Like
-																		</li>
-																	</ul>
+																						</li>
+																						<li class="heading strong-400 text-center">
+																							<span class="d-block strong-600">5</span>
+																							Like
+																						</li>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																		<% end %>
+																	</div>
 																</div>
 															</div>
 														</div>
-														<% end %>
 													</div>
+													<div role="tabpanel" class="tab-pane" id="tabFour-2">
+														<div class="tab-body">
+															<p class="mt-4">
+																Viam sumi mo id erit. Objectioni mo de necessario crediderim. Imo terra vox alios aut lor quasi. Vim quaero aut videri pendam plures duo. Extat neque arcte re ad etiam. Ego infiniti reperero mutuatur formalem sed scribere nec vel profecto.
+															</p>
+
+															<p class="mt-4">
+																Detractis detrahere concipere ac ut et inveniant to. Im perductae ut at ecclesiae assentiri eo. Ea ergo ausi ac otii suas. Utrum me sequi falsi ut atque. Existeret conformes his rei scientiis. Virorum corpora hac iis brachia
+															</p>
+														</div>
+													</div>
+													<div role="tabpanel" class="tab-pane" id="tabFour-3">
+														<div class="tab-body">
+															<p class="mt-4">
+																Detractis detrahere concipere ac ut et inveniant to. Im perductae ut at ecclesiae assentiri eo. Ea ergo ausi ac otii suas. Utrum me sequi falsi ut atque. Existeret conformes his rei scientiis. Virorum corpora hac iis brachia
+															</p>
+															<p>
+																Viam sumi mo id erit. Objectioni mo de necessario crediderim. Imo terra vox alios aut lor quasi. Vim quaero aut videri pendam plures duo. Extat neque arcte re ad etiam.
+															</p>
+														</div>
+													</div>
+													<%if user_signed_in?%>
+													<div role="tabpanel" class="tab-pane" id="tabFour-4">
+														<div class="body-wrap" data-template-mode="cards">
+															<div id="st-container" class="st-container">
+
+
+
+																<!-- Account settings -->
+																<div class="row">
+																	<div class="col-lg-12">
+																		<form class="form-default" data-toggle="validator" role="form">
+																			<!-- General information -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						General information
+																					</h3>
+																					<p class="mt-1 mb-0">
+																						You can help us, by filling your data, create you a much better experience using our website.
+																					</p>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">First name</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Last name</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																			<hr class="mt-0 mb-0">
+
+																			<!-- Account info -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						Account info
+																					</h3>
+																					<p class="mt-1 mb-0">
+																						Edit your email and also, your newsletter subscriptions.
+																					</p>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row align-items-center">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Email</label>
+																								<input type="email" class="form-control form-control-lg" value="name@example.com" disabled>
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<a href="#" class="link link-sm link--style-2 mt-2">Change email</a>
+																						</div>
+																					</div>
+
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Email frequency</label>
+																								<select class="form-control form-control-lg">
+																									<option value="">Daily</option>
+																									<option value="">Weekly</option>
+																									<option value="">Monthly</option>
+																								</select>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																			<hr class="mt-0 mb-0">
+
+																			<!-- Change password -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						Change password
+																					</h3>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Current password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">New password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Confirm password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+																					</div>
+
+																					<div class="text-right">
+																						<a href="#" class="btn btn-base-1">Change password</a>
+																					</div>
+																				</div>
+																			</div>
+																		</form>
+																	</div>
+																</div>
+
+																<hr class="mt-0 mb-0">
+
+																<!-- Addresses -->
+																<div class="py-4">
+																	<h3 class="heading heading-6 strong-600">My addresses</h3>
+																</div>
+
+																<div class="row cols-md-space cols-sm-space cols-xs-space">
+																	<div class="col-lg-6">
+																		<div class="card">
+																			<div class="px-4 py-4">
+																				<p class="c-gray-light">
+																					Desiree Jinny
+																					<br>
+																					1333 Deerfield, State College
+																					<br>
+																					PA, 16803
+																				</p>
+
+																				<p class="c-gray-light mt-3">
+																					E: desiree@example.com
+																					<br>
+																					T: 555 965 452
+																				</p>
+
+																				<span class="clearfix"></span>
+
+																				<ul class="inline-links inline-links--style-2">
+																					<li class="d-none d-lg-inline-block">
+																						<a href="#" class="link link--style-2 strong-600">Edit address</a>
+																					</li>
+																					<li>
+																						<a href="#" class="link link--style-2 strong-600">Add new</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="col-lg-6">
+																		<div class="card">
+																			<div class="px-4 py-4">
+																				<p class="c-gray-light">
+																					Desiree Jinny
+																					<br>
+																					1333 Deerfield, State College
+																					<br>
+																					PA, 16803
+																				</p>
+
+																				<p class="c-gray-light mt-3">
+																					E: desiree@example.com
+																					<br>
+																					T: 555 965 452
+																				</p>
+
+																				<span class="clearfix"></span>
+
+																				<ul class="inline-links inline-links--style-2">
+																					<li class="d-none d-lg-inline-block">
+																						<a href="#" class="link link--style-2 strong-600">Edit address</a>
+																					</li>
+																					<li>
+																						<a href="#" class="link link--style-2 strong-600">Add new</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div>
+													<% end -%>
 												</div>
 											</div>
+
+											<!-- Order history table -->
+
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</section>
-
-					<!-- FOOTER -->
-					<footer id="footer" class="footer">
-						<div class="footer-top">
-							<div class="container">
-								<div class="row cols-xs-space cols-sm-space cols-md-space">
-									<div class="col-lg-5">
-										<div class="col">
-											<img src="../../assets/images/logo/logo-1-c.png">
-											<span class="clearfix"></span>
-											<span class="heading heading-sm c-gray-light strong-400">One template. Infinite solutions.</span>
-											<p class="mt-3">
-												All the components included in Boomerang are built to the same level of quality as Bootstrap and highlighted with several example pages.
-											</p>
-
-											<div class="copyright mt-4">
-												<p>
-													Copyright &copy; 2018                                <a href="https://webpixels.io" target="_blank">
-														<strong>Webpixels</strong>
-													</a> -
-													All rights reserved
-												</p>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-2">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Support
-											</h4>
-
-											<ul class="footer-links">
-												<li><a href="#" title="Help center">Help center</a></li>
-												<li><a href="#" title="Discussions">Discussions</a></li>
-												<li><a href="#" title="Contact support">Contact</a></li>
-												<li><a href="#" title="Blog">Blog</a></li>
-												<li><a href="#" title="Jobs">FAQ</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-lg-2">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Company
-											</h4>
-
-											<ul class="footer-links">
-												<li>
-													<a href="#" title="Home">
-														Home
-													</a>
-												</li>
-												<li>
-													<a href="#" title="About us">
-														About us
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Services">
-														Services
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Blog">
-														Blog
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Contact">
-														Contact
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-lg-3">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Get in touch
-											</h4>
-
-											<ul class="social-media social-media--style-1-v4">
-												<li>
-													<a href="#" class="facebook" target="_blank" data-toggle="tooltip" data-original-title="Facebook">
-														<i class="fa fa-facebook"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="instagram" target="_blank" data-toggle="tooltip" data-original-title="Instagram">
-														<i class="fa fa-instagram"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="dribbble" target="_blank" data-toggle="tooltip" data-original-title="Dribbble">
-														<i class="fa fa-dribbble"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="dribbble" target="_blank" data-toggle="tooltip" data-original-title="Github">
-														<i class="fa fa-github"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
-			</div>
-		</div><!-- END: st-pusher -->
-	</div><!-- END: st-container -->
-</div><!-- END: body-wrap -->
->>>>>>> ahmed

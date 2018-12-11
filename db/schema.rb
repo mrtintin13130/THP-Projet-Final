@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.string "birth_date"
     t.boolean "admin", default: false
     t.boolean "premium_user", default: false
-    t.boolean "sex"
+    t.string "sex"
     t.integer "code_confirm"
     t.string "image"
     t.string "avatar"
