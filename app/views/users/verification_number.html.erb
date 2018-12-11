@@ -4,7 +4,7 @@
 <%elsif%>
 
 
-
+<h4>Nous avons envoyé un code de confirmation à <%= @phoneuser %></h4>
 <%= form_tag url_for(action: 'verification_number') do %>
 <div class="field">
 	<%= text_field_tag 'text' %>

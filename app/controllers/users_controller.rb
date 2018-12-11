@@ -19,6 +19,7 @@ before_action :set_user
   end
 
   def verification_number
+    @phoneuser = User.find(current_user.id).phone
     if @user.phone_verified == false
 		User.sms_send(@user, @user.phone)
   end
