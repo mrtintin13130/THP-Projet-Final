@@ -43,7 +43,6 @@ class ArticlesController < ApplicationController
     @user = current_user
     @category = params[:category_id]
     id = Category.all_category.index(@category).to_i + 1
-    puts id
     @article = Article.create!(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
     puts params[:category_id]
 
