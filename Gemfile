@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'dotenv-rails'

@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
     def new
-        #@amount = params[:amount]
+      @user = current_user
     end
 
     def create
@@ -19,4 +19,5 @@ class ChargesController < ApplicationController
         flash[:error] = e.message
         redirect_to new_charge_path
     end
+
 end

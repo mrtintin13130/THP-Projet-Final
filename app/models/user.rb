@@ -3,10 +3,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable#, :confirmable
+  :recoverable, :rememberable, :validatable #, :confirmable
+
+
   has_many :articles
   has_one :favorite
   has_many :messages
+
 
   mount_uploader :avatar, AvatarUploader
 
@@ -27,7 +30,8 @@ class User < ApplicationRecord
       phone.slice!(2)
     end
     phone_indent = phone
-  return phone_indent
+
+    return phone_indent
   end
 
   def self.sms_send(user, phone)

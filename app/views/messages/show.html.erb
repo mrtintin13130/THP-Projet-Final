@@ -1,19 +1,63 @@
 
-<h1> BONJOUR <%= User.find(@user.id).last_name %> </h1>
 
-<% @messages.each do |m| %>
-<%= User.find(m.user_id).last_name -%>
-<%= m.content -%> <br> 
-<%= User.find(m.dest_user_id).last_name -%> <br>
-<% end %>
+<% if @destinataire_id != @user.id -%>
 
-<h2> Chat box entre vous et <%= @destinataire %> </h2>
+<h1> Chat box entre vous et <%= @destinataire %> </h1>
 
 <table class="table table-striped table-bordered">
   <th><%= @destinataire %></th>
+  <th width="15%">date</th>
   <th><%= @user.last_name %></th>
+  <% @messages.sort_by(&:created_at).each do |m| %>
   <tr>
-    <td>a</td>
-    <td>b</td> 
-    </tr>
-  </table>
+    <%if m.user_id == m.dest_user_id%>
+    <% elsif m.user_id != @user.id-%>
+    <td width="45%"><%= m.content -%></td>
+    <td><%= m.created_at.strftime("%A at %T")  -%></td>
+    <td></td>
+    <% else -%>
+    <td></td>
+    <td><%= m.created_at.strftime("%A at %T")  -%></td>
+    <td width="45%"><%= m.content -%></td> 
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+
+<% else -%>
+<h1> Chat box entre vous et <%= @expediteur %> </h1>
+
+
+<table class="table table-striped table-bordered">
+  <th><%= @expediteur %></th>
+  <th width="15%">date</th>
+  <th><%= @user.last_name %></th>
+  <% @messages.sort_by(&:created_at).each do |m| %>
+  <tr>
+    <%if m.user_id == m.dest_user_id%>
+    <% elsif m.user_id != @user.id-%>
+    <td width="45%"><%= m.content %></td>
+    <td><%= m.created_at.strftime("%A at %T")  -%></td>
+    <td></td>
+    <% else -%>
+    <td></td>
+    <td><%= m.created_at.strftime("%A at %T")  -%></td>
+    <td width="45%"><%= m.content -%></td> 
+  </tr>
+  <% end -%>
+  <% end -%>
+  <% end -%>
+</table>
+
+<%= form_with(model: @message, local: true) do |form| %>
+
+<div class="field">
+  <%= form.label :content, "Saisisssez votre message :" %>
+  <%= form.text_field :content, id: 'message_tag' %>
+
+  <%= hidden_field_tag "dest_id", params[:id] %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
+</div>
