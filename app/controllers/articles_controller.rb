@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
     @user = current_user
     @article = Article.find(params[:id])
     @category = Category.all
+    @random_article =
     if user_signed_in?
       if @user.id == current_user.id
         @user = current_user

@@ -63,7 +63,6 @@
                   <%= f.text_field :ville, autocomplete: "ville", class:"form-control form-control-lg" %>
                 </div>
               </div>
-              
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :telephone %><br />
@@ -73,7 +72,14 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :avatar %><br />
+<<<<<<< HEAD
                   <%= f.input :avatar, as: :file %>
+=======
+                  <%= f.file_field :avatar, "avatar", class:"custom-input-file", :data => { :description => {count} files selected}
+                   %>
+                  class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                  :data => { :description => entry.caption, :title => entry.caption }
+>>>>>>> edaff7bb598337799ee1e9bca0161164a27a8e43
                 </div>
               </div>
             </div>

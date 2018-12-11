@@ -55,5 +55,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to request.referrer}
     end
-  end
+ end
+end
+
 
