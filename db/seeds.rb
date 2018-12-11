@@ -6,11 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "AJOUT CATEGORIES"
-5.times do
-	Category.create(name: Faker::Food.fruits)
-end
-puts "Done!"
+# puts "AJOUT CATEGORIES"
+
+# 	Category.create(name: "pantalon")
+# 	Category.create(name: "sweat")
+# 	Category.create(name: "chaussure")
+# 	Category.create(name: "lunette")
+# 	Category.create(name: "casquette")
+# 	Category.create(name: "chaussette")
+# 	Category.create(name: "veste")
+# 	Category.create(name: "echarpe")
+
+# puts "Done!"
 puts "AJOUT USERS"
 
 
@@ -33,9 +40,9 @@ n = 1
 	n = n + 1
 end
 
-# sleep 120
+# # sleep 120
 
-# 100.times do
+# # 100.times do
 
 # 	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
 # 	puts n
