@@ -8,8 +8,9 @@
 					<div class="swiper-container" data-swiper-items="5" data-swiper-space-between="10" data-swiper-xs-items="3" data-swiper-xs-space-between="10" data-swiper-sm-items="4" data-swiper-sm-space-between="10">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
+
 								<a href="../../assets/images/prv/shop/electronics/img-product-lg-1.jpg" data-desoslide-index="0">
-									<img src="../../assets/images/prv/shop/electronics/img-product-sm-1.jpg" alt="Bird">
+									<img src="<%= @article.image %>" alt="Bird">
 								</a>
 							</div>
 						</div>
@@ -98,6 +99,7 @@
 								<form class="form-default">
 									<div class="d-table product-quantity width-100 mt-3">
 										<div class="d-table-cell">
+											<% if user_signed_in? %>
 
 											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 
@@ -111,6 +113,7 @@
 													<i class="icon ion-bag"></i><b>En attente</b></button>
 
 													<% end %>
+													<% end -%>
 												</div>
 											</div>
 										</form>
