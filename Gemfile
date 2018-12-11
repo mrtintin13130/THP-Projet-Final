@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'mini_magick'
 gem 'simple_form'
 gem 'carrierwave', '>= 1.0.0.rc' , '< 2.0'
 gem 'jquery-rails'
 
+gem 'mini_magick'
 
 gem 'dotenv-rails'
 

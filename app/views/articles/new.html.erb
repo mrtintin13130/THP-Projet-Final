@@ -1,25 +1,34 @@
 
-      <h2><center>Ajouter un nouvel article</center></h2>
-     
-        <%= simple_form_for @article do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.fields_for @category do |a| %>
-          <%= a.label :category %>
-      <%= a.text_field :name %>
-   <%end%>
 
-          <%= f.input :title %>
-          <%= f.input :size %>
-          <%= f.input :description %>
-          
-          <%= f.input :image, as: :file %>
-        </div>
-        <div class= "form-actions">
-        <%= f.button :submit %>
-        </div>
+<h2>Créer un article</h2>
+<%= simple_form_for @article do |f| %>
+  <div class="field">
+    <%= f.label :Title %><br />
+    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+  </div>
 
-        <% end %>
-    
-   
-  
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autocomplete: "description" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %><br />
+    <%= f.text_field :size, autocomplete: "size" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= select_tag :category_id, options_for_select(Category.all_category) %>
+  </div>
+
+  <div class="field">
+  <%= f.label :image %><br>
+  <%= f.file_field :image,as: :file, autocomplete: "image" %>
+</div>
+
+  <div class="actions">
+    <%= f.submit "Créer" %>
+  </div>
+<% end %>
+

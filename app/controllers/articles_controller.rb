@@ -1,81 +1,60 @@
-  class ArticlesController < ApplicationController
+class ArticlesController < ApplicationController
+  def show
+    
+    @user = current_user
+    @article = Article.find(params[:id])
+    @category = Category.all
+    if user_signed_in?
+      if @user.id == current_user.id
+        @user = current_user
+      else
+        @user = User.find(params[:id])
+      end
+    end
+    @users = User.all
+    @exchange = Exchange.all
+    category = @category 
+    article = @article 
+    user = @user
+    @suggestions = @article.category.articles 
+  end
 
-  	#before_action :authenticate_user!  #this line is for login before post
-   def index
-   	
-      @articles = Article.all
-      @categories = Category.all
-      @user = User.all
+  def index
+    @article = Article.all
+    @user = current_user
+    if user_signed_in?
+      if @user.id == current_user.id
+        @user = current_user
+      else
+        @user = User.find(params[:id])
+      end
+      if @user != nil && @user.last_name != nil && @user.first_name != nil
+        @user_names = @user.last_name.capitalize + " " + @user.first_name.capitalize
+      end
     end
-    def new
-    	@article = Article.new
-      @category = Category.new
-    end
+    @category = Category.all
+  end
+
+  def new
+    @article = Article.new
+  end
 
   def create
-  	#@articles = Article.all
-  	#@article = Article.create!( description: params["article"]["description"], size:params["article"]["size"], image: params["article"]["file"])
+    @user = current_user
+    @category = params[:category_id]
+    id = Category.all_category.index(@category).to_i + 1
+    puts id
+    @article = Article.create!(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
+    puts params[:category_id]
 
-  @article = Article.new(articles_params)
-
-
- 
-
-   
-
-  @article.user = current_user
-
-  
-
-
-
-   
-      if @article.save 
-        
-        
-
-
-        redirect_to @article, notice: 'Votre article a bien été ajouté.'
-      else
-        render :new
-      end
-    
-
-  	
-
-  end
-
-    def show
-    	@user = User.all
-    	
-      @article =  Article.find(params[:id])
-
-      @random_articles = Article.all.sample(3)
-
-      @exchange = Exchange.all
-
+    if @article.save
+        redirect_to @article, alert: "Article created successfully."
+    else
+        redirect_to new_article_path, alert: "Error creating article."
     end
-
-    
-    private   #test sur les params articles et category
-
-    def articles_params
-      params.require(:article).permit(:id, :description, :size, :image, :title, :category)
-    end
-    
   end
-   
-
-    #def show
-      #@article = Article.find(params[:id])
-      #@category = Category.all
-      #@user = User.all
-    #end
-
-    #def index
-      #@article = Article.all
-      #@user = User.all
-      #@category = Category.all
-    #end
-  #end
+  def article_params
+    params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
+  end
+end
 

@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
- has_one :category
+ belongs_to :category
   validates :title, :description, :size, :image, presence: true
   has_one :favorite
   
