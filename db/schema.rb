@@ -69,10 +69,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.string "sex"
     t.integer "code_confirm"
     t.string "image"
-<<<<<<< HEAD
-=======
     t.string "avatar"
->>>>>>> 150e25078394997493b8505217e29592c7677a5a
     t.string "phone"
     t.boolean "phone_verified", default: false
     t.string "email", default: "", null: false
