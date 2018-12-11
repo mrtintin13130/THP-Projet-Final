@@ -26,6 +26,11 @@
     <%= f.phone_field :phone, autocomplete: "phone" %>
   </div>
 
+  <div class="field">
+  <%= f.label :avatar %><br>
+  <%= f.file_field :avatar, autocomplete: "avatar" %>
+</div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

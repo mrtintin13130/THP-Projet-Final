@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :articles
   has_one :favorite
   has_many :messages
+
+  mount_uploader :avatar, AvatarUploader
+
   def self.code_create(user)
     if user.code_confirm == nil || user.updated_at < DateTime.now - 1.minutes
       user.code_confirm = rand(1000..9999)
