@@ -62,10 +62,17 @@
                   <%= f.text_field :phone, autocomplete: "ville", class:"form-control form-control-lg" %>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :telephone %><br />
                   <%= f.text_field :phone, autocomplete: "telephone", class:"form-control form-control-lg" %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label :avatar %><br />
+                  <%= f.file_field :avatar, autocomplete: "avatar" %>
                 </div>
               </div>
             </div>
@@ -79,3 +86,6 @@
       </div>
     </div>
   </div>
+</section>
+</div>
+</div><!-- END: body-wrap -->
