@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-NOM DU USER ACTUEL <%= @user.last_name -%> <br>
-ID DU DESTINATAIRE <%= @destinataire_id -%> <br>
-NOM DU DESTINATAIRE <%= @destinataire -%> <br>
-NOMBRE DE MESSAGE ENTRE LES DEUX USERS <%= @messages.count -%> <br>
-
-<br><br><br>
-
-<div class="display_mess" style="margin-bottom:15% ">
-	<h1> BONJOUR <%= User.find(@user.id).last_name %> </h1>
-
-	<h2> Chat box entre vous et <%= @destinataire %> </h2>
-
-	<table class="table table-striped table-bordered" style="width:100%">
-		<th><%= @destinataire %></th>
-		<th>date</th>
-
-		<th><%= @user.last_name %></th>
-		<% @messages.sort_by(&:created_at).each do |m| %>
-		<tr>
-			<% if m.user_id != @user.id-%>
-			<td><%= m.content -%></td>
-			<td><%= m.created_at.strftime("%A at %T")  -%></td>
-			<td></td>
-			<% else -%>
-			<td></td>
-			<td><%= m.created_at.strftime("%A at %T")  -%></td>
-			<td><%= m.content -%></td> 
-		</tr>
-		<% end %>
-		<% end %>
-	</table>
-</div>
-=======
 <div style="margin:5%">
 <% if user_signed_in? %>
 
@@ -83,25 +49,17 @@ NOMBRE DE MESSAGE ENTRE LES DEUX USERS <%= @messages.count -%> <br>
 	<% end -%>
 	<% end -%>
 </table>
->>>>>>> temp2
+
 
 <%= form_with(model: @message, local: true) do |form| %>
 
 <div class="field">
 	<%= form.label :content, "Saisisssez votre message :" %>
-<<<<<<< HEAD
-	<%= form.text_field :content, id: 'message_tag' %>
-
-	<%= hidden_field_tag "dest_id", params[:id] %>
-	<div class="actions">
-		<%= form.submit %>
-=======
 	<%= form.text_area :content, id: 'message_tag', size: "160%" %>
 
 	<%= hidden_field_tag "dest_id", params[:format] %>
 	<div class="actions">
 		<%= form.submit "Envoyer", class: "btn btn-styled btn-base-1 mt-3" %>
->>>>>>> temp2
 	</div>
 	<% end %>
 </div>
