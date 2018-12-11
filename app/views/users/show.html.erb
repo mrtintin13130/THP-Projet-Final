@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 						
 
 	<!-- PAGE PROFIL -->
@@ -37,6 +38,56 @@
 													<div class="profile-connect mt-4">
 														<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
 														<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
+=======
+
+
+<!-- PAGE PROFIL -->
+<div class="body-wrap" data-template-mode="cards">
+	<div id="st-container" class="st-container">
+		<div class="st-pusher">
+			<div class="st-content">
+				<div class="st-content-inner">
+					<section class="slice-sm sct-color-1">
+						<div class="profile">
+							<div class="container">
+								<div class="row cols-xs-space cols-sm-space cols-md-space">
+									<div class="col-lg-4">
+										<div class="sidebar sidebar--style-2 no-border stickyfill">
+											<div class="widget">
+												<!-- Profile picture -->
+												<div class="profile-picture profile-picture--style-2">
+													<img src="../../assets/images/prv/people/person-7.jpg" class="img-center">
+													<a href="#" class="btn-aux">
+														<i class="ion ion-edit"></i>
+													</a>
+												</div>
+
+												<!-- Profile details -->
+												<div class="profile-details">
+													<h2 class="heading heading-4 strong-500 profile-name"><%= @user_names %></h2>
+													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
+													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
+												</div>
+												<%if user_signed_in?%>
+
+												<% if params[:id].to_i != current_user.id %>
+												<div class="profile-connect mt-4">
+													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
+													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
+												</div>
+												<% else %>
+												<div class="profile-connect mt-4">
+													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié Mon Téléphone</a>
+												</div>
+												<%end%>
+												<%end%>
+												<!-- Profile stats -->
+												<div class="profile-stats clearfix">
+													<div class="stats-entry">
+														<span class="stats-count"><%=@user.articles.count%></span>
+														<span class="stats-label text-uppercase">Articles à échanger</span>
+>>>>>>> ed13e8d2b4b8522fcfdcbd882283d88156e0de33
 													</div>
 													<% else %>
 													<div class="profile-connect mt-4">
@@ -57,8 +108,11 @@
 														</div>
 													</div>
 
+<<<<<<< HEAD
 
 												</div>
+=======
+>>>>>>> ed13e8d2b4b8522fcfdcbd882283d88156e0de33
 											</div>
 										</div>
 
@@ -272,6 +326,7 @@
 																			</form>
 																		</div>
 																	</div>
+<<<<<<< HEAD
 
 
 																	<hr class="mt-0 mb-0">
@@ -312,6 +367,7 @@
 																						</li>
 																					</ul>
 																				</div>
+
 																			</div>
 																		</div>
 
@@ -345,23 +401,31 @@
 																				</div>
 																			</div>
 																		</div>
-																		
-																		</div>
 
 																	</div>
 																</div>
+
 															</div>
 															<% end -%>
 														</div>
 													</div>
 
-													<!-- Order history table -->
 
+													<% end -%>
 												</div>
 											</div>
+
+											<!-- Order history table -->
+
 										</div>
 									</div>
 								</div>
-
-							</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- END: st-pusher -->
+	</div><!-- END: st-container -->
+</div><!-- END: body-wrap -->
 

@@ -3,6 +3,9 @@ class Article < ApplicationRecord
  belongs_to :category
   validates :title, :description, :size, :image, presence: true
   has_one :favorite
+
   
   mount_uploader :image, ImageUploader
+  has_many :exchanges
+
 end

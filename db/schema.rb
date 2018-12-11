@@ -36,14 +36,17 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
   end
 
   create_table "exchanges", force: :cascade do |t|
-    t.integer "applicant_user_id"
-    t.integer "owner_user_id"
-    t.integer "applicant_article_id"
-    t.integer "owner_article_id"
-    t.boolean "applicant_status"
-    t.boolean "owner_status"
+    t.bigint "applicant_user_id"
+    t.bigint "owner_user_id"
+    t.bigint "applicant_article_id"
+    t.bigint "owner_article_id"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["applicant_article_id"], name: "index_exchanges_on_applicant_article_id"
+    t.index ["applicant_user_id"], name: "index_exchanges_on_applicant_user_id"
+    t.index ["owner_article_id"], name: "index_exchanges_on_owner_article_id"
+    t.index ["owner_user_id"], name: "index_exchanges_on_owner_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -73,6 +76,10 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.boolean "premium_user", default: false
     t.string "sex"
     t.integer "code_confirm"
+<<<<<<< HEAD
+=======
+    t.string "image"
+>>>>>>> ed13e8d2b4b8522fcfdcbd882283d88156e0de33
     t.string "avatar"
     t.string "phone"
     t.boolean "phone_verified", default: false

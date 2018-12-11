@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :articles
   has_one :favorite
   has_many :messages
-
+  has_many :exchanges
 
   mount_uploader :avatar, AvatarUploader
 

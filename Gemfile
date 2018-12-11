@@ -7,6 +7,9 @@ gem 'simple_form'
 gem 'carrierwave', '>= 1.0.0.rc' , '< 2.0'
 gem 'jquery-rails'
 
+
+gem 'table_print'
+
 gem 'mini_magick'
 
 gem 'dotenv-rails'
