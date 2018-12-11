@@ -13,10 +13,16 @@ class MessagesController < ApplicationController
      if @message_info.dest_user_id != @user.id
       @destinataire = User.find(@destinataire_id).last_name
       @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) + Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
+
+
+
     else
       @expediteur = User.find(@message_info.user_id).last_name
       @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
     end 
+
+
+    
     
   else
     redirect_to root_path
@@ -35,6 +41,10 @@ def index
 else
   redirect_to root_path
 end
+
+
+
+
 end 
 
 
@@ -43,7 +53,7 @@ def create
  dest_id = Message.find(params[:dest_id]).dest_user_id
  if dest_id == current_user.id
   dest_id = Message.find(params[:dest_id]).user_id
- end
+end
 
 
 

@@ -23,7 +23,7 @@
 					<div class="product-description-wrapper px-1">
 						<!-- Product title -->
 						<h2 class="product-title">
-							<%= @article.title %><br> Cet article appartient à <%= @user.find(@article.user_id).first_name %> <%= @user.find(@article.user_id).last_name %>
+							<%= @article.title %><br> Cet article appartient à <%= @users.find(@article.user_id).first_name %> <%= @users.find(@article.user_id).last_name %>
 						</h2>
 
 						<hr>
@@ -99,11 +99,11 @@
 									<div class="d-table product-quantity width-100 mt-3">
 										<div class="d-table-cell">
 
-											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @user.find(@article.user_id).id != current_user.id) %>
+											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 
 											<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
-												<i class="icon ion-bag"></i><%= link_to "Faire une demande d'échange", exchanges_path(article_id: @article.id, owner_id: @user.find(@article.user_id).id), method: "post" %></button>
-												<% elsif (@user.find(@article.user_id).id == current_user.id) %>
+												<i class="icon ion-bag"></i><%= link_to "Faire une demande d'échange", exchanges_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), method: "post" %></button>
+												<% elsif (@users.find(@article.user_id).id == current_user.id) %>
 												<% else %>
 												<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
 													<i class="icon ion-bag"></i><b>En attente</b></button>

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   def show
+    @user = current_user
     @article = Article.find(params[:id])
     @category = Category.all
     if user_signed_in?
