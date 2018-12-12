@@ -6,7 +6,14 @@
 				<div class="product-image">
 					<div class="view view-first">
 						<a href="#">
-							<center><img src="../../assets/images/prv/shop/accessories/img-1a.png"></center>
+							<center>
+								<% if article[:image] != nil -%>
+								<img src="<%= article.image %>" >
+								<% else -%>
+								<img src="../../assets/images/prv/shop/accessories/img-1a.png">
+								<% end -%>
+
+							</center>
 						</a>
 					</div>
 					<div class="product-actions--a product-actions--2" data-animation-in="slideInRight"  data-animation-out="slideOutRight">
