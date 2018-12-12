@@ -1,24 +1,47 @@
 class ExchangesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @asked_exchange = Exchange.where(applicant_user_id: current_user.id)
-    @my_exchange = Exchange.where(owner_user_id: current_user.id)
+    @i_asked = Exchange.where(applicant_user_id: current_user.id).where(status: nil)
+    @they_asked = Exchange.where(owner_user_id: current_user.id).where(status: nil)
+    @transactions = Exchange.where(owner_user_id: current_user.id).where.not(status: nil).or(Exchange.where(applicant_user_id: current_user.id)).where.not(status: nil)
+    @users = User.all
     @article = Article.all
-    @user = User.all
+    @user = current_user
+  end
+
+  def new
+    @exchange = Exchange.new
+    @article = Article.find(params[:article_id])
+    @user = User.find(params[:owner_id])
+    @options = Article.where(user_id: current_user.id)
   end
 
   def create
-    exchanges = Exchange.all
-    article_id = params[:article_id]
-    owner_id = params[:owner_id]
-    trade_exist = exchanges.find_by(owner_user_id: owner_id, applicant_user_id: Article.find(article_id).user_id)
-    if trade_exist.blank?
-      puts "AAAAAAAAAAA"
-      new = Exchange.new(applicant_user_id: current_user.id, owner_user_id: owner_id, owner_article_id: article_id)
-      new.save
-    else
-      trade_exist.update(applicant_article_id: article_id)
+    puts current_user.id
+    puts params[:exchange][:owner_id]
+    puts params[:article_id]
+    puts params[:exchange][:owner_article_id]
+
+    @exchange = Exchange.create(
+      applicant_user_id: current_user.id,
+      owner_user_id: params[:exchange][:owner_id],
+      applicant_article_id: params[:article_id],
+      owner_article_id: params[:exchange][:owner_article_id])
+    # redirect_to request.referer
+  end
+
+  def show
+    exchange = Exchange.find(params[:id])
+    exchange.update(status: params[:valid])
+    applicant_article = Article.find(exchange.applicant_article_id)
+    owner_article = Article.find(exchange.owner_article_id)
+
+    if params[:valid] == true
+      applicant_article.update(status: false)
+      owner_article.update(status: false)
     end
     redirect_to request.referer
   end
+
+
 end
