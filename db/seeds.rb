@@ -7,28 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-<<<<<<< HEAD
-# puts "Done!"
-# puts "AJOUT USERS"
-
-
-# 10.times do
-# 	user = User.new(email: Faker::Internet.email, password: "testtest", password_confirmation: "testtest", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, sex: Faker::Gender.binary_type)
-# 	user.save!
-# 	puts "user"
-# end
-# puts "Done !"
-
-# 	Category.create(name: "casquette")
-# 	Category.create(name: "chaussette")
-# 	Category.create(name: "veste")
-# 	Category.create(name: "echarpe")
-
-# puts "Done!"
-puts "AJOUT USERS"
-=======
 puts "AJOUT CATEGORY"
->>>>>>> a06741469c0102226fc0818acfd3ea7362194f58
+
 
 Category.create(name: "pantalon")
 Category.create(name: "sweat")
@@ -66,21 +46,5 @@ n = 1
 
 end
 
-<<<<<<< HEAD
 
-
-
-# # sleep 120
-
-# # 100.times do
-
-
-# 	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
-# 	puts n
-# 	n = n + 1
-# end
-
-=======
-
->>>>>>> a06741469c0102226fc0818acfd3ea7362194f58
 puts "Done!"

@@ -3,20 +3,13 @@ class UsersController < ApplicationController
 
   def show
 
-    @user = User.find(params[:id])
-
-    if user_signed_in? 
-      if @user.id == current_user.id
-        @user = current_user
-      else
-        @user = User.find(params[:id])
-      end
+    @user = current_user
+  
       if @user != nil
        @user_names = @user.last_name + " " + @user.first_name
      end
    end
-   end
-
+  
 
 
 
@@ -29,10 +22,10 @@ class UsersController < ApplicationController
 	  end
 
 	  def update
-	    @user = User.find(params[:id])
+	    @user = current_user
 	    if @user.update(user_params)
 	      flash[:success] = 'Votre profil a bien eté modifié'
-	      redirect_to user_path(params[:id])
+	      redirect_to @user
 	    
 	  end
 	end
@@ -79,6 +72,11 @@ respond_to do |format|
 end
 end
 
+private
+def user_params
+	params.require(:user).permit(:email, :password, :avatar)
+
+end
 
 
 
