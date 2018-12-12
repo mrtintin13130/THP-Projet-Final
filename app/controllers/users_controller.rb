@@ -25,11 +25,12 @@ class UsersController < ApplicationController
         @user = current_user
       else
         @user = User.find(params[:id])
-      end   
+      end
     end
     @user = current_user
     @users = User.all
     @article = Article.all
+    @favorite = Favorite.new
   end
 
   def verification_number
@@ -64,6 +65,6 @@ def set_username
   if @user != nil && @user.last_name != nil && @user.first_name != nil
     @user_names = @user.last_name.capitalize + " " + @user.first_name.capitalize
   end
-  
+
 end
 end

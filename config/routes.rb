@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 	resources :users
 	resources :articles
 	resources :exchanges
+	resources :favorites
+	get 'new_favorite', :to => 'favorites#new_favorite', :as => "add_favorite"
 
 	as :user do
 		get 'users/profile', :to => 'devise/registrations#edit', :as => :user_root
