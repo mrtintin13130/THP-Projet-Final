@@ -9,7 +9,7 @@
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 
-								<a href="../../assets/images/prv/shop/electronics/img-product-lg-1.jpg" data-desoslide-index="0">
+								<a href="<%= @article.image %>" data-desoslide-index="0">
 									<img src="<%= @article.image %>" alt="Bird">
 								</a>
 							</div>
@@ -102,10 +102,7 @@
 											<% if user_signed_in? %>
 
 											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
-
-											<span type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
-												<i class="icon ion-bag"></i>
-												<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id) %></span>
+												<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), class:"btn btn-styled btn-block btn-base-1 btn-icon-left" %></div>
 
 												<% elsif (@users.find(@article.user_id).id == current_user.id) %>
 												<% else %>
