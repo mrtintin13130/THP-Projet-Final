@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.string "image"
     t.string "avatar"
     t.string "phone"
+    t.string "city"
+    t.string "username"
     t.boolean "phone_verified", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

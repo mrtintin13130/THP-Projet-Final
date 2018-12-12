@@ -8,7 +8,11 @@
 				<div class="col-lg-4">
 					<div class="block block--style-3">
 						<div class="profile-picture profile-picture--style-2">
-							<img src="../../assets/images/prv/people/person-1.jpg" >
+							<% if user[:avatar] != nil -%>
+							<img src="<%=user.avatar%>" >
+							<% else -%>
+							<%=image_tag("avatar-1606916_960_720.png")%>
+							<% end -%>
 						</div>
 						<div class="block-body text-center">
 							<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= user.last_name%> <%= user.first_name%>

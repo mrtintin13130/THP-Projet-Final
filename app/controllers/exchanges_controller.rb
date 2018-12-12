@@ -14,6 +14,7 @@ class ExchangesController < ApplicationController
     @article = Article.find(params[:article_id])
     @user = User.find(params[:owner_id])
     @options = Article.where(user_id: current_user.id)
+
   end
 
   def create
@@ -27,7 +28,7 @@ class ExchangesController < ApplicationController
       owner_user_id: params[:exchange][:owner_id],
       applicant_article_id: params[:article_id],
       owner_article_id: params[:exchange][:owner_article_id])
-    # redirect_to request.referer
+     redirect_to exchanges_path
   end
 
   def show
