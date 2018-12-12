@@ -1,0 +1,365 @@
+
+<!-- PAGE PROFIL -->
+<div class="body-wrap" data-template-mode="cards">
+	<div id="st-container" class="st-container">
+		<div class="st-pusher">
+			<div class="st-content">
+				<div class="st-content-inner">
+					<section class="slice-sm sct-color-1">
+						<div class="profile">
+							<div class="container">
+								<div class="row cols-xs-space cols-sm-space cols-md-space">
+									<div class="col-lg-4">
+										<div class="sidebar sidebar--style-2 no-border stickyfill">
+											<div class="widget">
+												<!-- Profile picture -->
+												<div class="profile-picture profile-picture--style-2">
+													<img src="../../assets/images/prv/people/person-7.jpg" class="img-center">
+													<a href="#" class="btn-aux">
+														<i class="ion ion-edit"></i>
+													</a>
+												</div>
+
+												<!-- Profile details -->
+												<div class="profile-details">
+													<h2 class="heading heading-4 strong-500 profile-name"><%= @user_names %></h2>
+													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
+													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
+												</div>
+												<%if user_signed_in?%>
+
+												<% if params[:id].to_i != current_user.id %>
+												<div class="profile-connect mt-4">
+													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
+													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
+												</div>
+												<% else %>
+												<div class="profile-connect mt-4">
+													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié Mon Téléphone</a>
+												</div>
+												<%end%>
+												<%end%>
+												<!-- Profile stats -->
+												<div class="profile-stats clearfix">
+													<div class="stats-entry">
+														<span class="stats-count"><%=@user.articles.count%></span>
+														<span class="stats-label text-uppercase">Articles à échanger</span>
+													</div>
+													<div class="stats-entry">
+														<span class="stats-count">1.3K</span>
+														<span class="stats-label text-uppercase">Followers</span>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-8">
+										<div class="main-content">
+											<div class="tabs tabs--style-1" role="tabpanel">
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
+													</li>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
+													</li>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-3" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Favoris</a>
+													</li>
+													<%if user_signed_in?%>
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Parametres</a>
+													</li>
+													<% end -%>
+												</ul>
+
+												<!-- Tab panes -->
+												<div class="tab-content">
+													<div role="tabpanel" class="tab-pane active" id="tabFour-1">
+														<div class="tab-body">
+															<div class="widget mt-4">
+																<div class="row-wrapper">
+																	<div class="row cols-md-space cols-sm-space cols-xs-space">
+
+																		<% @user.articles.each do |article| %>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<div class="profile-picture profile-picture--style-2">
+																					<img src="../../assets/images/prv/people/person-1.jpg" >
+																				</div>
+																				<div class="block-body text-center">
+
+																					<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= article.title.first(14)%>
+																						<% if article.title.size >= 13 %>
+																						<%="..."%>
+																						<%end%>
+																					</h3>
+
+																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
+
+																					<a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
+																				</div>
+																				<div class="aux-info-wrapper border-top">
+																					<ul class="aux-info">
+																						<li class="heading strong-400 text-center">Size
+																							<span class="d-block strong-600"><%= article.size %></span>
+
+																						</li>
+																						<li class="heading strong-400 text-center">
+																							<span class="d-block strong-600">5</span>
+																							Like
+																						</li>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																		<% end %>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div role="tabpanel" class="tab-pane" id="tabFour-2">
+														<div class="tab-body">
+															<p class="mt-4">
+																Viam sumi mo id erit. Objectioni mo de necessario crediderim. Imo terra vox alios aut lor quasi. Vim quaero aut videri pendam plures duo. Extat neque arcte re ad etiam. Ego infiniti reperero mutuatur formalem sed scribere nec vel profecto.
+															</p>
+
+															<p class="mt-4">
+																Detractis detrahere concipere ac ut et inveniant to. Im perductae ut at ecclesiae assentiri eo. Ea ergo ausi ac otii suas. Utrum me sequi falsi ut atque. Existeret conformes his rei scientiis. Virorum corpora hac iis brachia
+															</p>
+														</div>
+													</div>
+													<div role="tabpanel" class="tab-pane" id="tabFour-3">
+														<div class="tab-body">
+															<p class="mt-4">
+																Detractis detrahere concipere ac ut et inveniant to. Im perductae ut at ecclesiae assentiri eo. Ea ergo ausi ac otii suas. Utrum me sequi falsi ut atque. Existeret conformes his rei scientiis. Virorum corpora hac iis brachia
+															</p>
+															<p>
+																Viam sumi mo id erit. Objectioni mo de necessario crediderim. Imo terra vox alios aut lor quasi. Vim quaero aut videri pendam plures duo. Extat neque arcte re ad etiam.
+															</p>
+														</div>
+													</div>
+													<%if user_signed_in?%>
+													<div role="tabpanel" class="tab-pane" id="tabFour-4">
+														<div class="body-wrap" data-template-mode="cards">
+															<div id="st-container" class="st-container">
+
+
+
+																<!-- Account settings -->
+																<div class="row">
+																	<div class="col-lg-12">
+																		<form class="form-default" data-toggle="validator" role="form">
+																			<!-- General information -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						General information
+																					</h3>
+																					<p class="mt-1 mb-0">
+																						You can help us, by filling your data, create you a much better experience using our website.
+																					</p>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">First name</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Last name</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																			<hr class="mt-0 mb-0">
+
+																			<!-- Account info -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						Account info
+																					</h3>
+																					<p class="mt-1 mb-0">
+																						Edit your email and also, your newsletter subscriptions.
+																					</p>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row align-items-center">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Email</label>
+																								<input type="email" class="form-control form-control-lg" value="name@example.com" disabled>
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<a href="#" class="link link-sm link--style-2 mt-2">Change email</a>
+																						</div>
+																					</div>
+
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Email frequency</label>
+																								<select class="form-control form-control-lg">
+																									<option value="">Daily</option>
+																									<option value="">Weekly</option>
+																									<option value="">Monthly</option>
+																								</select>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																			<hr class="mt-0 mb-0">
+
+																			<!-- Change password -->
+																			<div class="card no-border bg-transparent">
+																				<div class="card-title px-0 pb-0 no-border">
+																					<h3 class="heading heading-6 strong-600">
+																						Change password
+																					</h3>
+																				</div>
+																				<div class="card-body px-0">
+																					<div class="row">
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Current password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">New password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+
+																						<div class="col-md-6 col-lg-4">
+																							<div class="form-group">
+																								<label class="control-label">Confirm password</label>
+																								<input type="text" class="form-control form-control-lg">
+																							</div>
+																						</div>
+																					</div>
+
+																					<div class="text-right">
+																						<a href="#" class="btn btn-base-1">Change password</a>
+																					</div>
+																				</div>
+																			</div>
+																		</form>
+																	</div>
+																</div>
+
+																<hr class="mt-0 mb-0">
+
+																<!-- Addresses -->
+																<div class="py-4">
+																	<h3 class="heading heading-6 strong-600">My addresses</h3>
+																</div>
+
+																<div class="row cols-md-space cols-sm-space cols-xs-space">
+																	<div class="col-lg-6">
+																		<div class="card">
+																			<div class="px-4 py-4">
+																				<p class="c-gray-light">
+																					Desiree Jinny
+																					<br>
+																					1333 Deerfield, State College
+																					<br>
+																					PA, 16803
+																				</p>
+
+																				<p class="c-gray-light mt-3">
+																					E: desiree@example.com
+																					<br>
+																					T: 555 965 452
+																				</p>
+
+																				<span class="clearfix"></span>
+
+																				<ul class="inline-links inline-links--style-2">
+																					<li class="d-none d-lg-inline-block">
+																						<a href="#" class="link link--style-2 strong-600">Edit address</a>
+																					</li>
+																					<li>
+																						<a href="#" class="link link--style-2 strong-600">Add new</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="col-lg-6">
+																		<div class="card">
+																			<div class="px-4 py-4">
+																				<p class="c-gray-light">
+																					Desiree Jinny
+																					<br>
+																					1333 Deerfield, State College
+																					<br>
+																					PA, 16803
+																				</p>
+
+																				<p class="c-gray-light mt-3">
+																					E: desiree@example.com
+																					<br>
+																					T: 555 965 452
+																				</p>
+
+																				<span class="clearfix"></span>
+
+																				<ul class="inline-links inline-links--style-2">
+																					<li class="d-none d-lg-inline-block">
+																						<a href="#" class="link link--style-2 strong-600">Edit address</a>
+																					</li>
+																					<li>
+																						<a href="#" class="link link--style-2 strong-600">Add new</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+
+
+
+																</div>
+
+															</div>
+														</div>
+													</div>
+													<% end -%>
+												</div>
+											</div>
+
+											<!-- Order history table -->
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div><!-- END: st-pusher -->
+	</div><!-- END: st-container -->
+</div><!-- END: body-wrap -->
+
