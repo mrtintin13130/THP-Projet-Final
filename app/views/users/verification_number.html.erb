@@ -1,11 +1,12 @@
 <% if @user.phone_verified == true %>
-<h2>Votre numéro est déjà verifié</h2>
-
+<h2>Votre numéro est maintenant vérifié</h2>
+<a href='<%= root_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Retourner à la page d'acceuil</a>
 <%elsif%>
 
 
 
-<h4>Nous avons envoyé un code de confirmation à <%= @phoneuser %> </h4>
+<h5>Nous avons envoyé un code de confirmation à <%= @phoneuser %> </h5>
+<h6> Veuillez l'entrez ci-dessous </h6>
 
 
 

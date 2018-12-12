@@ -34,8 +34,13 @@
 												</div>
 												<% else %>
 												<div class="profile-connect mt-4">
-													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié Mon Téléphone</a>
+													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a><br>
+													<% if current_user.phone_verified == false %>
+													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifié mon <br> Téléphone</a>
+													<% elsif %>
+													<%= image_tag "smartphone.png" %>
+													<%= image_tag "checked.png" %>
+													<% end %>
 												</div>
 												<%end%>
 												<%end%>

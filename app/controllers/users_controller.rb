@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user
+  
   def show
 
     @user = User.find(params[:id])
 
-    if user_signed_in? 
+    if user_signed_in?
       if @user.id == current_user.id
         @user = current_user
       else
