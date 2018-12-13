@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @my_articles << Article.find(exchange.applicant_article_id)
     end
     @exchange = Hash[@his_articles.map.zip(@my_articles)]
+    @followers = Favorite.where(favorite_user_id: @user.id).count
   end
 
 

@@ -31,6 +31,16 @@
 												<div class="profile-connect mt-4">
 													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
 												</div>
+
+												<% if user_signed_in? %>
+													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+														<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+													<% else %>
+														<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+													<% end %>
+												<% end %>
+
+
 												<% else %>
 												<div class="profile-connect mt-4">
 													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
@@ -52,7 +62,7 @@
 														<span class="stats-label text-uppercase">Articles à échanger</span>
 													</div>
 													<div class="stats-entry">
-														<span class="stats-count">1.3K</span>
+														<span class="stats-count"><%= @followers %></span>
 														<span class="stats-label text-uppercase">Followers</span>
 													</div>
 												</div>

@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
     puts user_fav.last_name
     puts "BBBBBBBBBBBBBBBBBBBBB"
     @favorite = Favorite.create(main_user: current_user, favorite_user: user_fav)
-    redirect_to users_path
+    redirect_to request.referrer
   end
 
   def destroy
