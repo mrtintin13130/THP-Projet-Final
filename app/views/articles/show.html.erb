@@ -91,23 +91,21 @@
 								</tr>
 							</tbody>
 						</table>
-						<% if user_signed_in? %>
-						<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
-						<% if pre_like %>
-							<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete %>
-							<% else %>
-							<%= button_to 'Like', article_likes_path(@article), method: :post %>
-							<% end %>
-							<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-							<% end %>
+
 						<hr>
 						<div class="row row-no-padding no-margin">
 							<div class="col-lg-8">
-								<form class="form-default">
 									<div class="d-table product-quantity width-100 mt-3">
 										<div class="d-table-cell">
-
 											<% if user_signed_in? %>
+											<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+											<% if pre_like %>
+												<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete %>
+												<% else %>
+												<%= button_to 'Like', article_likes_path(@article), method: :post %>
+												<% end %>
+												<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
 											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 												<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), class:"btn btn-styled btn-block btn-base-1 btn-icon-left" %></div>
 
@@ -115,12 +113,11 @@
 												<% else %>
 												<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
 													<i class="icon ion-bag"></i><b>En attente</b></button>
-
 													<% end %>
 													<% end -%>
 												</div>
 											</div>
-										</form>
+
 									</div>
 								</div>
 							</div>
