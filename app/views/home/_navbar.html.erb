@@ -17,7 +17,7 @@
 								<% if user_signed_in? %>
 								<li style="margin-top: 3.8%; font-size: 80%"%><%="Connecté"%></li>
 								<li><%= link_to 'Profil', user_path(@user.id) %></li>
-								<li><%= link_to 'Boite de reception', messages_path %></li>
+								<li><%= link_to 'Boite de reception', conversations_path %></li>
 
 								<li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
 								<%else%>

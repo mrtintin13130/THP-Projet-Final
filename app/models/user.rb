@@ -6,7 +6,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable, :confirmable
   has_many :articles
   has_many :favorites
-  has_many :messages
+  has_many :conversations, :foreign_key => :sender_id
   has_many :exchanges
 
   mount_uploader :avatar, AvatarUploader
