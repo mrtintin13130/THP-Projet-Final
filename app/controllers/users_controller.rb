@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user
   before_action :set_username
 
-
-
   def show
     @user = User.find(params[:id])
     puts @user.inspect
@@ -14,7 +12,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       end
     end
-
+    @mes_likes = Like.where(user_id: current_user.id)
     @exchanges = Exchange.all
     @user_exchanges = @exchanges.where(applicant_user_id: @user.id)
     @my_articles = []

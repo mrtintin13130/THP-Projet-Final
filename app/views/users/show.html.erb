@@ -45,14 +45,19 @@
 
 												<% else %>
 												<div class="profile-connect mt-4">
-													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier</a>
-												</div>
-												<div class="profile-connect mt-4">
+													<a href='<%= messages_path %>' style="width: 180px" class="btn btn-styled btn-primary">Messagerie</a><br><br>
+													<% if current_user.phone_verified == false %>
+													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
+													<% elsif %>
+													<%= image_tag "smartphone.png" %>
+													<%= image_tag "checked.png" %>
+													<% end %>
+												
+												<br><br>
 													<% if @user.premium_user == false %>
-													<%= link_to "Devenir Premium", new_charge_path %>
+													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
 													<% else %>
-													<p>Vous êtes premium</p>
+													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
 													<% end %>
 												</div>
 												<% end %>
@@ -92,7 +97,7 @@
 													</li>
 													<%if user_signed_in?%>
 													<li class="nav-item" role="presentation">
-														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Parametres</a>
+														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Liked</a>
 													</li>
 													<% end -%>
 												</ul>
@@ -154,10 +159,6 @@
 																					</h3>
 
 																					<h3 class="heading heading-light heading-sm strong-300"></h3>
-
-
-
-
 																				</div>
 																			</div>
 																		</div>
@@ -216,7 +217,7 @@
 													<%if user_signed_in?%>
 													<div role="tabpanel" class="tab-pane" id="tabFour-4">
 														<div class="body-wrap" data-template-mode="cards">
-															BON BON BON
+															<% @mes_likes -%>
 														</div>
 													</div>
 												</div>

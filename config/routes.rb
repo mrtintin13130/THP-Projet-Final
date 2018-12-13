@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 	resources :messages
 	devise_for :users
 	resources :users
-	resources :articles
+  resources :articles do
+  	resources :likes
+  end
 	resources :exchanges
 	resources :favorites
 	get 'new_favorite', :to => 'favorites#new_favorite', :as => "add_favorite"
