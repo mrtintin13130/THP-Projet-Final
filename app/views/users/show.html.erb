@@ -31,7 +31,7 @@
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
-													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
+													<a href='<%= new_message_path(profil_id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
 												</div>
 
 												<% if user_signed_in? %>

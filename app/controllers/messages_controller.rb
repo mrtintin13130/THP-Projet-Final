@@ -5,22 +5,24 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    if user_signed_in?
-      @message_info = Message.find(params[:id])
-      @destinataire_id = @message_info.dest_user_id
-      if @message_info.dest_user_id != @user.id
-        @destinataire = User.find(@destinataire_id).last_name
-        @messages = Message.where(user_id: @user.id, dest_user_id: @destinataire_id) + Message.where(user_id: @destinataire_id, dest_user_id: @user.id )
-      else
-        @expediteur = User.find(@message_info.user_id).last_name
-        @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
-      end     
-    else
-      redirect_to root_path
+    @user = current_user
+    if params[:profil_id]
+      @user_bis_id = params[:profil_id]
+      @messages = Message.where(user_id: @user.id, dest_user_id: @user_bis_id) + Message.where(user_id: @user_bis_id, dest_user_id: @user.id )
+      @destinataire = User.find(@user_bis_id).last_name
+    elsif params[:message_id]
+      @message_info = Message.find(params[:message_id])
+      @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
+      @expediteur = User.find(@message_info.user_id).last_name
     end
   end
 
+
+  
+
   def index
+
+
    if user_signed_in?
     @messages_get = Message.where(dest_user_id: current_user.id)
     @messages_sent = Message.where(user_id: current_user.id)

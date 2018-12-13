@@ -57,7 +57,7 @@
 	<%= form.label :content, "Saisisssez votre message :" %>
 	<%= form.text_area :content, id: 'message_tag', size: "160%" %>
 
-	<%= hidden_field_tag "dest_id", params[:id] %>
+	<%= hidden_field_tag "dest_id", params %>
 	<div class="actions">
 		<%= form.submit "Envoyer", class: "btn btn-styled btn-base-1 mt-3" %>
 	</div>
