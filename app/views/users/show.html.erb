@@ -25,7 +25,7 @@
 													<h3 class="heading heading-light heading-6 strong-400 profile-location"><%=@user.city%></h3>
 												</div>
 
-												<%if user_signed_in?%>
+												<% if user_signed_in? %>
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
@@ -36,8 +36,15 @@
 													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
 													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier</a>
 												</div>
-												<%end%>
-												<%end%>
+												<div class="profile-connect mt-4">
+													<% if @user.premium_user == false %>
+														<%= link_to "Devenir Premium", new_charge_path %>
+													<% else %>
+														<p>Vous êtes premium</p>
+													<% end %>
+												</div>
+												<% end %>
+												<% end %>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
 													<div class="stats-entry">
@@ -61,7 +68,7 @@
 													<li class="nav-item" role="presentation">
 														<a href="#tabFour-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
 													</li>
-													<%if user_signed_in?%>
+													<% if user_signed_in? %>
 													<% if params[:id].to_i == current_user.id %>
 													<li class="nav-item" role="presentation">
 														<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
