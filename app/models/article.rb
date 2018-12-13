@@ -4,4 +4,5 @@ class Article < ApplicationRecord
   has_one :favorite
   has_many :exchanges
   mount_uploader :image, ImageUploader
+  has_many :likes, dependent: :destroy
 end
