@@ -32,7 +32,7 @@ class ExchangesController < ApplicationController
     applicant_article = Article.find(exchange.applicant_article_id)
     owner_article = Article.find(exchange.owner_article_id)
 
-    if params[:valid] == true
+    if params[:valid] == "true"
       applicant_article.update(status: false)
       owner_article.update(status: false)
     end

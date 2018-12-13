@@ -27,19 +27,36 @@
 													<h3 class="heading heading-light heading-6 strong-400 profile-location"><%= @user.sex + " " + @user.city.capitalize %> </h3>
 												</div>
 
-												<%if user_signed_in?%>
+												<% if user_signed_in? %>
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
 													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
 												</div>
+
+												<% if user_signed_in? %>
+												<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+												<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+												<% else %>
+												<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+												<% end %>
+												<% end %>
+
+
 												<% else %>
 												<div class="profile-connect mt-4">
 													<a href='<%= messages_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
 													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier</a>
 												</div>
-												<%end%>
-												<%end%>
+												<div class="profile-connect mt-4">
+													<% if @user.premium_user == false %>
+													<%= link_to "Devenir Premium", new_charge_path %>
+													<% else %>
+													<p>Vous êtes premium</p>
+													<% end %>
+												</div>
+												<% end %>
+												<% end %>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
 													<div class="stats-entry">
@@ -47,7 +64,7 @@
 														<span class="stats-label text-uppercase">Articles à échanger</span>
 													</div>
 													<div class="stats-entry">
-														<span class="stats-count">1.3K</span>
+														<span class="stats-count"><%= @followers %></span>
 														<span class="stats-label text-uppercase">Followers</span>
 													</div>
 												</div>
@@ -63,7 +80,7 @@
 													<li class="nav-item" role="presentation">
 														<a href="#tabFour-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
 													</li>
-													<%if user_signed_in?%>
+													<% if user_signed_in? %>
 													<% if params[:id].to_i == current_user.id %>
 													<li class="nav-item" role="presentation">
 														<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
@@ -121,7 +138,7 @@
 																			</div>
 																		</div>
 																		<% end %>
-																		<%if user_signed_in?%>
+																		<% if user_signed_in? %>
 
 																		<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2%>
 																		<div class="col-lg-4">
@@ -137,6 +154,8 @@
 																					</h3>
 
 																					<h3 class="heading heading-light heading-sm strong-300"></h3>
+
+
 
 
 																				</div>
@@ -175,11 +194,11 @@
 																		<td><img src= "<% article[0].image -%>", height="60" width="60"> <%= article[0].title -%> qui appartient à <%= User.find(article[0].user_id).last_name -%></td>
 																		<td><img src= "<% article[1].image -%>", height="60" width="60"> <%= article[1].title -%> qui appartient à <%= User.find(article[1].user_id).last_name -%></td>
 																	</tr>
-																	<%end%>
+																	<% end %>
 																</tbody>
 															</table>
-															
-															
+
+
 
 														</div>
 													</div>
@@ -193,26 +212,31 @@
 															</p>
 														</div>
 													</div>
+
 													<%if user_signed_in?%>
 													<div role="tabpanel" class="tab-pane" id="tabFour-4">
 														<div class="body-wrap" data-template-mode="cards">
 															BON BON BON
 														</div>
 													</div>
-													<% end -%>
 												</div>
 											</div>
-											<!-- Order history table -->
+											<% end -%>
 										</div>
 									</div>
+									<!-- Order history table -->
 								</div>
 							</div>
 						</div>
-					</section>
+					</div>
 				</div>
-			</div>
+
+			</section>
+
+
 		</div>
+
 	</div>
-</div><!-- END: st-pusher -->
-</div><!-- END: st-container -->
-</div><!-- END: body-wrap -->
+</div>
+</div>
+</div>

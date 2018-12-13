@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
 
   def show
-
     @user = User.find(params[:id])
     puts @user.inspect
     if user_signed_in?  
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
       @my_articles << Article.find(exchange.applicant_article_id)
     end
     @exchange = Hash[@his_articles.map.zip(@my_articles)]
+    @followers = Favorite.where(favorite_user_id: @user.id).count
   end
 
 
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     end
     @users = User.all
     @article = Article.all
+    @favorite = Favorite.new
   end
 
   def verification_number

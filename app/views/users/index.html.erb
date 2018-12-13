@@ -25,30 +25,39 @@
 								<%= link_to "#{a.id}", article_path(a) %>
 								<% end %>
 							</h3>
-							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
 
-							<% if signed_in? %>
-							<% if current_user.admin == true %>
-							
-							<td><%= link_to 'Supprimer', user_path(user), method: :delete, class:"btn btn-base-1 btn-shadow btn-circle px-4 mt-2", data: { confirm: 'Êtes vous sûr ?' } %>
-								<% end -%>
-								<% end -%>
-							</div>
-							<div class="aux-info-wrapper border-top">
-								<ul class="aux-info">
-									<li class="heading strong-400 text-center">Size
-										<span class="d-block strong-600"><%= user.last_name%></span>
-									</li>
-									<li class="heading strong-400 text-center">
-										<span class="d-block strong-600">5</span>
-										Like
-									</li>
-								</ul>
-							</div>
+							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Voir</a>
+
+							<% if user_signed_in? %>
+							<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
+							<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+							<% else %>
+							<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+							<% end %>
+							<% end %>
+
+
+
+
+						</div>
+						<div class="aux-info-wrapper border-top">
+							<ul class="aux-info">
+								<li class="heading strong-400 text-center">Size
+									<span class="d-block strong-600"><%= user.last_name%></span>
+								</li>
+								<li class="heading strong-400 text-center">
+									<span class="d-block strong-600">5</span>
+									Like
+								</li>
+							</ul>
+
 						</div>
 					</div>
-					<% end %>
+					
 				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
+</div>
+

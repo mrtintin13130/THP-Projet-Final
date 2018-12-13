@@ -50,8 +50,12 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.bigint "main_user_id"
+    t.bigint "favorite_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["favorite_user_id"], name: "index_favorites_on_favorite_user_id"
+    t.index ["main_user_id"], name: "index_favorites_on_main_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
