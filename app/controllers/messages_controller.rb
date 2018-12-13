@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_user, only: [:new, :index] 
+  before_action :set_user, only: [:new, :index]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
       else
         @expediteur = User.find(@message_info.user_id).last_name
         @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
-      end     
+      end
     else
       redirect_to root_path
     end
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   else
     redirect_to root_path
   end
-end 
+end
 
 
 def create
