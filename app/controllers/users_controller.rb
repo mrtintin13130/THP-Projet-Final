@@ -6,7 +6,15 @@ class UsersController < ApplicationController
   def show
 
     @user = User.find(params[:id])
-    set_username
+    puts @user.inspect
+    if user_signed_in?  
+      if @user.id == current_user.id
+        @user = current_user
+      else
+        @user = User.find(params[:id])
+      end
+    end
+
     @exchanges = Exchange.all
     @user_exchanges = @exchanges.where(applicant_user_id: @user.id)
     @my_articles = []
@@ -20,14 +28,13 @@ class UsersController < ApplicationController
 
 
   def index
-    if user_signed_in?
+    if user_signed_in?  
       if @user.id == current_user.id
         @user = current_user
       else
         @user = User.find(params[:id])
-      end   
+      end
     end
-    @user = current_user
     @users = User.all
     @article = Article.all
   end
@@ -54,16 +61,21 @@ class UsersController < ApplicationController
  end
 end
 
+def destroy
+  @user = User.find(params[:id])
+  @user.articles.delete_all
+  @user.messages.delete_all
+  @user.destroy
+  respond_to do |format|
+    format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
+  end
+end
+
 private
 
 def set_user
   @user = current_user
 end
 
-def set_username
-  if @user != nil && @user.last_name != nil && @user.first_name != nil
-    @user_names = @user.last_name.capitalize + " " + @user.first_name.capitalize
-  end
-  
-end
+
 end

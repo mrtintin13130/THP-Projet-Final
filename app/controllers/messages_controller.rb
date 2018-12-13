@@ -3,10 +3,6 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  
-
-
-
   def new
     @message = Message.new
     if user_signed_in?
@@ -28,9 +24,6 @@ class MessagesController < ApplicationController
    if user_signed_in?
     @messages_get = Message.where(dest_user_id: current_user.id)
     @messages_sent = Message.where(user_id: current_user.id)
-    if @user != nil && @user.last_name != nil && @user.first_name != nil
-      @user_names = @user.first_name + " " + @user.last_name
-    end 
     @id = params[:id]
   else
     redirect_to root_path

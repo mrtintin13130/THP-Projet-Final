@@ -16,6 +16,9 @@
 						</div>
 						<div class="block-body text-center">
 							<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= user.last_name%> <%= user.first_name%>
+								<% if user.admin == true %>
+								<h4>admin</h4>
+								<% end -%>
 							</h3>
 							<h3 class="heading heading-light heading-sm strong-300">
 								<% @article.where(user_id: user.id).take(3).each do |a| %>
@@ -23,22 +26,29 @@
 								<% end %>
 							</h3>
 							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
-						</div>
-						<div class="aux-info-wrapper border-top">
-							<ul class="aux-info">
-								<li class="heading strong-400 text-center">Size
-									<span class="d-block strong-600"><%= user.last_name%></span>
-								</li>
-								<li class="heading strong-400 text-center">
-									<span class="d-block strong-600">5</span>
-									Like
-								</li>
-							</ul>
+
+							<% if signed_in? %>
+							<% if current_user.admin == true %>
+							
+							<td><%= link_to 'Supprimer', user_path(user), method: :delete, class:"btn btn-base-1 btn-shadow btn-circle px-4 mt-2", data: { confirm: 'Êtes vous sûr ?' } %>
+								<% end -%>
+								<% end -%>
+							</div>
+							<div class="aux-info-wrapper border-top">
+								<ul class="aux-info">
+									<li class="heading strong-400 text-center">Size
+										<span class="d-block strong-600"><%= user.last_name%></span>
+									</li>
+									<li class="heading strong-400 text-center">
+										<span class="d-block strong-600">5</span>
+										Like
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
+					<% end %>
 				</div>
-				<% end %>
 			</div>
 		</div>
 	</div>
-</div>
