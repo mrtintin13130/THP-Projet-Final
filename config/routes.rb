@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
 	devise_for :users
 	resources :users
-	resources :articles
+  resources :articles do
+  	resources :likes
+  end
 	resources :exchanges
 	resources :favorites
 

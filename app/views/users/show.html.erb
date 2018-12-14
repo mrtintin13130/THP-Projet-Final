@@ -36,24 +36,29 @@
 												</div>
 
 												<% if user_signed_in? %>
-													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-														<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
-													<% else %>
-														<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
-													<% end %>
+												<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+												<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+												<% else %>
+												<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+												<% end %>
 												<% end %>
 
 
 												<% else %>
 												<div class="profile-connect mt-4">
-													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier</a>
-												</div>
-												<div class="profile-connect mt-4">
+													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a><br><br>
+													<% if current_user.phone_verified == false %>
+													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
+													<% elsif %>
+													<%= image_tag "smartphone.png" %>
+													<%= image_tag "checked.png" %>
+													<% end %>
+
+												<br><br>
 													<% if @user.premium_user == false %>
-														<%= link_to "Devenir Premium", new_charge_path %>
+													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
 													<% else %>
-														<p>Vous êtes premium</p>
+													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
 													<% end %>
 												</div>
 												<% end %>
@@ -93,7 +98,7 @@
 													</li>
 													<%if user_signed_in?%>
 													<li class="nav-item" role="presentation">
-														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Parametres</a>
+														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Liked</a>
 													</li>
 													<% end -%>
 												</ul>
@@ -155,8 +160,6 @@
 																					</h3>
 
 																					<h3 class="heading heading-light heading-sm strong-300"></h3>
-
-																					<a href="<%= new_article_path %>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Ajouter</a>
 																				</div>
 																			</div>
 																		</div>
@@ -211,20 +214,19 @@
 															</p>
 														</div>
 													</div>
+
 													<%if user_signed_in?%>
 													<div role="tabpanel" class="tab-pane" id="tabFour-4">
 														<div class="body-wrap" data-template-mode="cards">
+															<% @mes_likes -%>
 														</div>
 													</div>
-													BON BON BON
 												</div>
 											</div>
 											<% end -%>
 										</div>
 									</div>
-
 									<!-- Order history table -->
-
 								</div>
 							</div>
 						</div>
@@ -233,11 +235,10 @@
 
 			</section>
 
+
 		</div>
 
 	</div>
 </div>
 </div>
-</div><!-- END: st-pusher -->
-</div><!-- END: st-container -->
-</div><!-- END: body-wrap -->
+</div>

@@ -1,42 +1,43 @@
-	<div style="margin-bottom: 0.1%" class="jumbotron">
-		<% if @user.phone_verified == true %>
-		<h2>Votre numéro est déjà verifié</h2>
 
-		<%elsif%>
-		<h4>Nous avons envoyé un code de confirmation à <%= @phoneuser %> </h4>
-		<%= @test%>
+<div style="margin-bottom: 0.1%" class="jumbotron">
+	<% if @user.phone_verified == true %>
+	<h2>Votre numéro est déjà verifié</h2>
 
-		<%= form_tag url_for(action: 'verification_number') do %>
-		<div class="field">
-			<%= text_field_tag 'text' %>
-			<div class="actions">
-				<br>
-				<%= submit_tag "Envoyer", class:"btn btn-styled btn-success" %>
-			</div>
-		</div>
-		<% end %>
-		<br><br>
+	<%elsif%>
+	<h4>Nous avons envoyé un code de confirmation à <%= @phoneuser %> </h4>
+	<%= @test%>
 
-		<h4>Si vous souhaitez changer de numero de telephone :</h4>
-		<%= form_tag url_for(action: 'verification_number'), method: "post" do %>
-		<div class="field">
-			<%= text_field_tag 'new' %>
-			<div class="actions">
-				<br>
-				<%= submit_tag "Enregister", class:"btn btn-styled btn-primary" %>
-			</div>
-			<% end %>
-		</div>
-		<%else%>
-		<h2> Desole, <br> <%= @user.phone%> ne semble pas etre un numero de telephone valide. S'il vous plait veuillez indiquer un numero de telephone sur lequel vous pouvez recevoir des appels et des sms. </h2>
-		<%= form_tag url_for(action: 'authentificate'), method: "post" do %>
-		<div class="field">
-			<%= text_field_tag 'new' %>
-			<div class="actions">
-
-				<%= submit_tag "send" %>
-			</div>
-			<% end %>
-			<% end %>
+	<%= form_tag url_for(action: 'verification_number') do %>
+	<div class="field">
+		<%= text_field_tag 'text' %>
+		<div class="actions">
+			<br>
+			<%= submit_tag "Envoyer", class:"btn btn-styled btn-success" %>
 		</div>
 	</div>
+	<% end %>
+	<br><br>
+
+	<h4>Si vous souhaitez changer de numero de telephone :</h4>
+	<%= form_tag url_for(action: 'verification_number'), method: "post" do %>
+	<div class="field">
+		<%= text_field_tag 'new' %>
+		<div class="actions">
+			<br>
+			<%= submit_tag "Enregister", class:"btn btn-styled btn-primary" %>
+		</div>
+		<% end %>
+	</div>
+	<%else%>
+	<h2> Desole, <br> <%= @user.phone%> ne semble pas etre un numero de telephone valide. S'il vous plait veuillez indiquer un numero de telephone sur lequel vous pouvez recevoir des appels et des sms. </h2>
+	<%= form_tag url_for(action: 'authentificate'), method: "post" do %>
+	<div class="field">
+		<%= text_field_tag 'new' %>
+		<div class="actions">
+
+			<%= submit_tag "send" %>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>
