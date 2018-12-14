@@ -1,79 +1,29 @@
 class MessagesController < ApplicationController
-  before_action :set_user, only: [:new, :index] 
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+
+  before_action do
+    @conversation = Conversation.find(params[:conversation_id])
+  end
+  
+  def index
+    @user = current_user
+    @messages = @conversation.messages
+    @conversation.messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+    @message = @conversation.messages.new
+  end
 
   def new
-    @message = Message.new
-    @user = current_user
-    if params[:profil_id]
-      @user_bis_id = params[:profil_id]
-      @messages = Message.where(user_id: @user.id, dest_user_id: @user_bis_id) + Message.where(user_id: @user_bis_id, dest_user_id: @user.id )
-      @destinataire = User.find(@user_bis_id).last_name
-    elsif params[:message_id]
-      @message_info = Message.find(params[:message_id])
-      @messages = Message.where(user_id: @message_info.user_id, dest_user_id: @message_info.dest_user_id) + Message.where(user_id: @message_info.dest_user_id, dest_user_id: @message_info.user_id )
-      @expediteur = User.find(@message_info.user_id).last_name
-    end
+    @message = @conversation.messages.new
   end
 
-
-  
-
-  def index
-
-
-   if user_signed_in?
-    @messages_get = Message.where(dest_user_id: current_user.id)
-    @messages_sent = Message.where(user_id: current_user.id)
-    @id = params[:id]
-  else
-    redirect_to root_path
-  end
-end 
-
-
-def create
-
-  puts params
-
-  dest_id = Message.find(params[:dest_id]).dest_user_id
-  if dest_id == current_user.id
-    dest_id = Message.find(params[:dest_id]).user_id
-  end
-  @message = Message.new(content: params[:message][:content], user_id: current_user.id, dest_user_id: dest_id)
-  respond_to do |format|
+  def create
+    @message = @conversation.messages.new(message_params)
     if @message.save
-      format.html { redirect_to request.referrer }
-      format.json { render :show, status: :created, location: @message }
-    else
-      format.html { render :new }
-      format.json { render json: @message.errors, status: :unprocessable_entity }
+      redirect_to conversation_messages_path(@conversation)
     end
   end
-end
 
-
-def destroy
- @message.destroy
- respond_to do |format|
-  format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
-  format.json { head :no_content }
-end
-end
-
-private
-
-def set_user
-  @user = current_user
-end
-
-def set_message
-  @message = Message.find(params[:id])
-end
-
-def message_params
-  params.fetch(:message, {})
-end
-
+  private
+  def message_params
+    params.require(:message).permit(:body, :user_id)
+  end
 end

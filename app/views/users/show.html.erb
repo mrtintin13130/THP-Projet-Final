@@ -21,7 +21,7 @@
 												<div class="profile-details">
 													<h2 class="heading heading-4 strong-500 profile-name">
 														<%= @user.username.capitalize %>
-														
+
 													</h2>
 													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
 													<h3 class="heading heading-light heading-6 strong-400 profile-location"><%= @user.sex + " " + @user.city.capitalize %> </h3>
@@ -31,7 +31,10 @@
 
 												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
-													<a href='<%= new_message_path(profil_id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
+
+
+													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+
 												</div>
 
 												<% if user_signed_in? %>
@@ -45,6 +48,7 @@
 
 												<% else %>
 												<div class="profile-connect mt-4">
+													<<<<<<< HEAD
 													<a href='<%= messages_path %>' style="width: 180px" class="btn btn-styled btn-primary">Messagerie</a><br><br>
 													<% if current_user.phone_verified == false %>
 													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
@@ -52,8 +56,14 @@
 													<%= image_tag "smartphone.png" %>
 													<%= image_tag "checked.png" %>
 													<% end %>
-												
-												<br><br>
+
+													<br><br>
+													=======
+													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+													<a href='<%= verification_number_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Vérifier</a>
+												</div>
+												<div class="profile-connect mt-4">
+													>>>>>>> 6981d376920093309ab95f904c407d636c76d1b2
 													<% if @user.premium_user == false %>
 													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
 													<% else %>
@@ -159,6 +169,11 @@
 																					</h3>
 
 																					<h3 class="heading heading-light heading-sm strong-300"></h3>
+																					<<<<<<< HEAD
+																					=======
+
+																					<a href="<%= new_article_path %>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Ajouter</a>
+																					>>>>>>> 6981d376920093309ab95f904c407d636c76d1b2
 																				</div>
 																			</div>
 																		</div>
@@ -233,7 +248,6 @@
 				</div>
 
 			</section>
-
 
 		</div>
 

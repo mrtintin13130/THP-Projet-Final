@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 	root 'home#index'
-	resources :messages
+
 	devise_for :users
 	resources :users
   resources :articles do
@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   end
 	resources :exchanges
 	resources :favorites
+
+	resources :conversations, only: [:index, :create] do
+  	resources :messages, only: [:index, :create]
+	end
 	get 'new_favorite', :to => 'favorites#new_favorite', :as => "add_favorite"
 
 	as :user do

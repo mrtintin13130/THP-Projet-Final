@@ -24,7 +24,7 @@ Category.create(name: "echarpe")
 
 puts "AJOUT USER"
 10.times do
-	user = User.new(email: Faker::Internet.email, password: "testtest", password_confirmation: "testtest", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, sex: Faker::Gender.binary_type, username: Faker::Name.middle_name, city: Faker::Address.city)
+	user = User.new(email: Faker::Internet.email, password: "testtest", password_confirmation: "testtest", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, sex: Faker::Gender.binary_type, username: Faker::Name.middle_name, city: Faker::Address.city, username: Faker::FunnyName.name)
 	user.save!
 end
 puts "Done !"
