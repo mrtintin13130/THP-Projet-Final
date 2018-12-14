@@ -3,7 +3,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<%= root_path %>">Accueil</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Messages</li>
+      <li class="breadcrumb-item active" aria-current="page">Conversations</li>
     </ol>
   </nav>
 
@@ -20,9 +20,9 @@
     <% end %>
 
     <div class="jumbotron">
-      <h3><%= recipient.first_name.capitalize %></h3>
+      <h3><%= recipient.first_name.capitalize %>, <i>pseudo:</i> <%= recipient.username %></h3>
       <hr class="my-4">
-      <% end %>
+
       <% if !conversation.unread_message_count(current_user).zero? %>
 
       <a type="button" class="btn btn-primary" href="<%= conversation_messages_path(conversation) %>">
@@ -34,6 +34,7 @@
       </a>
       <% end %>
     </div>
+    <% end %>
 
     <% end %>
 
