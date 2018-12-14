@@ -61,20 +61,24 @@ class UsersController < ApplicationController
     end
   end
 
+
   def destroy
     @user = User.find(params[:id])
+    @user.likes.delete_all
     @user.articles.delete_all
     @user.messages.delete_all
+    @user.conversations.delete_all
     @user.destroy
     respond_to do |format|
       format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
     end
   end
 
-  private
+    private
 
-  def set_user
-    @user = current_user
+
+    def set_user
+      @user = current_user
+    end
+
   end
-
-end

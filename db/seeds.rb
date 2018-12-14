@@ -37,17 +37,21 @@ puts "AJOUT ARTICLES"
 end
 puts "Done!"
 
-# puts "AJOUT ECHANGES"
-# 15.times do
-# 	Exchange.create(applicant_user_id: Faker::Number.between(1, 10), owner_user_id: Faker::Number.between(1, 10), applicant_article_id: Faker::Number.between(1, 15), owner_article_id: Faker::Number.between(1, 15), status: true )
-# end
-# puts "Done!"
+puts "AJOUT ECHANGES"
 
-#uts "AJOUT MESSAGES"
+15.times do
+	Exchange.create(applicant_user_id: Faker::Number.between(1, 10), owner_user_id: Faker::Number.between(1, 10), applicant_article_id: Faker::Number.between(1, 15), owner_article_id: Faker::Number.between(1, 15), status: true )
+end
+puts "Done!"
+
+
+puts "AJOUT MESSAGES"
 
 # 100.times do
 # 	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
 # end
 
 
+
 # puts "Done!"
+

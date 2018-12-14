@@ -52,6 +52,14 @@ class ArticlesController < ApplicationController
         redirect_to new_article_path, alert: "Error creating article."
     end
   end
+  def destroy
+  @article = Article.find(params[:id])
+  @user.likes.delete_all
+  @article.destroy
+  respond_to do |format|
+    format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
+  end
+end
 
   def article_params
     params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
