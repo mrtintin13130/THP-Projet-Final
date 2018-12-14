@@ -1,10 +1,8 @@
 class ArticlesController < ApplicationController
   def show
-    
     @user = current_user
     @article = Article.find(params[:id])
     @category = Category.all
-    @random_article =
     if user_signed_in?
       if @user.id == current_user.id
         @user = current_user
@@ -19,6 +17,20 @@ class ArticlesController < ApplicationController
     user = @user
     @suggestions = @article.category.articles
   end
+def edit
+  @user = current_user
+  @article = Article.find(params[:id])
+  @category = Category.all
+end
+
+   def update
+    
+      @article = Article.find(params[:id])
+      if @article.update(article_params)
+        flash[:success] = 'Article mis a jour '
+redirect_to article_path(params[:id])
+  end
+end
 
   def index
     @article = Article.all
@@ -45,7 +57,6 @@ class ArticlesController < ApplicationController
     @user = current_user
     @category = params[:category_id]
     id = Category.all_category.index(@category).to_i + 1
-    puts id
     @article = Article.create!(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
     puts params[:category_id]
 
@@ -57,7 +68,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
+    params.require(:article).permit(:title, :description, :size, :image, :video, params[:category_id])
   end
 end
-

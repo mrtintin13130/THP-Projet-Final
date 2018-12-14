@@ -1,5 +1,4 @@
 class Category < ApplicationRecord
-
 	has_many :articles
 	def self.all_category
 		@categories = Category.all
@@ -11,5 +10,4 @@ class Category < ApplicationRecord
 		return @all_category
 
 	end
-
 end

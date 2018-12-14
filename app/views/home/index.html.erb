@@ -79,7 +79,7 @@
 			<div class="st-content">
 				<div class="st-content-inner">
 					<!-- Header -->
-	
+
 
 					<!-- Slider -->
 					<section class="swiper-js-container background-image-holder" data-holder-type="fullscreen" data-holder-offset=".navbar">
@@ -105,7 +105,6 @@
 														</a>
 														<a href='<%= articles_path %>' class="btn btn-lg btn-white btn-circle btn-outline mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
 															Articles
-
 														</a>
 													</div>
 												</div>
@@ -140,7 +139,6 @@
 							<!-- Add Pagination -->
 							<div class="swiper-pagination"></div>
 
-
 							<!-- Add Arrows -->
 							<div class="swiper-button swiper-button-next"></div>
 							<div class="swiper-button swiper-button-prev"></div>
@@ -159,7 +157,6 @@
 										<p class="px-4">
 											<h6>Visitez les boutiques des tradeurs pour trouver le produit qui vous plait.</h6>
 										</p>
-
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -342,7 +339,7 @@
 							<div class="row cols-xs-space cols-sm-space cols-md-space">
 
 								<%n = 1%>
-								<% User.all.each do |user|  %>
+								<% User.all.last(3).each do |user|  %>
 								<div class="col-lg-4">
 									<div class="block block--style-3">
 										<div class="block block-image">
@@ -393,7 +390,7 @@
 										<a href="#">
 											<div class="block block--style-5 mb-0">
 												<div class="block-image">
-													<img src=".<%= article.image %>">
+													<img src="../../assets/images/prv/work/agency/img-1.jpg">
 												</div>
 												<div class="block-mask-caption--over flex flex-items-xs-top">
 													<div class="flex-wrap-item">
@@ -401,7 +398,7 @@
 															<h3 class="heading heading-3 strong-500 c-white">
 																<%=article.title  %>                                                          </h3>
 																<h4 class="heading heading-xs strong-300 text-uppercase c-white">
-																	<%=article.size%>
+																	<%=article.description%>
 																</h4>
 															</div>
 														</div>
@@ -463,7 +460,7 @@
 													</div>
 													<div class="author-info">
 														<span class="d-block heading-6 author-name strong-600 c-base-1">Cliff Simon</span>
-														<span class="heading-xs author-desc"></span>
+														<span class="heading-xs author-desc">Membre depuis </span>
 													</div>
 												</div>
 
@@ -483,7 +480,7 @@
 													</div>
 													<div class="author-info">
 														<span class="d-block heading-6 author-name strong-600 c-base-1">Elisabeth Alanna</span>
-														<span class="heading-xs author-desc"></span>
+														<span class="heading-xs author-desc">Membre depuis </span>
 													</div>
 												</div>
 
@@ -503,7 +500,7 @@
 													</div>
 													<div class="author-info">
 														<span class="d-block heading-6 author-name strong-600 c-base-1">Bertram Ozzie</span>
-														<span class="heading-xs author-desc"></span>
+														<span class="heading-xs author-desc">Membre depuis </span>
 													</div>
 												</div>
 
@@ -516,5 +513,3 @@
 								</div>
 							</div>
 						</section>
-
-

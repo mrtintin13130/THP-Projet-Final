@@ -4,7 +4,7 @@ class WelcomeMailer < ApplicationMailer
         @user = user
         mail to: user.email, subject: "Bienvenue", from: 'streetwearandtrading@gmail.com'
     end
-    #def notify_email(message)
+    def comfirm_echange_email
 
-    #end
+    end
 end

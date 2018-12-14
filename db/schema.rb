@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_103337) do
+ActiveRecord::Schema.define(version: 2018_12_13_210746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "image"
     t.integer "size"
-    t.boolean "status", default: true
+    t.boolean "status"
     t.bigint "user_id"
     t.bigint "category_id"
+    t.string "image"
+    t.string "video"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
@@ -31,6 +32,13 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,22 +58,23 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.bigint "main_user_id"
+    t.bigint "favorite_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["favorite_user_id"], name: "index_favorites_on_favorite_user_id"
+    t.index ["main_user_id"], name: "index_favorites_on_main_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "conversation_id"
     t.bigint "user_id"
-    t.text "content"
-    t.integer "dest_user_id"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,9 +84,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.boolean "admin", default: false
     t.boolean "premium_user", default: false
     t.string "sex"
-    t.string "ville"
-    t.string "pseudo"
     t.integer "code_confirm"
+    t.string "image"
     t.string "avatar"
     t.string "phone"
     t.string "city"
@@ -101,5 +109,4 @@ ActiveRecord::Schema.define(version: 2018_12_06_103337) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "messages", "users"
 end

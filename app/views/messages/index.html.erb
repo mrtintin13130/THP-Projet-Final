@@ -1,69 +1,33 @@
-<center> <h1>Votre messagerie</h1></center>
-  <div class="tabs tabs--style-2" role="tabpanel">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
+<% if @over_ten %>
+   <%= link_to 'Show Previous', '?m=all' %>
+<% end %>
 
-      <li class="nav-item" role="presentation">
-        <a href="#tabTwo-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-normal strong-600">Messages Envoyés</a>
-      </li>
-
-      <li class="nav-item" role="presentation">
-        <a href="#tabTwo-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-normal strong-600">Messages Recus</a>
-      </li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="tabTwo-1">
-        <div class="tab-body">
-          <table class="table table-striped table-bordered">
-            <th id="date_message" width="25%">Date d'envoi</th>
-            <th width="15%">Destinataire</th>
-            <th width="45%">Message</th>
-            <th></th>
-            <% @messages_sent.sort_by(&:created_at).reverse.each do |message| %>
-            <tr>
-              <% if message.dest_user_id != @user.id%>
-              <td><%=message.created_at.strftime("%A at %T")%></td>
-              <td> <%= User.find(message.dest_user_id).last_name %></td>
-              <% if message.content.size >= 30 %> 
-              <td><%= message.content.first(30)+"..." %></td> 
-              <% else %>
-              <td><%= message.content%></td> 
-              <% end -%>    
-              <td><%= link_to "voir", new_message_path(message) %>
-              </tr>
-              <% end -%>    
-              <% end %>
-            </table>
-          </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tabTwo-2">
-          <div class="tab-body">
-            <table class="table table-striped table-bordered">
-              <th id="date_message" width="25%">Date de reception</th>
-              <th width="15%" >Expediteur</th>
-              <th width="45%">Message</th>
-              <th></th>
-              <% @messages_get.sort_by(&:created_at).reverse.each do |message| %>
-              <tr>
-                <% if message.user_id != @user.id%>
-                <% if message.dest_user_id == current_user.id%>
-                <td><%=message.created_at.strftime("%A at %T")%></td>
-                <td><%= User.find(message.user_id).last_name %></td>
-                <% if message.content.size >= 30 %> 
-                <td><%= message.content.first(30)+"..." %></td> 
-                <% else %>
-                <td><%= message.content%></td> 
-                <% end -%>
-                <td><%= link_to "voir", new_message_path(message) %></td>
-              </tr>
-              <% end %>
-              <% end %>
-              <% end %>
-            </table>
+<div class="ui segment">
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= user.first_name %></strong> <%= message.message_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <%= message.body %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% end %>
+</div>
 
+<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+  <div class="field">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+    <%= f.submit "Envoyer", class: "ui blue labeled submit icon button" %>
+  </div>
+
+<% end %>

@@ -7,7 +7,7 @@
 					<span class="aux-text d-none d-md-inline-block">
 						<ul class="inline-links inline-links--style-1">
 							<li class="d-none d-lg-inline-block">
-								Bonjour <%= @user_names %></li>
+								Bonjour <%= @user_names %> </li>
 							</ul>
 						</span>
 					</div>
@@ -17,14 +17,14 @@
 								<% if user_signed_in? %>
 								<li style="margin-top: 3.8%; font-size: 80%"%><%="Connecté"%></li>
 								<li><%= link_to 'Profil', user_path(@user.id) %></li>
-								<li><%= link_to 'Boite de reception', messages_path %></li>
+								<li><%= link_to 'Boite de reception', conversations_path %></li>
 
 								<li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
 								<%else%>
 
 								<li><%= link_to 'Se connecter', new_user_session_path %></li>
 								<li><%= link_to "S'enregistrer" , new_user_registration_path%></li>
-								<%end%>
+								<% end %>
 								<!-- <li><a href="#" class="btn-st-trigger" data-effect="st-effect-1"><i class="fa fa-ellipsis-h"></i></a></li> -->
 							</ul>
 						</nav>
@@ -60,7 +60,6 @@
 			</ul>
 			<div class="container navbar-container">
 				<a class="nav-link"  href='<%= root_path %>'><h2 style="margin-left: -30%; margin-top: 6%; color:black"><b>Street Wear & Trade</b></h2></a>
-			</a>
 			<div class="d-inline-block">
 				<!-- Navbar toggler  -->
 				<button class="navbar-toggler hamburger hamburger-js hamburger--spring" type="button" data-toggle="collapse" data-target="#navbar_main" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +73,6 @@
 				<ul class="navbar-nav">
 					<li class="nav-item dropdown megamenu">
 						<a style="font-size: 150%;  color: black" class="nav-link"  href='<%= users_path %>'>Les tradeurs</a>
-					</a>
 				</li>
 										<!-- <li class="nav-item dropdown">
 											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -118,12 +116,12 @@
 															<div class="list-group-heading heading heading-6 mb-1">Real estate pages</div>
 															<p class="text-sm mb-0">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod tempor</p>
 														</div>
-													</a> 
+													</a>
 												</div>
 											</div>
 										</li> -->
 										<li class="nav-item dropdown megamenu">
-											<a style="font-size: 150%; color: black" class="nav-link" href='<%= articles_path %>''>
+											<a style="font-size: 150%; color: black" class="nav-link" href='<%= articles_path %>'>
 												Les articles
 											</a>
 										</li>

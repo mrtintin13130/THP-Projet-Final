@@ -1,7 +1,5 @@
-
 <div style="margin: 5% ; color: black">
 	<h1>Liste des tradeurs</h1>
-
 
 	<div  class="widget mt-4">
 		<div class="row-wrapper">
@@ -10,17 +8,36 @@
 				<div class="col-lg-4">
 					<div class="block block--style-3">
 						<div class="profile-picture profile-picture--style-2">
-							<img src="<%= user.avatar %>">
+							<% if user[:avatar] != nil -%>
+							<img src="<%=user.avatar%>" >
+							<% else -%>
+							<%=image_tag("avatar-1606916_960_720.png")%>
+							<% end -%>
 						</div>
 						<div class="block-body text-center">
 							<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= user.last_name%> <%= user.first_name%>
+								<% if user.admin == true %>
+								<h4>admin</h4>
+								<% end -%>
 							</h3>
 							<h3 class="heading heading-light heading-sm strong-300">
 								<% @article.where(user_id: user.id).take(3).each do |a| %>
 								<%= link_to "#{a.id}", article_path(a) %>
 								<% end %>
 							</h3>
-							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
+							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Voir</a>
+
+							<% if user_signed_in? %>
+								<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
+									<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+								<% else %>
+									<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+								<% end %>
+							<% end %>
+
+
+
+
 						</div>
 						<div class="aux-info-wrapper border-top">
 							<ul class="aux-info">
@@ -34,6 +51,7 @@
 							</ul>
 						</div>
 					</div>
+
 				</div>
 				<% end %>
 			</div>

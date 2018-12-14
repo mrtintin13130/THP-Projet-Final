@@ -3,12 +3,13 @@ class CreateArticles < ActiveRecord::Migration[5.2]
     create_table :articles do |t|
       t.string :title
       t.text :description
-      t.string :image
       t.integer :size
-      t.boolean :status, default: true
-      t.belongs_to :user, index: true
+      t.boolean :status
+      t.belongs_to :user
       t.belongs_to :category
       t.string :image
+      t.string :video
+      
 
       t.timestamps
     end

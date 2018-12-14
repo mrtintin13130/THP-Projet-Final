@@ -5,8 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :confirmable
   has_many :articles
-  has_one :favorite
-  has_many :messages
+  has_many :favorites
+  has_many :conversations, :foreign_key => :sender_id
   has_many :exchanges
 
   mount_uploader :avatar, AvatarUploader
@@ -37,6 +37,4 @@ class User < ApplicationRecord
     client = Nexmo::Client.new(api_key: ENV['NEXMO_API_KEY'], api_secret: ENV['NEXMO_API_SECRET'])
     client.sms.send(from: "SWAT", to: phone_indent, text: "Voici votre code secret #{user.code_confirm}")
   end
-
 end
-
