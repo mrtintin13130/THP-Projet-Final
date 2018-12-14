@@ -12,6 +12,9 @@
           <% end %>
           <%= link_to recipient.first_name, conversation_messages_path(conversation)%>
         <% end %>
+        <% if !conversation.unread_message_count(current_user).zero? %>
+          <span class="badge"><%= conversation.unread_message_count(current_user) %></span>
+        <% end %>
       <% end %>
     </div>
   </div>
