@@ -9,7 +9,7 @@ def create
   else
     @article.likes.create(user_id: current_user.id)
   end
-  redirect_to article_path(@article)
+  redirect_to request.referrer
 end
 
 def destroy
@@ -18,7 +18,7 @@ def destroy
   else
     @like.destroy
   end
-  redirect_to article_path(@article)
+  redirect_to request.referrer
 end
 
 def find_like

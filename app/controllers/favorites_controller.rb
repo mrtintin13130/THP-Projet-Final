@@ -7,9 +7,6 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new
     user_id = params[:id]
     user_fav = User.find(user_id)
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts user_fav.last_name
-    puts "BBBBBBBBBBBBBBBBBBBBB"
     @favorite = Favorite.create(main_user: current_user, favorite_user: user_fav)
     redirect_to request.referrer
   end

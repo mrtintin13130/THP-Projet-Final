@@ -1,11 +1,10 @@
 <div style="margin: 5% ; color: black">
-	<h1>Liste des tradeurs</h1>
-
+	<h1>Liste des traders</h1>
 	<div  class="widget mt-4">
 		<div class="row-wrapper">
 			<div class="row cols-md-space cols-sm-space cols-xs-space">
 				<% @users.each do |user| %>
-				<div class="col-lg-4">
+				<div class="col-lg-4" >
 					<div class="block block--style-3">
 						<div class="profile-picture profile-picture--style-2">
 							<% if user[:avatar] != nil -%>
@@ -14,44 +13,52 @@
 							<%=image_tag("avatar-1606916_960_720.png")%>
 							<% end -%>
 						</div>
-						<div class="block-body text-center">
-							<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= user.last_name%> <%= user.first_name%>
-								<% if user.admin == true %>
-								<h4>admin</h4>
-								<% end -%>
-							</h3>
-							<h3 class="heading heading-light heading-sm strong-300">
-								<% @article.where(user_id: user.id).take(3).each do |a| %>
-								<%= link_to "#{a.id}", article_path(a) %>
-								<% end %>
-							</h3>
-
-							<a href="<%=user_path(user)%>" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Voir</a>
-
-							<% if user_signed_in? %>
-							<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
-							<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-danger btn-shadow btn-circle px-2 mt-1 "%>
+						<% if user_signed_in? %>
+						<div class="block-body text-center" style="height: 183px">
 							<% else %>
-							<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
-							<% end %>
-							<% end %>
+							<div class="block-body text-center" style="height: 120px;">
+								<% end -%>
+								<h3 class="heading heading-6 strong-600 mb-0 mb-0">
+									<%= link_to user.last_name + " " + user.first_name, user_path(user) %>
+									<% if user.admin == true %>
+									<h4>admin</h4>
+									<% end -%>
+								</h3>
+								<h3 class="heading heading-light heading-sm strong-300">
+									<% @article.where(user_id: user.id).take(3).each do |a| %>
+									<% if a.image? %>
+									<a href='<%= article_path(a) %>'>
+										<img src="<%= a.image %>", style="width: 13%"></a>
+										<% else %>
+										<%= link_to image_tag("no_image.png", style:"width: 13%;"), article_path(a) %>
+										<% end %>
+										<% end %>
+									</h3>
+
+									<% if user_signed_in? %>
+									<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
+									<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-3 mt-2 "%>
+									<% else %>
+									<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+									<% end %>
+									<% end %>
+								</div>
+								<div class="aux-info-wrapper border-top">
+									<ul class="aux-info">
+										<li class="heading strong-400 text-center">Followers
+											<span class="d-block strong-600"><%= Favorite.where(favorite_user_id: user.id).count%></span>
+										</li>
+										<li class="heading strong-400 text-center">
+											<span class="d-block strong-600"><%= user.articles.count%></span>
+											Articles
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
-						<div class="aux-info-wrapper border-top">
-							<ul class="aux-info">
-								<li class="heading strong-400 text-center">Size
-									<span class="d-block strong-600"><%= user.last_name%></span>
-								</li>
-								<li class="heading strong-400 text-center">
-									<span class="d-block strong-600">5</span>
-									Like
-								</li>
-							</ul>
-						</div>
+						<% end %>
 					</div>
 				</div>
-				<% end %>
 			</div>
 		</div>
-	</div>
-</div>
 

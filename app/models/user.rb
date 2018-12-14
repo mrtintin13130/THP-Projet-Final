@@ -29,7 +29,7 @@ class User < ApplicationRecord
       phone.slice!(2)
     end
     phone_indent = phone
-  return phone_indent
+    return phone_indent
   end
 
   def self.sms_send(user, phone)
