@@ -1,0 +1,23 @@
+<div class="jumbotron">
+<%= form_tag charges_path(amount: @amount) do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+
+      <h1>Devenir Premium</h1>
+      <h3>Afin de beneficier d'avantage lié a votre compte SW&T choisissez un compte premium et n'ayez aucune limite dans l'ajout d'article et de possibilité d'echange !</h3>
+        <span> Devenir utilisateur premium pour: 10€ </span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="<%= @amount.to_i.round(2) * 100 %> "
+          data-locale="auto"></script>
+<% end %>
+</div>

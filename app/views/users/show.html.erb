@@ -11,32 +11,48 @@
 									<div class="col-lg-4">
 										<div class="sidebar sidebar--style-2 no-border stickyfill">
 											<div class="widget">
-												<!-- Profile picture -->
 												<div class="profile-picture profile-picture--style-2">
-													<img src="../../assets/images/prv/people/person-7.jpg" class="img-center">
-													<a href="#" class="btn-aux">
-														<i class="ion ion-edit"></i>
-													</a>
+													<%if @user.avatar? %>
+														<img src="<%=@user.avatar%>" class="img-center">
+													<% else %>
+														<%= image_tag("plus.png") %>
+													<% end -%>
 												</div>
-
-												<!-- Profile details -->
 												<div class="profile-details">
-													<h2 class="heading heading-4 strong-500 profile-name"><%= @user_names %></h2>
-													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
-													<h3 class="heading heading-light heading-6 strong-400 profile-location">Bucharest, Romania</h3>
+													<h2 class="heading heading-4 strong-500 profile-name">
+														<%= @user.username.capitalize %>
+													</h2>
+													<h3 class="heading heading-light heading-6 strong-400 profile-location"> <%= @user.sex + " de " + @user.city.capitalize %> </h3>
 												</div>
-
-
-												<%= @user.first_name %>
-
-
-												
-												<% if params[:id].to_i != current_user.id %>
-												<div class="profile-connect mt-4">
-													<a href="#" class="btn btn-styled btn-block btn-rounded btn-base-1">Follow</a>
-													<a href='<%= new_message_path(id: params[:id]) %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Message</a>
-												</div>
-												<%end%>
+												<% if user_signed_in? %>
+													<% if params[:id].to_i != current_user.id %>
+														<div class="profile-connect mt-4">
+															<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+														</div>
+														<% if user_signed_in? %>
+															<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+																<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+															<% else %>
+																<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+															<% end %>
+														<% end %>
+													<% else %>
+														<div class="profile-connect mt-4">
+														<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+														<% if current_user.phone_verified == false %>
+															<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
+														<% else %>
+															<%= image_tag "smartphone.png" %>
+															<%= image_tag "checked.png" %>
+														<% end %>
+														<% if @user.premium_user == false %>
+															<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
+														<% else %>
+															<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
+														<% end %>
+													</div>
+													<% end %>
+												<% end %>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
 													<div class="stats-entry">
@@ -44,222 +60,206 @@
 														<span class="stats-label text-uppercase">Articles à échanger</span>
 													</div>
 													<div class="stats-entry">
-														<span class="stats-count">1.3K</span>
+														<span class="stats-count"><%= @followers %></span>
 														<span class="stats-label text-uppercase">Followers</span>
 													</div>
 												</div>
-												<!-- Profile connected accounts -->
-												<div class="profile-useful-links clearfix">
-													<div class="useful-links">
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-social-instagram-outline"></i>
-															instagram.com/webpixels_io
-														</a>
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-social-dribbble"></i>
-															dribbble.com/webpixels
-														</a>
-
-														<a href="#" class="link link--style-1">
-															<i class="icon ion-earth"></i>
-															webpixels.io
-														</a>
-													</div>
-												</div>
-
-												
 											</div>
 										</div>
 									</div>
 
 									<div class="col-lg-8">
 										<div class="main-content">
-											<!-- Page title -->
-											<div class="page-title">
-												<div class="row align-items-center">
-													<div class="col-lg-6 col-12">
-														<h2 class="heading heading-6 strong-600 mb-0 text-capitalize strong-500 mb-0">
-															<a href="#" class="link text-underline--none">
-																<i class="ion-ios-arrow-back"></i> Orders
-															</a>
-														</h2>
-													</div>
-													<div class="col-lg-6 col-12">
+											<div class="tabs tabs--style-1" role="tabpanel">
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="nav-item" role="presentation">
+														<a href="#tabFour-1" aria-controls="article" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
+													</li>
+													<% if user_signed_in? %>
+														<% if params[:id].to_i == current_user.id %>
+															<li class="nav-item" role="echanges">
+															<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
+															</li>
+														<% end -%>
+													<% end -%>
+													<li class="nav-item" role="favoris">
+														<a href="#tabFour-3" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Favoris</a>
+													</li>
+													<%if user_signed_in?%>
+														<li class="nav-item" role="like">
+															<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Liked</a>
+														</li>
+													<% end -%>
+												</ul>
+<!-- ONGLET DES ARTICLES -->
+												<!-- Tab panes -->
+												<div class="tab-content">
+													<div role="tabpanel" class="tab-pane active" id="tabFour-1">
+														<div class="tab-body">
+															<div class="widget mt-4">
+																<div class="row-wrapper">
+																	<div class="row cols-md-space cols-sm-space cols-xs-space">
+																		<% @user.articles.each do |article| %>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<div class="profile-picture profile-picture--style-2">
+																					<% if article.image?%>
+																						<img src="<%= article.image %>" >
+																					<% else -%>
+																						<%= image_tag "no_image.png" %>
+																					<% end -%>
+																				</div>
+																				<div class="block-body text-center">
+																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">
+																						<%= link_to article.title, article_path(article) %>
+																						<% if article.title.size >= 13 %>
+																							<%="..."%>
+																						<%end%>
+																					</h3>
+																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
+																				</div>
+																				<div class="aux-info-wrapper border-top">
+																					<ul class="aux-info">
+																						<li class="heading strong-400 text-center">Size
+																							<span class="d-block strong-600"><%= article.size %></span>
+																						</li>
+																						<li class="heading strong-400 text-center">
+																							<span class="d-block strong-600"><%= article.likes.count %></span>
+																							Like
+																						</li>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																		<% end %>
+																		<% if user_signed_in? %>
+																			<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2 || current_user.premium_user == true %>
+																				<div class="col-lg-4">
+																					<div class="block block--style-3">
+																						<div class="profile-picture profile-picture--style-2">
+																						<%= link_to '/articles/new' do %>
+																						<%= image_tag("plus.png") %>
+																			<% end %>
+																						</div>
+																					<div class="block-body text-center">
+																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">Un article supplementaire ?
+																					</h3>
+																					<h3 class="heading heading-light heading-sm strong-300"></h3>
 
-													</div>
-												</div>
-											</div>
-
-											<div class="link-menu link-menu--style-3 py-4 border-bottom">
-												<a href="../../pages/profile/account-settings.html">Settings</a>
-												<a href="../../pages/profile/account-orders.html">Orders</a>
-												<a href="../../pages/profile/account-cards.html">Cards</a>
-												<a href="../../pages/profile/account-security.html">Security</a>
-												<a href="../../pages/profile/account-connections.html" class="active">Connections</a>
-											</div>
-
-											<!-- Order history table -->
-											<div class="widget mt-4">
-												<div class="row-wrapper">
-													<div class="row cols-md-space cols-sm-space cols-xs-space">
-
-														<% @user.articles.each do |article| %>
-														<div class="col-lg-4">
-															<div class="block block--style-3">
-																<div class="profile-picture profile-picture--style-2">
-																	<img src="../../assets/images/prv/people/person-1.jpg" >
-																</div>
-																<div class="block-body text-center">
-
-																	<h3 class="heading heading-6 strong-600 mb-0 mb-0"><%= article.title.first(14)%>
-																		<% if article.title.size >= 13 %>
-																		<%="..."%>
-																		<%end%>
-																	</h3>
-
-																	<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
-
-																	<a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
-																</div>
-																<div class="aux-info-wrapper border-top">
-																	<ul class="aux-info">
-																		<li class="heading strong-400 text-center">Size
-																			<span class="d-block strong-600"><%= article.size %></span>
-																			
-																		</li>
-																		<li class="heading strong-400 text-center">
-																			<span class="d-block strong-600">5</span>
-																			Like
-																		</li>
-																	</ul>
+																				</div>
+																			</div>
+																		</div>
+																			<% end -%>
+																		<% end -%>
+																	</div>
 																</div>
 															</div>
 														</div>
-														<% end %>
 													</div>
+													<div role="tabpanel" class="tab-pane" id="tabFour-2">
+														<div class="tab-body">
+															<table class="table table-hover align-items-center">
+																<thead>
+
+																	<th>Votre article</th>
+																	<th>Votre choix </th>
+
+																</thead>
+
+																<tbody>
+																	<%@exchange.each do |article|%>
+																	<tr>
+																		<td><img src= "<% article[0].image -%>", height="60" width="60"> <%= article[0].title -%> qui appartient à <%= User.find(article[0].user_id).last_name -%></td>
+																		<td><img src= "<% article[1].image -%>", height="60" width="60"> <%= article[1].title -%> qui appartient à <%= User.find(article[1].user_id).last_name -%></td>
+																	</tr>
+																	<% end %>
+																</tbody>
+															</table>
+														</div>
+													</div>
+<!-- ONGLET DES FAVORIS -->
+													<div role="tabpanel" class="tab-pane" id="tabFour-3">
+														<div class="tab-body">
+															<div class="widget mt-4">
+																<div class="row-wrapper">
+																	<div class="row cols-md-space cols-sm-space cols-xs-space">
+																		<% Favorite.where(main_user_id: current_user.id).each do |fav|%>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<div class="profile-picture profile-picture--style-2">
+																					<% @user_fav = User.find(fav.favorite_user_id)%>
+																					<% if User.find(fav.favorite_user_id).avatar? %>
+																						<img src="<%=@@user_fav.avatar%>" class="img-center">
+																					<% else -%>
+																						<%= image_tag("avatar-1606916_960_720.png") %>
+																					<% end -%>
+																				</div>
+																				<div class="block-body text-center">
+																					<h3 class="heading heading-6">
+																						
+																						<%= link_to @user_fav.username, user_path(@user) %>
+																					</h3>
+																					<h3>
+																						<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' }%>
+																					</h3>
+																				</div>
+																			</div>
+																		  </div>
+																		<%end %>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+<!-- ONGLET DES LIKES -->
+
+													<%if user_signed_in?%>
+													<div role="tabpanel" class="tab-pane" id="tabFour-4">
+														<div class="tab-body">
+															<div class="widget mt-4">
+																<div class="row-wrapper">
+																	<div class="row cols-md-space cols-sm-space cols-xs-space">
+																		<% Like.where(user_id: current_user.id).each do |like|%>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<% @article = Article.find(like.article_id) %>
+																				<div class="profile-picture profile-picture--style-2">
+																					<% if @article.image? %>
+																					<img src="<%= @article.image %>" class="img-center">
+																					<% else -%>
+																					<%= image_tag("no_image.png") %>
+																					<% end -%>
+																				</div>
+																				<div class="block-body text-center">
+																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">
+																					</h3>
+																						
+																						<%= link_to @article.title, article_path(@article) %>
+																						<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+																						<% if pre_like %>
+																							<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' } %>
+																						<% end %>
+																				</div>
+																			 </div>
+																		  </div>
+																		<% end -%>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<% end -%>
 												</div>
+												<!-- Order history table -->
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</section>
-
-					<!-- FOOTER -->
-					<footer id="footer" class="footer">
-						<div class="footer-top">
-							<div class="container">
-								<div class="row cols-xs-space cols-sm-space cols-md-space">
-									<div class="col-lg-5">
-										<div class="col">
-											<img src="../../assets/images/logo/logo-1-c.png">
-											<span class="clearfix"></span>
-											<span class="heading heading-sm c-gray-light strong-400">One template. Infinite solutions.</span>
-											<p class="mt-3">
-												All the components included in Boomerang are built to the same level of quality as Bootstrap and highlighted with several example pages.
-											</p>
-
-											<div class="copyright mt-4">
-												<p>
-													Copyright &copy; 2018                                <a href="https://webpixels.io" target="_blank">
-														<strong>Webpixels</strong>
-													</a> -
-													All rights reserved
-												</p>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-2">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Support
-											</h4>
-
-											<ul class="footer-links">
-												<li><a href="#" title="Help center">Help center</a></li>
-												<li><a href="#" title="Discussions">Discussions</a></li>
-												<li><a href="#" title="Contact support">Contact</a></li>
-												<li><a href="#" title="Blog">Blog</a></li>
-												<li><a href="#" title="Jobs">FAQ</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-lg-2">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Company
-											</h4>
-
-											<ul class="footer-links">
-												<li>
-													<a href="#" title="Home">
-														Home
-													</a>
-												</li>
-												<li>
-													<a href="#" title="About us">
-														About us
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Services">
-														Services
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Blog">
-														Blog
-													</a>
-												</li>
-												<li>
-													<a href="#" title="Contact">
-														Contact
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="col-lg-3">
-										<div class="col">
-											<h4 class="heading heading-xs strong-600 text-uppercase mb-1">
-												Get in touch
-											</h4>
-
-											<ul class="social-media social-media--style-1-v4">
-												<li>
-													<a href="#" class="facebook" target="_blank" data-toggle="tooltip" data-original-title="Facebook">
-														<i class="fa fa-facebook"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="instagram" target="_blank" data-toggle="tooltip" data-original-title="Instagram">
-														<i class="fa fa-instagram"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="dribbble" target="_blank" data-toggle="tooltip" data-original-title="Dribbble">
-														<i class="fa fa-dribbble"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" class="dribbble" target="_blank" data-toggle="tooltip" data-original-title="Github">
-														<i class="fa fa-github"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</footer>
+						</section>
+					</div>
 				</div>
 			</div>
-		</div><!-- END: st-pusher -->
-	</div><!-- END: st-container -->
-</div><!-- END: body-wrap -->
->>>>>>> ahmed
+		</div>
+	</div>

@@ -1,66 +1,29 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
-  def index
-    @messages = Message.all
-    @user = current_user
-    @user_names = @user.first_name + " " + @user.last_name
-    @id = params[:id]
+  before_action do
+    @conversation = Conversation.find(params[:conversation_id])
   end
-
-  def show
+  
+  def index
     @user = current_user
-    @messages = Message.all
+    @messages = @conversation.messages
+    @conversation.messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+    @message = @conversation.messages.new
   end
 
   def new
-    @user = current_user
-    @message = Message.new
-    @messages = Message.all
-  end
-
-  def edit
+    @message = @conversation.messages.new
   end
 
   def create
-    @message = Message.new(content: params[:message][:content], user_id: current_user.id, dest_user_id: params[:dest_id])
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to request.referrer }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @message.update(content: params[:message][:content])
-        format.html { redirect_to messages_path }
-        format.json { render :show, status: :ok, location: @message }
-      else
-        format.html { render :edit }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @message.destroy
-    respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
-      format.json { head :no_content }
+    @message = @conversation.messages.new(message_params)
+    if @message.save
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 
   private
-    def set_message
-      @message = Message.find(params[:id])
-    end
-    def message_params
-      params.fetch(:message, {})
-    end
+  def message_params
+    params.require(:message).permit(:body, :user_id)
   end
+end
