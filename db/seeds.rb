@@ -35,9 +35,9 @@ end
 puts "Done!"
 puts "AJOUT MESSAGES"
 
-100.times do
-	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
-end
+# 100.times do
+# 	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
+# end
 
 
 # puts "Done!"

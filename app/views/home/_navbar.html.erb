@@ -17,7 +17,12 @@
 								<% if user_signed_in? %>
 								<li style="margin-top: 3.8%; font-size: 80%"%><%="Connecté"%></li>
 								<li><%= link_to 'Profil', user_path(@user.id) %></li>
-								<li><%= link_to 'Boite de reception', conversations_path %></li>
+
+								<% a = 0 %>
+								<% Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id)).each do |conversation| %>
+									<% a += conversation.unread_message_count(current_user) %>
+				        <% end %>
+								<li><%= link_to "Boite de reception (#{a})", conversations_path %></li>
 
 								<li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
 								<%else%>
