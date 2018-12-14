@@ -5,12 +5,12 @@
 			<div class="block product bg-transparent no-radius">
 				<div class="product-image">
 					<div class="view view-first">
-						<a href="#">
+						<a href="<%=article_path(article)%>">
 							<center>
 								<% if article[:image] != nil -%>
-								<img src="<%= article.image %>" >
+								<img src="<%= article.image %>" height="150">
 								<% else -%>
-								<img src="../../assets/images/prv/shop/accessories/img-1a.png">
+								<%= image_tag("no_image.png", style:"width: 150px;") %>
 								<% end -%>
 
 							</center>
@@ -28,9 +28,9 @@
 				</div>
 				<div class="block-body px-0">
 					<h3 class="heading heading-6 strong-500 text-capitalize mb-0">
-						<h3><%= link_to "#{article.title}", article_path(article) %></h3>
+						<h3><%= article.title.capitalize %></h3>
 					</h3>
-					<h5><%= article.description %>
+					<h5><%= article.description.capitalize %>
 					</h5>
 					<span class="star-rating star-rating-sm">
 						<i class="fa fa-star"></i>
@@ -42,7 +42,7 @@
 					<div>
 						<% first_name = User.find(article.user_id).first_name %>
 						<% last_name =  User.find(article.user_id).last_name %>
-						- <%= link_to "#{first_name} #{last_name}", user_path(article.user_id) %>
+						Propriétaire : <%= link_to "#{first_name} #{last_name}", user_path(article.user_id) %>
 					</div>
 				</div>
 			</div>
