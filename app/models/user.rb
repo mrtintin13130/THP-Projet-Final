@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :conversations, :foreign_key => :sender_id
   has_many :exchanges
+  has_many :likes, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 
