@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     end
     @mes_likes = Like.where(user_id: current_user.id)
     @exchanges = Exchange.all
-    @user_exchanges = @exchanges.where(applicant_user_id: @user.id)
+    @user_exchanges = @exchanges.where(applicant_user_id: @user.id).where(status: true)
     @my_articles = []
     @his_articles = []
     @user_exchanges.each do |exchange|
@@ -48,35 +48,37 @@ class UsersController < ApplicationController
 
   def new_verification_number
     if params[:new] != nil
-     @user.phone = params[:new]
-     @user.save
-   elsif params[:text] != nil
-     if params[:text].to_i == @user.code_confirm
-      @user.phone_verified = true
+      @user.phone = params[:new]
       @user.save
+    elsif params[:text] != nil
+      if params[:text].to_i == @user.code_confirm
+        @user.phone_verified = true
+        @user.save
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to request.referrer}
     end
   end
-  respond_to do |format|
-   format.html { redirect_to request.referrer}
- end
-end
 
-def destroy
-  @user = User.find(params[:id])
-  @user.likes.delete_all
-  @user.articles.delete_all
-  @user.messages.delete_all
-  @user.conversations.delete_all
-  @user.destroy
-  respond_to do |format|
-    format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.likes.delete_all
+    @user.articles.delete_all
+    @user.messages.delete_all
+    @user.conversations.delete_all
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
+    end
   end
-end
 
-private
+    private
 
-def set_user
-  @user = current_user
-end
 
-end
+    def set_user
+      @user = current_user
+    end
+
+  end
