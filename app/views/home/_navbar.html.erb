@@ -16,7 +16,7 @@
 							<ul class="top-menu">
 								<% if user_signed_in? %>
 								<li style="margin-top: 3.8%; font-size: 80%"%><%="Connecté"%></li>
-								<li><%= link_to 'Profil', user_path(@user.id) %></li>
+								<li><%= link_to 'Profil', user_path(current_user.id) %></li>
 
 								<% a = 0 %>
 								<% Conversation.where(sender_id: current_user.id).or(Conversation.where(recipient_id: current_user.id)).each do |conversation| %>
