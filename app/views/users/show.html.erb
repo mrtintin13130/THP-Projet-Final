@@ -46,19 +46,17 @@
 
 												<% else %>
 												<div class="profile-connect mt-4">
-													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a><br><br>
+													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
 													<% if current_user.phone_verified == false %>
 													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
-													<% elsif %>
+													<% else %>
 													<%= image_tag "smartphone.png" %>
 													<%= image_tag "checked.png" %>
 													<% end %>
-
-												<br><br>
 													<% if @user.premium_user == false %>
-													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
+													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning", style: "width: 180px" %>
 													<% else %>
-													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
+													<button style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
 													<% end %>
 												</div>
 												<% end %>
@@ -126,8 +124,7 @@
 																					</h3>
 
 																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
-
-																					<a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Follow</a>
+																					<%= link_to "Voir", article_path(article), class: "btn btn-base-1 btn-shadow btn-circle px-4 mt-2" %>
 																				</div>
 																				<div class="aux-info-wrapper border-top">
 																					<ul class="aux-info">
@@ -183,7 +180,7 @@
 													<div role="tabpanel" class="tab-pane" id="tabFour-2">
 														<div class="tab-body">
 															<table class="table table-hover align-items-center">
-																<thead>
+																<!-- <thead>
 
 																	<th>Votre article</th>
 																	<th>Votre choix </th>
@@ -197,7 +194,11 @@
 																		<td><img src= "<% article[1].image -%>", height="60" width="60"> <%= article[1].title -%> qui appartient à <%= User.find(article[1].user_id).last_name -%></td>
 																	</tr>
 																	<% end %>
-																</tbody>
+
+
+
+																</tbody> -->
+																<%= link_to "Voir tous mes échages", exchanges_path %>
 															</table>
 
 

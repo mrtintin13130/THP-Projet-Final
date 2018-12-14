@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     end
     @mes_likes = Like.where(user_id: current_user.id)
     @exchanges = Exchange.all
-    @user_exchanges = @exchanges.where(applicant_user_id: @user.id)
+    @user_exchanges = @exchanges.where(applicant_user_id: @user.id).where(status: true)
     @my_articles = []
     @his_articles = []
     @user_exchanges.each do |exchange|
