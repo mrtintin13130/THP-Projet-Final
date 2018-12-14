@@ -1,5 +1,6 @@
-<h2>créer un article</h2>
-<%= form_for @article do |f| %>
+<div class="jumbotron" style="margin-bottom: 0.1%">
+  <h2>créer un article</h2>
+  <%= form_for @article do |f| %>
   <div class="field">
     <%= f.label :Title %><br />
     <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
@@ -21,11 +22,13 @@
   </div>
 
   <div class="field">
-  <%= f.label :image %><br>
-  <%= f.file_field :image, autocomplete: "image" %>
-</div>
+    <%= f.label :image %><br>
+    <%= f.file_field :image, autocomplete: "image" %>
+  </div>
 
   <div class="actions">
+    <br>
     <%= f.submit "Créer" %>
   </div>
-<% end %>
+  <% end %>
+</div>

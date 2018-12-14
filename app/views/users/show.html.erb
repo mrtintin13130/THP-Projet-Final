@@ -22,8 +22,7 @@
 													<h2 class="heading heading-4 strong-500 profile-name">
 														<%= @user.username.capitalize %>
 													</h2>
-													<h3 class="heading heading-6 strong-400 profile-occupation mt-3">Founder, Web Developer</h3>
-													<h3 class="heading heading-light heading-6 strong-400 profile-location"><%= @user.sex + " " + @user.city.capitalize %> </h3>
+													<h3 class="heading heading-light heading-6 strong-400 profile-location"> <%= @user.sex + " de " + @user.city.capitalize %> </h3>
 												</div>
 												<% if user_signed_in? %>
 													<% if params[:id].to_i != current_user.id %>
@@ -135,7 +134,7 @@
 																		</div>
 																		<% end %>
 																		<% if user_signed_in? %>
-																			<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2%>
+																			<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2 || current_user.premium_user == true %>
 																				<div class="col-lg-4">
 																					<div class="block block--style-3">
 																						<div class="profile-picture profile-picture--style-2">
@@ -224,9 +223,10 @@
 																		<% Like.where(user_id: current_user.id).each do |like|%>
 																		<div class="col-lg-4">
 																			<div class="block block--style-3">
+																				<% @article = Article.find(like.article_id) %>
 																				<div class="profile-picture profile-picture--style-2">
-																					<% if Article.find(like.article_id).image? %>
-																					<img src="<%=@user.image%>" class="img-center">
+																					<% if @article.image? %>
+																					<img src="<%= @article.image %>" class="img-center">
 																					<% else -%>
 																					<%= image_tag("no_image.png") %>
 																					<% end -%>
@@ -234,7 +234,7 @@
 																				<div class="block-body text-center">
 																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">
 																					</h3>
-																						<% @article = Article.find(like.article_id) %>
+																						
 																						<%= link_to @article.title, article_path(@article) %>
 																						<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
 																						<% if pre_like %>
