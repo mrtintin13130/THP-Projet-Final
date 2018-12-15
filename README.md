@@ -1,24 +1,33 @@
-# README
+# Projet final THP : Stratton, où comment disrupter le secteur de la location de jets privés
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## 📋 Récap :
 
-* Ruby version
+Application d'échange de vêtements spécialisé dans le StreetWear. Echanger c'est toujours mieux que de jeter ! 
+Possibilité d'ajouter des articles, de proposer des échanges, d'accepter ou refuser des échanges, de discuter avec d'autres personnes, etc ...
 
-* System dependencies
+La version V1 production est en ligne. La V2 est en cours developpement.
 
-* Configuration
+## 🚀 Lien Heroku :
 
-* Database creation
+https://swt-production.herokuapp.com/
 
-* Database initialization
+Made with ❤️ and 💦
 
-* How to run the test suite
+## 📺 Lien Youtube : 
 
-* Services (job queues, cache servers, search engines, etc.)
+**INCOMING**
 
-* Deployment instructions
+## 🖥 Localement :
 
-* ...
+* **Lancer** `$ git clone "lien"`
+* **Lancer** `$ bundle install`
+* **Lancer** `$ rails db:create`
+* **Lancer** `$ rails db:migrate`
+* **Lancer** `$ rails server`
+* **Se rendre sur localhost:3000 via votre navigateur**
+
+## ⌨️ Auteurs :
+
+Hamed, Mika, Stéphane, Elliot, Martin
+
