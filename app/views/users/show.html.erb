@@ -13,9 +13,9 @@
 											<div class="widget">
 												<div class="profile-picture profile-picture--style-2">
 													<%if @user.avatar? %>
-														<img src="<%=@user.avatar%>" class="img-center">
+													<img src="<%=@user.avatar%>" class="img-center">
 													<% else %>
-														<%= image_tag("plus.png") %>
+													<%= image_tag("plus.png") %>
 													<% end -%>
 												</div>
 												<div class="profile-details">
@@ -25,33 +25,33 @@
 													<h3 class="heading heading-light heading-6 strong-400 profile-location"> <%= @user.sex + " de " + @user.city.capitalize %> </h3>
 												</div>
 												<% if user_signed_in? %>
-													<% if params[:id].to_i != current_user.id %>
-														<div class="profile-connect mt-4">
-															<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
-														</div>
-														<% if user_signed_in? %>
-															<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-																<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
-															<% else %>
-																<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
-															<% end %>
-														<% end %>
+												<% if params[:id].to_i != current_user.id %>
+												<div class="profile-connect mt-4">
+													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+												</div>
+												<% if user_signed_in? %>
+												<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+												<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
+												<% else %>
+												<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+												<% end %>
+												<% end %>
+												<% else %>
+												<div class="profile-connect mt-4">
+													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+													<% if current_user.phone_verified == false %>
+													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
 													<% else %>
-														<div class="profile-connect mt-4">
-														<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-														<% if current_user.phone_verified == false %>
-															<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
-														<% else %>
-															<%= image_tag "smartphone.png" %>
-															<%= image_tag "checked.png" %>
-														<% end %>
-														<% if @user.premium_user == false %>
-															<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
-														<% else %>
-															<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
-														<% end %>
-													</div>
+													<%= image_tag "smartphone.png" %>
+													<%= image_tag "checked.png" %>
 													<% end %>
+													<% if @user.premium_user == false %>
+													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
+													<% else %>
+													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
+													<% end %>
+												</div>
+												<% end %>
 												<% end %>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
@@ -77,22 +77,22 @@
 														<a href="#tabFour-1" aria-controls="article" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-600">Articles</a>
 													</li>
 													<% if user_signed_in? %>
-														<% if params[:id].to_i == current_user.id %>
-															<li class="nav-item" role="echanges">
-															<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
-															</li>
-														<% end -%>
+													<% if params[:id].to_i == current_user.id %>
+													<li class="nav-item" role="echanges">
+														<a href="#tabFour-2" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Echanges</a>
+													</li>
+													<% end -%>
 													<% end -%>
 													<li class="nav-item" role="favoris">
 														<a href="#tabFour-3" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Favoris</a>
 													</li>
 													<%if user_signed_in?%>
-														<li class="nav-item" role="like">
-															<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Liked</a>
-														</li>
+													<li class="nav-item" role="like">
+														<a href="#tabFour-4" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-600">Liked</a>
+													</li>
 													<% end -%>
 												</ul>
-<!-- ONGLET DES ARTICLES -->
+												<!-- ONGLET DES ARTICLES -->
 												<!-- Tab panes -->
 												<div class="tab-content">
 													<div role="tabpanel" class="tab-pane active" id="tabFour-1">
@@ -105,19 +105,24 @@
 																			<div class="block block--style-3">
 																				<div class="profile-picture profile-picture--style-2">
 																					<% if article.image?%>
-																						<img src="<%= article.image %>" >
+																					<img src="<%= article.image %>" >
 																					<% else -%>
-																						<%= image_tag "no_image.png" %>
+																					<%= image_tag "no_image.png" %>
 																					<% end -%>
 																				</div>
 																				<div class="block-body text-center">
 																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">
 																						<%= link_to article.title, article_path(article) %>
 																						<% if article.title.size >= 13 %>
-																							<%="..."%>
+																						<%="..."%>
 																						<%end%>
 																					</h3>
 																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
+																				</div>
+																				<div>
+																					<h4 class=" heading-sm strong-300">
+																						<%= link_to "Supprimer", article_path(id: article), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' }%>
+																					</h4>
 																				</div>
 																				<div class="aux-info-wrapper border-top">
 																					<ul class="aux-info">
@@ -134,15 +139,15 @@
 																		</div>
 																		<% end %>
 																		<% if user_signed_in? %>
-																			<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2 || current_user.premium_user == true %>
-																				<div class="col-lg-4">
-																					<div class="block block--style-3">
-																						<div class="profile-picture profile-picture--style-2">
-																						<%= link_to '/articles/new' do %>
-																						<%= image_tag("plus.png") %>
-																			<% end %>
-																						</div>
-																					<div class="block-body text-center">
+																		<% if params[:id].to_i == current_user.id && current_user.articles.count <= 2 || current_user.premium_user == true %>
+																		<div class="col-lg-4">
+																			<div class="block block--style-3">
+																				<div class="profile-picture profile-picture--style-2">
+																					<%= link_to '/articles/new' do %>
+																					<%= image_tag("plus.png") %>
+																					<% end %>
+																				</div>
+																				<div class="block-body text-center">
 																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">Un article supplementaire ?
 																					</h3>
 																					<h3 class="heading heading-light heading-sm strong-300"></h3>
@@ -150,7 +155,7 @@
 																				</div>
 																			</div>
 																		</div>
-																			<% end -%>
+																		<% end -%>
 																		<% end -%>
 																	</div>
 																</div>
@@ -159,26 +164,10 @@
 													</div>
 													<div role="tabpanel" class="tab-pane" id="tabFour-2">
 														<div class="tab-body">
-															<table class="table table-hover align-items-center">
-																<thead>
-
-																	<th>Votre article</th>
-																	<th>Votre choix </th>
-
-																</thead>
-
-																<tbody>
-																	<%@exchange.each do |article|%>
-																	<tr>
-																		<td><img src= "<% article[0].image -%>", height="60" width="60"> <%= article[0].title -%> qui appartient à <%= User.find(article[0].user_id).last_name -%></td>
-																		<td><img src= "<% article[1].image -%>", height="60" width="60"> <%= article[1].title -%> qui appartient à <%= User.find(article[1].user_id).last_name -%></td>
-																	</tr>
-																	<% end %>
-																</tbody>
-															</table>
+															<%= link_to 'Vos echanges',exchanges_path %>
 														</div>
 													</div>
-<!-- ONGLET DES FAVORIS -->
+													<!-- ONGLET DES FAVORIS -->
 													<div role="tabpanel" class="tab-pane" id="tabFour-3">
 														<div class="tab-body">
 															<div class="widget mt-4">
@@ -190,9 +179,9 @@
 																				<div class="profile-picture profile-picture--style-2">
 																					<% @user_fav = User.find(fav.favorite_user_id)%>
 																					<% if User.find(fav.favorite_user_id).avatar? %>
-																						<img src="<%=@@user_fav.avatar%>" class="img-center">
+																					<img src="<%=@@user_fav.avatar%>" class="img-center">
 																					<% else -%>
-																						<%= image_tag("avatar-1606916_960_720.png") %>
+																					<%= image_tag("avatar-1606916_960_720.png") %>
 																					<% end -%>
 																				</div>
 																				<div class="block-body text-center">
@@ -205,14 +194,14 @@
 																					</h3>
 																				</div>
 																			</div>
-																		  </div>
+																		</div>
 																		<%end %>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-<!-- ONGLET DES LIKES -->
+													<!-- ONGLET DES LIKES -->
 
 													<%if user_signed_in?%>
 													<div role="tabpanel" class="tab-pane" id="tabFour-4">
@@ -234,15 +223,15 @@
 																				<div class="block-body text-center">
 																					<h3 class="heading heading-6 strong-600 mb-0 mb-0">
 																					</h3>
-																						
-																						<%= link_to @article.title, article_path(@article) %>
-																						<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
-																						<% if pre_like %>
-																							<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' } %>
-																						<% end %>
+
+																					<%= link_to @article.title, article_path(@article) %>
+																					<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+																					<% if pre_like %>
+																					<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' } %>
+																					<% end %>
 																				</div>
-																			 </div>
-																		  </div>
+																			</div>
+																		</div>
 																		<% end -%>
 																	</div>
 																</div>

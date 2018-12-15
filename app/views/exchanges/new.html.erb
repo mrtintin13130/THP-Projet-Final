@@ -1,20 +1,22 @@
-		<h2>Créer un échange</h2>
-		Vous souhaitez obtenir: <%= @article.title %> de <%= @user.first_name %> <%= @user.last_name %>
-		<br>
-		Choisissez l'un de vos article en échange:
+<div class="jumbotron">
+	<h2>Créer un échange</h2>
+	Vous souhaitez obtenir: <%= @article.title %> de <%= @user.first_name %> <%= @user.last_name %>
+	<br>
+	Choisissez l'un de vos article en échange:
 	<%= form_for @exchange do |f| %>
-		<% @options.each do |opt| %>
-			<% if opt.image? %>
-				<img src="<%= opt.image %>", style="width: 13%">
-			<% else %>
-				<%= image_tag("no_image.png", style:"width: 13%;")%>
-			<% end %>
-			<%= radio_button_tag(:article_id, opt.id) %>
-			<%= label_tag(:article_title, opt.title) %> <br>
-		<% end %>
-
-			<%= f.hidden_field :owner_article_id, value: params[:article_id] %>
-			<%= f.hidden_field :owner_id, value: params[:owner_id] %>
-
-			<%= f.submit %>
+	<% @options.each do |opt| %>
+	<% if opt.image? %>
+	<img src="<%= opt.image %>", style="width: 13%">
+	<% else %>
+	<%= image_tag("no_image.png", style:"width: 13%;")%>
 	<% end %>
+	<%= radio_button_tag(:article_id, opt.id) %>
+	<%= label_tag(:article_title, opt.title) %> <br>
+	<% end %>
+
+	<%= f.hidden_field :owner_article_id, value: params[:article_id] %>
+	<%= f.hidden_field :owner_id, value: params[:owner_id] %>
+
+	<%= f.submit %>
+	<% end %>
+</div>
