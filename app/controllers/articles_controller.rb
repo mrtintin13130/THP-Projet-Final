@@ -54,6 +54,8 @@ class ArticlesController < ApplicationController
   end
   def destroy
   @article = Article.find(params[:id])
+  Exchange.where(applicant_article_id: params[:id]).delete_all
+  Exchange.where(owner_article_id: params[:id]).delete_all
   @article.likes.delete_all
   @article.destroy
   respond_to do |format|
