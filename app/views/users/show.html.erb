@@ -17,6 +17,11 @@
 													<% else %>
 													<%= image_tag("plus.png") %>
 													<% end -%>
+													<% if params[:id].to_i == current_user.id %>
+													<a href="<%= edit_user_registration_path %>" class="btn-aux">
+														<i class="ion ion-edit"></i>
+													</a>
+													<% end -%>
 												</div>
 												<div class="profile-details">
 													<h2 class="heading heading-4 strong-500 profile-name">
@@ -24,20 +29,20 @@
 													</h2>
 													<h3 class="heading heading-light heading-6 strong-400 profile-location"> <%= @user.sex + " de " + @user.city.capitalize %> </h3>
 												</div>
-												<% if user_signed_in? %>
-												<% if params[:id].to_i != current_user.id %>
 												<div class="profile-connect mt-4">
-													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
-												</div>
-												<% if user_signed_in? %>
-												<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-												<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-4 mt-2" %>
-												<% else %>
-												<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
-												<% end %>
-												<% end %>
-												<% else %>
-												<div class="profile-connect mt-4">
+													<% if user_signed_in? %>
+													<% if params[:id].to_i != current_user.id %>
+
+													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+
+													<% if user_signed_in? %>
+													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+													<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
+													<% else %>
+													<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
+													<% end %>
+													<% end %>
+													<% else %>
 													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
 													<% if current_user.phone_verified == false %>
 													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
@@ -50,9 +55,10 @@
 													<% else %>
 													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
 													<% end %>
+
+													<% end %>
+													<% end %>
 												</div>
-												<% end %>
-												<% end %>
 												<!-- Profile stats -->
 												<div class="profile-stats clearfix">
 													<div class="stats-entry">
@@ -120,7 +126,7 @@
 																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
 																				</div>
 																				<div>
-																					<% if params[:id].to_i == current_user.id %>
+																					<% if params[:id].to_i == current_user.id || current_user.admin == true %>
 
 																					<h4 class=" heading-sm strong-300">
 																						<%= link_to "Supprimer", article_path(id: article), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' }%>
@@ -182,14 +188,14 @@
 																				<div class="profile-picture profile-picture--style-2">
 																					<% @user_fav = User.find(fav.favorite_user_id)%>
 																					<% if User.find(fav.favorite_user_id).avatar? %>
-																					<img src="<%=@@user_fav.avatar%>" class="img-center">
+																					<img src="<%=@user_fav.avatar%>" class="img-center">
 																					<% else -%>
 																					<%= image_tag("avatar-1606916_960_720.png") %>
 																					<% end -%>
 																				</div>
 																				<div class="block-body text-center">
 																					<h3 class="heading heading-6">
-																						
+
 																						<%= link_to @user_fav.username, user_path(@user) %>
 																					</h3>
 																					<h3>
