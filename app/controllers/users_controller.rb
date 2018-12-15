@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    puts @user.inspect
     if user_signed_in?
       if @user.id == current_user.id
         @user = current_user
