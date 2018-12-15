@@ -120,9 +120,12 @@
 																					<h3 class="heading heading-light heading-sm strong-300"><%= article.category.name %></h3>
 																				</div>
 																				<div>
+																					<% if params[:id].to_i == current_user.id %>
+
 																					<h4 class=" heading-sm strong-300">
 																						<%= link_to "Supprimer", article_path(id: article), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' }%>
 																					</h4>
+																					<% end -%>
 																				</div>
 																				<div class="aux-info-wrapper border-top">
 																					<ul class="aux-info">
