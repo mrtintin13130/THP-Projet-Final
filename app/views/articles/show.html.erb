@@ -113,91 +113,101 @@
 										<% else %>
 										<a href="<%= article_likes_path(@article)%>" data-method="POST", class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
 											<%= image_tag "coeur-noir.png", style:"height: 10%" %></a>
-										<% end %>
+											<% end %>
 
 
-										<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-										<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
-										<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), class:"btn btn-styled btn-block btn-base-1 btn-icon-left" %></div>
-										<% elsif (@users.find(@article.user_id).id == current_user.id) %>
-										<% else %>
-										<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
-											<i class="icon ion-bag"></i><b>En attente</b></button>
+											<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+											<% if @article.status == true %>
+											<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
+											<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), class:"btn btn-styled btn-block btn-base-1 btn-icon-left" %></div>
+											<% elsif (@users.find(@article.user_id).id == current_user.id) %>
+
+											<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
+												<i class="icon ion-bag"></i><b>En attente</b></button>												
+
+												<% end -%>
+
+												<% else %>
+
+												<button type="button" class="btn btn-styled btn-block btn-base-1 btn-icon-left">
+													<i class="icon ion-bag"></i><b>Plus disponible</b></button>
+													<i>Cet article a été échangé et sera supprimé d'ici peu.</i>	
+
+													<% end %>
+													<% end -%>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="slice sct-color-2">
+				<div class="container">
+					<div class="section-title section-title--style-1 text-center mt-1">
+						<h3 class="section-title-inner heading-3 strong-600 line-height-1_6">
+							<span>Suggestions</span>
+						</h3>
+						<span class="section-title-delimiter clearfix d-none"></span>
+					</div>
+
+					<div class="row cols-xs-space cols-sm-space cols-md-space">
+						<%@suggestions.each do |product|%>
+						<div class="col-lg-3 col-md-6">
+
+							<div class="card card-product z-depth-1-top">
+								<div class="card-body">
+									<h2 class="heading heading-6 strong-600 mt-2 mb-3">
+
+										<a href="#"><%= link_to product.title, article_path(product) %> </a>
+									</h2>
+									<div class="card-image swiper-js-container">
+										<div class="">
+											<div class="swiper-container" data-swiper-items="1" data-swiper-space-between="0">
+												<div class="swiper-slide">
+													<%if product.image?%>
+													<img src="<%= product.image %>" width="192px">
+												</a>
+												<% else %>
+												<%= image_tag("no_image.png", style:"width: 171px;") %>
+											</a>
+											<% end -%>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mt-3">
+								<p class="product-description mt-3 mb-0">
+									<%= product.description.first(55)+"..." -%>
+								</p>
+							</div>
+						</div>
+						<div class="card-footer" style="margin-left: auto; margin-right: auto;">
+							<div class="product-buttons">
+								<div class="row align-items-center">
+									<div class="col-2">
+										<div >
+											<% if user_signed_in? %>
+											<% pre_like = product.likes.find { |like| like.user_id == current_user.id} %>
+											<% if pre_like %>
+											<a href="<%= article_like_path(product, pre_like)%>" data-method="DELETE", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-rouge.png", style:"height: 1em" %></i></a>
+											<% else %>
+											<a href="<%= article_likes_path(product)%>" data-method="POST", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-noir.png", style:"height: 1em" %></a>
 											<% end %>
 											<% end -%>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<% end %>
 			</div>
 		</div>
 	</section>
-
-	<section class="slice sct-color-2">
-		<div class="container">
-			<div class="section-title section-title--style-1 text-center mt-1">
-				<h3 class="section-title-inner heading-3 strong-600 line-height-1_6">
-					<span>Suggestions</span>
-				</h3>
-				<span class="section-title-delimiter clearfix d-none"></span>
-			</div>
-
-			<div class="row cols-xs-space cols-sm-space cols-md-space">
-				<%@suggestions.each do |product|%>
-				<div class="col-lg-3 col-md-6">
-
-					<div class="card card-product z-depth-1-top">
-						<div class="card-body">
-							<h2 class="heading heading-6 strong-600 mt-2 mb-3">
-
-								<a href="#"><%= link_to product.title, article_path(product) %> </a>
-							</h2>
-							<div class="card-image swiper-js-container">
-								<div class="">
-									<div class="swiper-container" data-swiper-items="1" data-swiper-space-between="0">
-										<div class="swiper-slide">
-											<%if product.image?%>
-											<img src="<%= product.image %>" width="192px">
-										</a>
-										<% else %>
-										<%= image_tag("no_image.png", style:"width: 171px;") %>
-									</a>
-									<% end -%>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="mt-3">
-						<p class="product-description mt-3 mb-0">
-							<%= product.description.first(55)+"..." -%>
-						</p>
-					</div>
-				</div>
-				<div class="card-footer" style="margin-left: auto; margin-right: auto;">
-					<div class="product-buttons">
-						<div class="row align-items-center">
-							<div class="col-2">
-								<div >
-									<% if user_signed_in? %>
-									<% pre_like = product.likes.find { |like| like.user_id == current_user.id} %>
-									<% if pre_like %>
-									<a href="<%= article_like_path(product, pre_like)%>" data-method="DELETE", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-rouge.png", style:"height: 1em" %></i></a>
-									<% else %>
-									<a href="<%= article_likes_path(product)%>" data-method="POST", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-noir.png", style:"height: 1em" %></a>
-									<% end %>
-									<% end -%>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<% end %>
-	</div>
-</div>
-</section>
