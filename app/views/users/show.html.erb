@@ -36,10 +36,18 @@
 													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
 
 													<% if user_signed_in? %>
+													<% if params[:id].to_i != current_user.id %>
+
+													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+
+													<% if user_signed_in? %>
+													<% if params[:id].to_i == current_user.id %>
+
 													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
 													<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
 													<% else %>
 													<%= link_to "S'abonner", add_favorite_path(id: @user_fav), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
+													<% end %>
 													<% end %>
 													<% end %>
 													<% else %>
