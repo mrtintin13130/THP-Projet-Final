@@ -1,11 +1,13 @@
 <div class="jumbotron", style="margin-bottom: 0.1%">
 	<h2>Vos demandes</h2>
 	<h3>J'ai demandé : </h3>
+
+	<% @i_asked.each do |i| %>
+
 	<div style="display: flex" >
-		<% @i_asked.each do |i| %>
 		<div style="height: 100px ">
 			à
-			<%= @users.find(i.owner_user_id).first_name %>
+			<%= @users.find(i.owner_user_id).first_name.capitalize %>
 			<% if @users.find(i.owner_user_id).avatar? %> 
 			<%= @users.find(i.owner_user_id).avatar %> 
 			<% else %>
@@ -31,18 +33,21 @@
 			<% else %>
 			<%= image_tag "no_image.png" %>
 			<% end %>
-			<br>
-			<br>
-			<% end %>
 		</div>
 	</div>
-	<hr>
+
+	<% end -%>
+
 	<h2>Leurs propositions</h2>
+
 	<h2>Ils m'ont demandé (en attente)</h2>
-	<div>
-		<% @they_asked.each do |t| %>
+
+	<% @they_asked.each do |t| %>
+
+
+	<div style="display: flex" >
 		<div style="height: 100px ">
-			<%= @users.find(t.applicant_user_id).first_name %>
+			<%= @users.find(t.applicant_user_id).first_name.capitalize %>
 			<% if @users.find(t.owner_user_id).avatar? %> 
 			<%= @users.find(t.owner_user_id).avatar %> 
 			<% else %>
@@ -62,28 +67,33 @@
 
 		<div style="height: 100px">
 			Contre : 
-			<%= @article.find(i.applicant_article_id).title %>
-			<% if @article.find(i.applicant_article_id).image? %> 
-			<img src="<%= @article.find(i.applicant_article_id).image %>", style="height: 100%"></a>
+			<%= @article.find(t.applicant_article_id).title %>
+			<% if @article.find(t.applicant_article_id).image? %> 
+			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
 			<% end %>
 		</div>
-		<div>
-			<%= link_to 'Accepter', exchange_path(id: t.id, valid: true), :data => {:confirm => 'Etes-vous sur de vouloir accepter l\'échange'} %>
-			<%= link_to 'Refuser', exchange_path(id: t.id, valid: false), :data => {:confirm => 'Etes-vous sur de vouloir refuser l\'échange'} %>
-			<br>
-			
-		</div>
-		<% end %>
+		<br>
 	</div>
+	<br>
+	<br>
+		<div>
+			<%= link_to 'Accepter', exchange_path(id: t.id, valid: true), :data => {:confirm => 'Etes-vous sur de vouloir accepter l\'échange'}, class:"btn btn-styled btn-success" %>
+			<%= link_to 'Refuser', exchange_path(id: t.id, valid: false), :data => {:confirm => 'Etes-vous sur de vouloir refuser l\'échange'}, class:"btn btn-styled btn-danger" %>
+			<br>
+			<br>
+		</div>
+	<% end %>
+
 
 	<h2>Historique de transaction</h2>
 
+	<% @transactions.each do |t| %>
 	<div style="display: flex" >
 		<div style="height: 100px ">
-			<% @transactions.each do |t| %>
-			<%= User.find(t.applicant_user_id).first_name %>
+			
+			<%= User.find(t.applicant_user_id).first_name.capitalize %>
 			<% if User.find(t.applicant_user_id).avatar? %> 
 			<img src="<%= User.find(t.applicant_user_id).avatar %>", style="height: 100%">
 			<% else %>
@@ -92,7 +102,7 @@
 		</div>
 		<div style="height: 100px ">
 			et 
-			<%= User.find(t.owner_user_id).first_name %>
+			<%= User.find(t.owner_user_id).first_name.capitalize %>
 			<% if User.find(t.owner_user_id).avatar? %> 
 			<img src="<%= User.find(t.owner_user_id).avatar %>", style="height: 100%">
 			<% else %>
@@ -104,7 +114,7 @@
 			Ont échangé l'artice: 
 			<%= @article.find(t.applicant_article_id).title %> 
 			<% if @article.find(t.applicant_article_id).image? %> 
-			<img src="<%= @article.find(i.applicant_article_id).image %>", style="height: 100%"></a>
+			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
 			<% end %>
@@ -113,21 +123,20 @@
 			contre l'article: 
 			<%= @article.find(t.owner_article_id).title %>
 			<% if @article.find(t.applicant_article_id).image? %> 
-			<img src="<%= @article.find(i.applicant_article_id).image %>", style="height: 100%"></a>
+			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
 			<% end %>
-			<br>
 		</div>
 		<div>
 			<% if t.status == true %>
+			<br>
 			<h4>Echange validé</h4>
 			<% else %>
+			<br>
 			<h4>Echange annulé</h4>
-			<% end %>
-			<br>
-			<br>
 			<% end %>
 		</div>
 	</div>
+	<% end %>
 </div>
