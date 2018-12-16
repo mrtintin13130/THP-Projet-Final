@@ -34,13 +34,7 @@ end
 
 
 def index
-  if user_signed_in?
-    if @user.id == current_user.id
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
-  end
+  @user = current_user
   @users = User.all
   @article = Article.all
   @favorite = Favorite.new
