@@ -198,6 +198,7 @@
 
 																						<%= link_to @user_fav.username, user_path(@user_fav) %>
 																					</h3>
+																					<% if params[:id].to_i == current_user.id %>
 																					<h3>
 																						<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' }%>
 																					</h3>
