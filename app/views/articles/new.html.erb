@@ -1,34 +1,39 @@
-<div class="jumbotron" style="margin-bottom: 0.1%">
-  <h2>Créer un article</h2>
-  <%= form_for @article do |f| %>
-  <div class="field">
-    <%= f.label :Title %><br />
-    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
-  </div>
+  <div class="jumbotron" style="margin-bottom: 0.1%">
+    <h2>Créer un article</h2>
+    <%= form_for @article do |f| %>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description, autocomplete: "description" %>
-  </div>
+    <div class="field">
+      <%= f.label :Title %><br />
+      <%= f.text_field :title, autofocus: true, placeholder: "Nom de l'article", class:"" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :size %><br />
-    <%= f.text_field :size, autocomplete: "size" %>
-  </div>
+    <div class="form-default">
+      <div class="form-group">
+        <%= f.label :description %><br />
+        <%= f.text_area :description, placeholder: "Donnez quelques informations sur votre article comme la marque, la matiere, la date d'aquisition... etc. Donnez lui de la valeur pour faciliter votre échange ! ", class:"form-control form-control-lg", resize: "none" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= select_tag :category_id, options_for_select(Category.all_category) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :size %><br />
+      <%= f.text_field :size, placeholder: "Precisez la taille exacte indiqué sur l'article", class:"form-control-lg" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image, autocomplete: "image" %>
-  </div>
 
-  <div class="actions">
-    <br>
-    <%= f.submit "Créer" %>
+    <div class="form-group">
+      <%= f.label :category %><br />
+      <%= select_tag :category_id, options_for_select(Category.all_category) %>
+    </div>
+
+    <div class="dz-message needsclick">
+      <h3>Drop files here or click to upload.</h3>
+      <%= f.file_field :image, class:"dropzone"%>
+    </div>
+
+
+    <div class="actions">
+      <br>
+      <%= f.submit "Créer" %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>

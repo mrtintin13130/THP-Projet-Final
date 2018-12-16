@@ -43,13 +43,13 @@ class ArticlesController < ApplicationController
     @user = current_user
     @category = params[:category_id]
     id = Category.all_category.index(@category).to_i + 1
-    @article = Article.create!(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
+    @article = Article.create(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
     puts params[:category_id]
 
     if @article.save
-        redirect_to @article, alert: "Article created successfully."
+        redirect_to @article, alert: "Felicitations, vous venez d'enregistrer un nouvel article !"
     else
-        redirect_to new_article_path, alert: "Error creating article."
+        redirect_to new_article_path, alert: "Oups...! Avez vous bien rempli toutes les cases ?"
     end
   end
   def destroy

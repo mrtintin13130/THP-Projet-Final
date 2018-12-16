@@ -41,28 +41,6 @@ puts "Done !"
 
 puts "AJOUT ARTICLES"
 
-50.times do
+12.times do
 	Article.create(title: Faker::App.name, description: Faker::Lorem.paragraph, size: Faker::Number.between(30, 45), status: true, user_id: Faker::Number.between(1, 20), category_id: Faker::Number.between(1, 16) )
 end
-
-
-puts "Done!"
-
-# puts "AJOUT ECHANGES"
-
-# 15.times do
-# 	Exchange.create(applicant_user_id: Faker::Number.between(1, 10), owner_user_id: Faker::Number.between(1, 10), applicant_article_id: Faker::Number.between(1, 15), owner_article_id: Faker::Number.between(1, 15), status: true )
-# end
-# puts "Done!"
-
-
-puts "AJOUT MESSAGES"
-
-# 100.times do
-# 	Message.create(content: Faker::OnePiece.quote, dest_user_id: Faker::Number.between(1, 10), user_id: Faker::Number.between(1, 10))
-# end
-
-
-
-# puts "Done!"
-
