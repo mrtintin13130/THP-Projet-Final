@@ -19,9 +19,9 @@
 							<div class="block-body text-center" style="height: 120px;">
 								<% end -%>
 								<h3 class="heading heading-6 strong-600 mb-0 mb-0">
-									<%= link_to user.last_name + " " + user.first_name, user_path(user) %>
+									<%= link_to user.first_name.capitalize + " " + user.last_name.capitalize, user_path(user) %>
 									<% if user.admin == true %>
-									<h4>admin</h4>
+									- admin
 									<% end -%>
 								</h3>
 								<h3 class="heading heading-light heading-sm strong-300">
@@ -61,4 +61,5 @@
 				</div>
 			</div>
 		</div>
+	</div>
 

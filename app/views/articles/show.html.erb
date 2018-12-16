@@ -106,10 +106,16 @@
 										<% if user_signed_in? %>
 										<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
 										<% if pre_like %>
-										<a href="<%= article_like_path(@article, pre_like)%>" data-method="DELETE", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart" style="font-size: 3.5em"></i></a>
+
+										<a href="<%= article_like_path(@article, pre_like)%>" data-method="DELETE", class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
+											<%= image_tag "coeur-rouge.png", style:"height: 10%" %>
+										</a>
 										<% else %>
-										<a href="<%= article_likes_path(@article)%>" data-method="POST", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart" style="font-size: 3.5em"></i></a>
+										<a href="<%= article_likes_path(@article)%>" data-method="POST", class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
+											<%= image_tag "coeur-noir.png", style:"height: 10%" %></a>
 										<% end %>
+
+
 										<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 										<% if (@exchange.find_by(owner_article_id: @article.id).blank? && @users.find(@article.user_id).id != current_user.id) %>
 										<%= link_to "Echanger", new_exchange_path(article_id: @article.id, owner_id: @users.find(@article.user_id).id), class:"btn btn-styled btn-block btn-base-1 btn-icon-left" %></div>
@@ -179,9 +185,9 @@
 									<% if user_signed_in? %>
 									<% pre_like = product.likes.find { |like| like.user_id == current_user.id} %>
 									<% if pre_like %>
-									<a href="<%= article_like_path(product, pre_like)%>" data-method="DELETE", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart"></i></a>
+									<a href="<%= article_like_path(product, pre_like)%>" data-method="DELETE", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-rouge.png", style:"height: 1em" %></i></a>
 									<% else %>
-									<a href="<%= article_likes_path(product)%>" data-method="POST", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart"></i></a>
+									<a href="<%= article_likes_path(product)%>" data-method="POST", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><%= image_tag "coeur-noir.png", style:"height: 1em" %></a>
 									<% end %>
 									<% end -%>
 								</div>
