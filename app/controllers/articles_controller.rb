@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
   @article.likes.delete_all
   @article.destroy
   respond_to do |format|
-    format.html { redirect_to request.referrer, notice: "Cet article, ainsi que ses likes, ont été supprimés" }
+    format.html { redirect_to root_path, notice: "Cet article, ainsi que ses likes, ont été supprimés" }
   end
 end
 
