@@ -31,7 +31,7 @@
 			<% if @article.find(i.applicant_article_id).image? %> 
 			<img src="<%= @article.find(i.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
-			<%= image_tag "no_image.png" %>
+			<%= image_tag "no_image.png", style:"height: 100%"  %>
 			<% end %>
 		</div>
 	</div>

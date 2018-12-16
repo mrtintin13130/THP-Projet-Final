@@ -32,31 +32,33 @@
 												</div>
 												
 												<div class="profile-connect mt-4">
-													<% if user_signed_in? %>
-													<% if params[:id].to_i != current_user.id %>
-													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
-													<% else %>
-													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-													<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
-													<% else %>
-													<%= link_to "S'abonner", add_favorite_path(id: @user_fav), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
-													<% end %>
+	<% if user_signed_in? %>
+	<!-- CONNECTÉ -->
+		<% if params[:id].to_i != current_user.id %>
+		<!-- PAGE USER -->
+			<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+			<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
+				<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
+			<% else %>
+			<%= link_to "S'abonner", add_favorite_path(id: @user_fav), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
+			<% end %>
 
-													<% end %>
-													<% else %>
-													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-													<% if current_user.phone_verified == false %>
-													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
-													<% else %>
-													<%= image_tag "smartphone.png" %>
-													<%= image_tag "checked.png" %>
-													<% end %>
-													<% if @user.premium_user == false %>
-													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
-													<% else %>
-													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
-													<% end %>
-													<% end %>
+		<% else %>
+		<!-- PAGE PROFIL -->
+			<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+			<% if current_user.phone_verified == false %>
+				<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
+			<% else %>
+				<%= image_tag "smartphone.png" %>
+				<%= image_tag "checked.png" %>
+			<% end %>
+			<% if @user.premium_user == false %>
+				<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
+			<% else %>
+				<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
+			<% end %>
+		<% end %>
+	<% end %>
 
 												</div>
 												<!-- Profile stats -->
