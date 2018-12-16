@@ -32,33 +32,46 @@
 												</div>
 												
 												<div class="profile-connect mt-4">
-	<% if user_signed_in? %>
-	<!-- CONNECTÉ -->
-		<% if params[:id].to_i != current_user.id %>
-		<!-- PAGE USER -->
-			<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
-			<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-				<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
-			<% else %>
-			<%= link_to "S'abonner", add_favorite_path(id: @user_fav), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
-			<% end %>
+													<% if user_signed_in? %>
+													<!-- CONNECTÉ -->
 
-		<% else %>
-		<!-- PAGE PROFIL -->
-			<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
-			<% if current_user.phone_verified == false %>
-				<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
-			<% else %>
-				<%= image_tag "smartphone.png" %>
-				<%= image_tag "checked.png" %>
-			<% end %>
-			<% if @user.premium_user == false %>
-				<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
-			<% else %>
-				<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
-			<% end %>
-		<% end %>
-	<% end %>
+
+													<% if params[:id].to_i != current_user.id %>
+													<!-- PAGE USER -->
+													<%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', style:"width: 180px", class: "btn btn-styled btn-block btn-rounded btn-base-2"%>
+
+													<% id = params[:id] %>
+													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: id) %>
+
+
+													<%= link_to "Se désabonner", favorite_path(id: id), method: :delete, class: "btn btn-styled btn-pink", style: "width: 180px"%>
+													<% else %>
+
+
+													<%= link_to "S'abonner", add_favorite_path(id: id), method: :get, class: "btn btn-styled btn-success", style: "width: 180px"%>
+													<% end %>
+
+
+													<% else %>
+
+
+													<!-- PAGE PROFIL -->
+
+
+													<a href='<%= conversations_path %>' class="btn btn-styled btn-block btn-rounded btn-base-2">Messagerie</a>
+													<% if current_user.phone_verified == false %>
+													<a href='<%= verification_number_path %>' style="width: 180px" class="btn btn-styled btn-success">Vérifier numéro</a>
+													<% else %>
+													<%= image_tag "smartphone.png" %>
+													<%= image_tag "checked.png" %>
+													<% end %>
+													<% if @user.premium_user == false %>
+													<%= link_to "Devenir Premium", new_charge_path, class:"btn btn-styled btn-warning" %>
+													<% else %>
+													<button  style="width: 180px" type="button" class="btn btn-styled btn-warning">Premium</button>
+													<% end %>
+													<% end %>
+													<% end %>
 
 												</div>
 												<!-- Profile stats -->
@@ -192,7 +205,7 @@
 																<div class="widget mt-4">
 																	<div class="row-wrapper">
 																		<div class="row cols-md-space cols-sm-space cols-xs-space">
-																			<% Favorite.where(main_user_id: current_user.id).each do |fav|%>
+																			<% Favorite.where(main_user_id: @user.id).each do |fav|%>
 																			<div class="col-lg-4">
 																				<div class="block block--style-3">
 																					<div class="profile-picture profile-picture--style-2">
@@ -248,7 +261,7 @@
 																						<%= link_to @article.title, article_path(@article) %>
 																						<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
 																						<% if params[:id].to_i == current_user.id && pre_like %>
-																						
+
 																						<%= button_to 'Unlike', article_like_path(@article, pre_like), method: :delete, class:"btn btn-styled btn-block btn-pink", data: { confirm: 'Are you sure?' } %>
 																						<% end %>
 																					</div>

@@ -37,9 +37,8 @@
 					<h4>Article non disponible car échangé</h4>
 					<% end -%>
 					<div>
-						<% first_name = User.find(article.user_id).first_name %>
-						<% last_name =  User.find(article.user_id).last_name %>
-						Propriétaire : <%= link_to "#{first_name} #{last_name}", user_path(article.user_id) %>
+						<% username = User.find(article.user_id).username %>
+						Propriétaire : <%= link_to "#{username}", user_path(article.user_id) %>
 					</div>
 				</div>
 			</div>
