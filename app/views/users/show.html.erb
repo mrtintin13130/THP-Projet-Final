@@ -37,9 +37,9 @@
 
 													<% if user_signed_in? %>
 													<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: @user.id) %>
-													<%= link_to "Se désabonner", favorite_path(id: @user), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
+													<%= link_to "Se désabonner", favorite_path(id: @user_fav), method: :delete, style:"width: 180px", class: "btn btn-styled btn-danger" %>
 													<% else %>
-													<%= link_to "S'abonner", add_favorite_path(id: @user), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
+													<%= link_to "S'abonner", add_favorite_path(id: @user_fav), method: :get, style:"width: 180px", class: "btn btn-styled btn-success" %>
 													<% end %>
 													<% end %>
 													<% else %>
