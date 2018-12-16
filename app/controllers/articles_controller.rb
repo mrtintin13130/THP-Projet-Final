@@ -47,21 +47,21 @@ class ArticlesController < ApplicationController
     puts params[:category_id]
 
     if @article.save
-      redirect_to @article, alert: "Article created successfully."
+        redirect_to @article, alert: "Article created successfully."
     else
-      redirect_to new_article_path, alert: "Error creating article."
+        redirect_to new_article_path, alert: "Error creating article."
     end
   end
   def destroy
-    @article = Article.find(params[:id])
-    Exchange.where(applicant_article_id: params[:id]).delete_all
-    Exchange.where(owner_article_id: params[:id]).delete_all
-    @article.likes.delete_all
-    @article.destroy
-    redirect_to user_path, { notice: "Cet article, ainsi que ses likes, ont été supprimés" }
-    @user = current_user
-
+  @article = Article.find(params[:id])
+  Exchange.where(applicant_article_id: params[:id]).delete_all
+  Exchange.where(owner_article_id: params[:id]).delete_all
+  @article.likes.delete_all
+  @article.destroy
+  respond_to do |format|
+    format.html { redirect_to request.referrer, notice: "Cet article, ainsi que ses likes, ont été supprimés" }
   end
+end
 
   def article_params
     params.require(:article).permit(:title, :description, :size, :image, params[:category_id])
