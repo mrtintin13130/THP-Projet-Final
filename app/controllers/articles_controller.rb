@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
 
     
   end
+  
   def destroy
   @article = Article.find(params[:id])
   Exchange.where(applicant_article_id: params[:id]).delete_all
