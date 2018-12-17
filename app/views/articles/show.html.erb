@@ -101,11 +101,11 @@
 										<% if pre_like %>
 
 										<a href="<%= article_like_path(@article, pre_like)%>" data-method="DELETE", class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
-											<%= image_tag "coeur-rouge.png", style:"height: 10%" %>
+											<%= image_tag "coeur-rouge.png", style:"height: 4rem" %>
 										</a>
 										<% else %>
 										<a href="<%= article_likes_path(@article)%>" data-method="POST", class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite">
-											<%= image_tag "coeur-noir.png", style:"height: 10%" %></a>
+											<%= image_tag "coeur-noir.png", style:"height: 4rem" %></a>
 											<% end %>
 
 
