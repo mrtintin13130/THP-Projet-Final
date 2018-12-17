@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       end
     end
-    # @mes_likes = Like.where(user_id: current_user.id)
+
     @exchanges = Exchange.all
     @user_exchanges = @exchanges.where(applicant_user_id: @user.id).where(status: true)
     @my_articles = []
@@ -62,23 +62,23 @@ class UsersController < ApplicationController
 
 
   def destroy
-  @user = User.find(params[:id])
-  @user.likes.delete_all
-  @user.articles.delete_all
-  @user.messages.delete_all
-  @user.conversations.delete_all
-  @user.destroy
-  respond_to do |format|
-    format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
-  end
-end
-
-
-    private
-
-
-    def set_user
-      @user = current_user
+    @user = User.find(params[:id])
+    @user.likes.delete_all
+    @user.articles.delete_all
+    @user.messages.delete_all
+    @user.conversations.delete_all
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
     end
-
   end
+
+
+  private
+
+
+  def set_user
+    @user = current_user
+  end
+
+end
