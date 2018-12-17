@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>THPProjetFinal</title>
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<!-- <link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css" type="text/css"> -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<% flash.each do |message_type, message| %>
+	<div class="alert alert-info alert-dismissible fade show" role="alert">
+		<span class="alert-inner--icon">
+		<span class="alert-inner--text"><%= message %></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<% end %>
+		<%= render 'home/navbar' %>
+		<%= yield %>
+		<%= render 'layouts/footer' %>
+
+	</body>
+	</html>

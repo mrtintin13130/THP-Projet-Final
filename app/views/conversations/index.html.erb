@@ -1,0 +1,43 @@
+<div class="jumbotron" style="margin-bottom: 0.1%">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<%= root_path %>">Accueil</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Conversations</li>
+    </ol>
+  </nav>
+
+  <div class="ui segment">
+    <h2>Conversations</h2>
+    <hr class="my-4">
+
+
+    <% @conversations.each do |conversation| %>
+    <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+    <% if conversation.sender_id == current_user.id %>
+    <% recipient = User.find(conversation.recipient_id) %>
+    <% else %>
+    <% recipient = User.find(conversation.sender_id) %>
+    <% end %>
+
+    <div class="jumbotron">
+      <h3><%= recipient.first_name.capitalize %>, <i>pseudo:</i> <%= recipient.username %></h3>
+      <hr class="my-4">
+
+      <% if !conversation.unread_message_count(current_user).zero? %>
+
+      <a type="button" class="btn btn-primary" href="<%= conversation_messages_path(conversation) %>">
+        Non lus <span class="badge badge-light"><%= conversation.unread_message_count(current_user) %></span>
+      </a>
+      <% else %>
+      <a type="button" class="btn btn-primary" href="<%= conversation_messages_path(conversation) %>">
+        Messages
+      </a>
+      <% end %>
+    </div>
+    <% end %>
+
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div style="margin: 5%; color: black"><h1>Liste des articles </h1>
+	<div  class="row cols-xs-space cols-sm-space cols-md-space">
+		<% @article.each do |article| %>
+		<div class="col-lg-4">
+			<div class="block product bg-transparent no-radius">
+				<div class="product-image">
+					<div class="view view-first">
+						<a href="<%=article_path(article)%>">
+
+							<center>
+								<% if article[:image] != nil -%>
+								<img src="<%= article.image %>" height="150">
+								<% else -%>
+								<%= image_tag("no_image.png", style:"width: 150px;") %>
+								<% end -%>
+
+							</center>
+						</a>
+					</div>
+					<div class="product-actions--a product-actions--2" data-animation-in="slideInRight"  data-animation-out="slideOutRight">
+						<button type="button" class="btn-product-action">
+							<i class="ion-bag"></i>
+						</button>
+
+						<button type="button" class="btn-product-action">
+							<i class="ion-ios-heart-outline"></i>
+						</button>
+					</div>
+				</div>
+				<div class="block-body px-0">
+					<h3 class="heading heading-6 strong-500 text-capitalize mb-0">
+						<h3><%= article.title.capitalize %></h3>
+					</h3>
+					<h5><%= article.description.capitalize %>
+					</h5>
+					<% if article.status == false %>
+					<h4>Article non disponible car échangé</h4>
+					<% end -%>
+					<div>
+						<% username = User.find(article.user_id).username %>
+						Propriétaire : <%= link_to "#{username}", user_path(article.user_id) %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="col-2">
+	<% if user_signed_in? %>
+	<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+	<% if pre_like %>
+	<a href="<%= article_like_path(@article, pre_like)%>" data-method="DELETE", style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart"></i></a>
+	<% else %>
+	<a href="<%= article_likes_path(@article)%>" data-method="POST", style="color: red" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart"></i></a>
+	<% end %>
+	<% end -%>
+</div>
+
+
+
+<% if user_signed_in? %>
+<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+<a href="<%= articles_path %>" style="color: black" class="btn-icon" data-toggle="tooltip" data-placement="top" title="Favorite"><i class="ion-ios-heart"></i></a>
+<% end %>
+<% end -%>
