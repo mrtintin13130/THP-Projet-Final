@@ -46,8 +46,8 @@ class ExchangesController < ApplicationController
       @owner_first_name = User.find(owner_article.user_id).first_name
       @applicant_email = User.find(applicant_article.user_id).email
       @owner_email = User.find(owner_article.user_id).email
-      ExchangeMailer.exchange_owner_email(@applicant_article_title, @owner_article_title, @applicant_first_name, @owner_first_name, @applicant_email, @owner_email).deliver
-      ExchangeMailer.exchange_applicant_email(@applicant_article_title, @owner_article_title, @applicant_first_name, @owner_first_name, @applicant_email, @owner_email).deliver
+      # ExchangeMailer.exchange_owner_email(@applicant_article_title, @owner_article_title, @applicant_first_name, @owner_first_name, @applicant_email, @owner_email).deliver
+      # ExchangeMailer.exchange_applicant_email(@applicant_article_title, @owner_article_title, @applicant_first_name, @owner_first_name, @applicant_email, @owner_email).deliver
     end
     redirect_to request.referer
   end
