@@ -17,9 +17,10 @@
 													<% else %>
 													<%= image_tag("plus.png") %>
 													<% end -%>
-													
+													<% if user_signed_in?%>
 													<% if params[:id].to_i == current_user.id %>
 													<a href="<%= edit_user_registration_path %>" class="	btn-aux"><i class="ion ion-edit"></i></a>
+													<% end -%>
 													<% end -%>
 												</div>
 												
