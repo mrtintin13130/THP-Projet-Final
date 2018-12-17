@@ -14,6 +14,11 @@ class ExchangesController < ApplicationController
     @article = Article.find(params[:article_id])
     @user = User.find(params[:owner_id])
     @options = Article.where(user_id: current_user.id)
+    if current_user.articles.count == 0
+      respond_to do |format|
+      format.html { redirect_to new_article_path, notice: "Veuillez d'abord ajouter un article pour pouvoir l'echanger avec un autre utilisateur" }
+    end
+    end
 
   end
 

@@ -1,5 +1,5 @@
 
-	<div id="st-container" class="st-container">
+<div id="st-container" class="st-container">
 		<!-- <nav class="st-menu st-effect-1" id="menu-1">
 			<div class="st-profile">
 				<div class="st-profile-user-wrapper">
@@ -87,7 +87,7 @@
 							<div class="swiper-wrapper">
 								<!-- Slide -->
 								<div class="swiper-slide" data-swiper-autoplay="8000">
-									<div class="slice holder-item holder-item-light has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-16.jpg); background-position: bottom center;">
+									<div class="slice holder-item holder-item-light has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-16_2.jpg); background-position: bottom center;">
 										<span class="mask mask-dark--style-2"></span>
 										<div class="container d-flex align-items-center">
 											<div class="col">
@@ -101,7 +101,7 @@
 														</p>
 
 														<a href='<%= users_path %>' class="btn btn-lg btn-white btn-circle btn-outline mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
-															Tradeurs
+															Traders
 														</a>
 														<a href='<%= articles_path %>' class="btn btn-lg btn-white btn-circle btn-outline mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
 															Articles
@@ -114,7 +114,7 @@
 								</div>
 								<!-- Slide -->
 								<div class="swiper-slide" data-swiper-autoplay="8000">
-									<div class="slice holder-item holder-item-dark has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-3.jpg); background-position: bottom center;">
+									<div class="slice holder-item holder-item-light has-bg-cover bg-size-cover" style="background-image: url(../../assets/images/backgrounds/slider/img-3.jpg); background-position: bottom center;">
 										<div class="container d-flex align-items-center">
 											<div class="col">
 												<div class="row row-cols-xs-spaced align-items-center py-5">
@@ -127,7 +127,6 @@
 															Grace à <i>Street Wear & Trade</i> profitez des meilleures opportunités possibles et faites l'acquisition de produits vraiment uniques.
 														</p>
 
-														<a href="#" class="btn btn-styled btn-base-1 btn-circle mt-4 animated" data-animation-in="bounceInUp" data-animation-delay="2600" data-scroll-to="#scrollToSection">En savoir plus</a>
 													</div>
 												</div>
 											</div>
@@ -155,7 +154,7 @@
 										</div>
 										<h2 class="heading heading-4 strong-500">Trouvez votre bonheur</h2>
 										<p class="px-4">
-											<h6>Visitez les boutiques des tradeurs pour trouver le produit qui vous plait.</h6>
+											<h6>Visitez les boutiques des traders pour trouver le produit qui vous plait.</h6>
 										</p>
 									</div>
 								</div>
@@ -177,7 +176,7 @@
 										</div>
 										<h2 class="heading heading-4 strong-500">Finalisez le tout</h2>
 										<p class="px-4">
-											<h6>Communiquez ensuite avec votre tradeur pour convenir d'un rendez vous.</h6>
+											<h6>Communiquez ensuite avec votre trader pour convenir d'un rendez vous.</h6>
 										</p>
 									</div>
 								</div>
@@ -300,7 +299,7 @@
 						<div class="sct-inner">
 							<div class="row row-no-padding align-items-center">
 								<div class="col-lg-6 order-lg-2">
-									<img src="../../assets/images/prv/other/img-88-1000x900.jpg" class="img-fluid img-center">
+									<img src="../../assets/images/prv/other/dog_12.png" class="img-fluid img-center">
 								</div>
 
 								<div class="col-lg-6 order-lg-1">
@@ -325,14 +324,14 @@
 						<div class="container">
 							<div class="section-title section-title--style-1 text-center mb-2">
 								<h3 class="section-title-inner">
-									<span>Le podium des tradeurs</span>
+									<span>Le podium des traders</span>
 								</h3>
 								<span class="section-title-delimiter clearfix d-none"></span>
 							</div>
 							<span class="clearfix"></span>
 							<div class="fluid-paragraph fluid-paragraph-sm c-gray-light strong-300 text-center">
 								<p class="text-lg line-height-1_8">
-									Visiter le profil des tradeurs les plus les plus actifs.
+									Visiter le profil des traders les plus suivis.
 								</p>
 							</div>
 							<span class="space-xs-xl"></span>
@@ -344,7 +343,11 @@
 									<div class="block block--style-3">
 										<div class="block block-image">
 											<div class="view view-second">
-												<img src="../../assets/images/prv/team/business/img-b-2.jpg">
+												<% if user.avatar?%>
+												<img src="<%= user.avatar %>" >
+												<% else -%>
+												<%= image_tag "avatar-1606916_960_720.png" %>
+												<% end -%>
 												<div class="mask mask-base-1--style-2">
 													<div class="view-buttons">
 														<div class="view-buttons-inner text-center">
@@ -358,16 +361,15 @@
 										</div>
 										<div class="block-body">
 											<h4 class="heading heading-xs strong-400 text-uppercase letter-spacing-2 c-gray-light">TOP <%= n %></h4>
-											<h3 class="heading heading-5 strong-500"><%=user.last_name%></h3>
+											<h3 class="heading heading-5 strong-500"><%=user.username%></h3>
 											<p class="mt-1">
-												A procede a X echanges et propose X autres articles! ALlez jetez un oeil !
+												A procede a echanges et propose X autres articles! ALlez jetez un oeil !
 											</p>
 										</div>
 									</div>
 								</div>
 								<% n = n + 1 -%>
 								<% end -%>
-
 							</div>
 						</div>
 					</section>
@@ -390,7 +392,12 @@
 										<a href="#">
 											<div class="block block--style-5 mb-0">
 												<div class="block-image">
-													<img src="../../assets/images/prv/work/agency/img-1.jpg">
+													<% if article.image?%>
+												<img src="<%= article.image %>" >
+												<% else -%>
+												<%= image_tag "no_image.png" %>
+												<% end -%>
+												<p style="color: black"> Appartient à : <%= User.find(article.user_id).username %> </p>
 												</div>
 												<div class="block-mask-caption--over flex flex-items-xs-top">
 													<div class="flex-wrap-item">
@@ -429,12 +436,12 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="milestone-counter text-center">
 											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="<%=@users_sum%>" data-speed="5000" data-refresh-interval="50"></div>
-											<h4 class="milestone-info heading-6 c-gray-light text-normal">Tradeurs</h4>
+											<h4 class="milestone-info heading-6 c-gray-light text-normal">Traders</h4>
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<div class="milestone-counter text-center">
-											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="33" data-speed="5000" data-refresh-interval="80"></div>
+											<div class="milestone-count c-gray-dark strong-400" data-from="0" data-to="<%= @exchanges_sum %>" data-speed="5000" data-refresh-interval="80"></div>
 											<h4 class="milestone-info heading-6 c-gray-light text-normal">Echanges</h4>
 										</div>
 									</div>

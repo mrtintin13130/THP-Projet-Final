@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    puts @user.inspect
     if user_signed_in?
       if @user.id == current_user.id
         @user = current_user
@@ -63,16 +62,17 @@ class UsersController < ApplicationController
 
 
   def destroy
-    @user = User.find(params[:id])
-    @user.likes.delete_all
-    @user.articles.delete_all
-    @user.messages.delete_all
-    @user.conversations.delete_all
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
-    end
+  @user = User.find(params[:id])
+  @user.likes.delete_all
+  @user.articles.delete_all
+  @user.messages.delete_all
+  @user.conversations.delete_all
+  @user.destroy
+  respond_to do |format|
+    format.html { redirect_to request.referrer, notice: "Cet utilisateur, ainsi que ses articles et messages, ont été supprimés" }
   end
+end
+
 
     private
 

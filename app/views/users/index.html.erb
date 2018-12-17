@@ -8,40 +8,46 @@
 					<div class="block block--style-3">
 						<div class="profile-picture profile-picture--style-2">
 							<% if user[:avatar] != nil -%>
-							<img src="<%=user.avatar%>" >
+								<img src="<%=user.avatar%>" >
 							<% else -%>
-							<%=image_tag("avatar-1606916_960_720.png")%>
+								<%=image_tag("avatar-1606916_960_720.png")%>
 							<% end -%>
 						</div>
-						<% if user_signed_in? %>
+							<% if user_signed_in? %>
 						<div class="block-body text-center" style="height: 183px">
 							<% else %>
-							<div class="block-body text-center" style="height: 120px;">
-								<% end -%>
+								<div class="block-body text-center" style="height: 120px;">
+							<% end -%>
 								<h3 class="heading heading-6 strong-600 mb-0 mb-0">
-									<%= link_to user.last_name + " " + user.first_name, user_path(user) %>
-									<% if user.admin == true %>
-									<h4>admin</h4>
-									<% end -%>
+									<%= link_to user.username.capitalize, user_path(user) %>
+							<% if user.admin == true %>
+									- admin
+							<% end -%>
 								</h3>
 								<h3 class="heading heading-light heading-sm strong-300">
-									<% @article.where(user_id: user.id).take(3).each do |a| %>
-									<% if a.image? %>
+						<% @article.where(user_id: user.id).take(3).each do |a| %>
+							<% if a.image? %>
 									<a href='<%= article_path(a) %>'>
 										<img src="<%= a.image %>", style="width: 13%"></a>
-										<% else %>
+							<% else %>
 										<%= link_to image_tag("no_image.png", style:"width: 13%;"), article_path(a) %>
-										<% end %>
-										<% end %>
+							<% end %>
+						<% end %>
 									</h3>
+							
+									
+					<% if user_signed_in? %>	
+								<% if user != current_user %>
+						<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
+							<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-3 mt-2 "%>
+						<% else %>
+							<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
+						<% end %>
+					<% end %>
+								<% end -%>
 
-									<% if user_signed_in? %>
-									<% if Favorite.find_by(main_user_id: current_user.id, favorite_user_id: user.id) %>
-									<%= link_to "Se désabonner", favorite_path(id: user), method: :delete, class: "btn btn-styled btn-danger btn-shadow btn-circle px-3 mt-2 "%>
-									<% else %>
-									<%= link_to "S'abonner", add_favorite_path(id: user), method: :get, class: "btn btn-styled btn-success btn-shadow btn-circle px-4 mt-2" %>
-									<% end %>
-									<% end %>
+									
+
 								</div>
 								<div class="aux-info-wrapper border-top">
 									<ul class="aux-info">
@@ -56,9 +62,10 @@
 								</div>
 							</div>
 						</div>
-						<% end %>
+				<% end %>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
