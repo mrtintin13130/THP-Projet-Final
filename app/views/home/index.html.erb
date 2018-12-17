@@ -134,18 +134,19 @@
 									</div>
 								</div>
 							</div>
-
 							<!-- Add Pagination -->
 							<div class="swiper-pagination"></div>
-
 							<!-- Add Arrows -->
 							<div class="swiper-button swiper-button-next"></div>
 							<div class="swiper-button swiper-button-prev"></div>
 						</div>
 					</section>
-
 					<section class="slice-lg sct-color-1">
 						<div class="container">
+							<div class="heading"><center>	
+							<h3>Comment cela fonctionne ?</h3>
+						</center></div>
+						<br>
 							<div class="row cols-xs-space cols-md-space cols-sm-space">
 								<div class="col-lg-4">
 									<div class="icon-block icon-block--style-2-v1 text-center">
@@ -165,7 +166,7 @@
 										</div>
 										<h2 class="heading heading-4 strong-500">Faites une proposition</h2>
 										<p class="px-4">
-											<h6>Faites une demande d'échange contre un vetement de votre boutique.</h6>
+											<h6>Demandez à échanger un article contre un autre de votre boutique.</h6>
 										</p>
 									</div>
 								</div>
@@ -176,7 +177,7 @@
 										</div>
 										<h2 class="heading heading-4 strong-500">Finalisez le tout</h2>
 										<p class="px-4">
-											<h6>Communiquez ensuite avec votre trader pour convenir d'un rendez vous.</h6>
+											<h6>Contactez ensuite avec le trader pour convenir d'un rendez vous.</h6>
 										</p>
 									</div>
 								</div>
@@ -393,11 +394,11 @@
 											<div class="block block--style-5 mb-0">
 												<div class="block-image">
 													<% if article.image?%>
-												<img src="<%= article.image %>" >
-												<% else -%>
-												<%= image_tag "no_image.png" %>
-												<% end -%>
-												<p style="color: black"> Appartient à : <%= User.find(article.user_id).username %> </p>
+													<img src="<%= article.image %>" >
+													<% else -%>
+													<%= image_tag "no_image.png" %>
+													<% end -%>
+													<p style="color: black"> Appartient à : <%= User.find(article.user_id).username %> </p>
 												</div>
 												<div class="block-mask-caption--over flex flex-items-xs-top">
 													<div class="flex-wrap-item">
