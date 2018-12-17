@@ -8,8 +8,8 @@
 		<div style="height: 100px ">
 			à
 			<%= @users.find(i.owner_user_id).first_name.capitalize %>
-			<% if @users.find(i.owner_user_id).avatar? %> 
-			<%= @users.find(i.owner_user_id).avatar %> 
+			<% if @users.find(i.owner_user_id).avatar? %>
+			<%= image_tag @users.find(i.owner_user_id).avatar %>
 			<% else %>
 			<%= image_tag "avatar-1606916_960_720.png", style:"height: 100%" %>
 			<% end %>
@@ -18,17 +18,17 @@
 		<div style="height: 100px">
 			d'echanger :
 			<%= @article.find(i.owner_article_id).title %>
-			<% if @article.find(i.owner_article_id).image? %> 
-			<%= @article.find(i.owner_article_id).image %> 
+			<% if @article.find(i.owner_article_id).image? %>
+			<%= image_tag @article.find(i.owner_article_id).image %>
 			<% else %>
 			<%= image_tag "no_image.png", style:"height: 100%"  %>
 			<% end %>
 		</div>
 
 		<div style="height: 100px">
-			Contre : 
+			Contre :
 			<%= @article.find(i.applicant_article_id).title %>
-			<% if @article.find(i.applicant_article_id).image? %> 
+			<% if @article.find(i.applicant_article_id).image? %>
 			<img src="<%= @article.find(i.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png", style:"height: 100%"  %>
@@ -48,8 +48,8 @@
 	<div style="display: flex" >
 		<div style="height: 100px ">
 			<%= @users.find(t.applicant_user_id).first_name.capitalize %>
-			<% if @users.find(t.owner_user_id).avatar? %> 
-			<%= @users.find(t.owner_user_id).avatar %> 
+			<% if @users.find(t.owner_user_id).avatar? %>
+			<%= @users.find(t.owner_user_id).avatar %>
 			<% else %>
 			<%= image_tag "avatar-1606916_960_720.png", style:"height: 100%" %>
 			<% end %>
@@ -58,17 +58,17 @@
 		<div style="height: 100px">
 			d'echanger :
 			<%= @article.find(t.owner_article_id).title %>
-			<% if @article.find(t.owner_article_id).image? %> 
-			<%= @article.find(t.owner_article_id).image %> 
+			<% if @article.find(t.owner_article_id).image? %>
+			<%= @article.find(t.owner_article_id).image %>
 			<% else %>
 			<%= image_tag "no_image.png", style:"height: 100%"  %>
 			<% end %>
 		</div>
 
 		<div style="height: 100px">
-			Contre : 
+			Contre :
 			<%= @article.find(t.applicant_article_id).title %>
-			<% if @article.find(t.applicant_article_id).image? %> 
+			<% if @article.find(t.applicant_article_id).image? %>
 			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
@@ -92,18 +92,18 @@
 	<% @transactions.each do |t| %>
 	<div style="display: flex" >
 		<div style="height: 100px ">
-			
+
 			<%= User.find(t.applicant_user_id).first_name.capitalize %>
-			<% if User.find(t.applicant_user_id).avatar? %> 
+			<% if User.find(t.applicant_user_id).avatar? %>
 			<img src="<%= User.find(t.applicant_user_id).avatar %>", style="height: 100%">
 			<% else %>
 			<%= image_tag "avatar-1606916_960_720.png", style:"height: 100%" %>
 			<% end -%>
 		</div>
 		<div style="height: 100px ">
-			et 
+			et
 			<%= User.find(t.owner_user_id).first_name.capitalize %>
-			<% if User.find(t.owner_user_id).avatar? %> 
+			<% if User.find(t.owner_user_id).avatar? %>
 			<img src="<%= User.find(t.owner_user_id).avatar %>", style="height: 100%">
 			<% else %>
 			<%= image_tag "avatar-1606916_960_720.png", style:"height: 100%" %>
@@ -111,18 +111,18 @@
 			<br>
 		</div>
 		<div style="height: 100px ">
-			Ont échangé l'artice: 
-			<%= @article.find(t.applicant_article_id).title %> 
-			<% if @article.find(t.applicant_article_id).image? %> 
+			Ont échangé l'artice:
+			<%= @article.find(t.applicant_article_id).title %>
+			<% if @article.find(t.applicant_article_id).image? %>
 			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
 			<% end %>
 		</div>
 		<div style="height: 100px ">
-			contre l'article: 
+			contre l'article:
 			<%= @article.find(t.owner_article_id).title %>
-			<% if @article.find(t.applicant_article_id).image? %> 
+			<% if @article.find(t.applicant_article_id).image? %>
 			<img src="<%= @article.find(t.applicant_article_id).image %>", style="height: 100%"></a>
 			<% else %>
 			<%= image_tag "no_image.png" %>
