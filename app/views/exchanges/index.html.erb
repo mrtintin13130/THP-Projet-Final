@@ -93,7 +93,7 @@
 	<div style="display: flex" >
 		<div style="height: 100px ">
 
-			<%= link_to User.find(t.applicant_user_id).first_name.capitalize, user_path(applicant_user_id)%>
+			<%= User.find(t.applicant_user_id).first_name.capitalize %>
 			<% if User.find(t.applicant_user_id).avatar? %>
 			<img src="<%= User.find(t.applicant_user_id).avatar %>", style="height: 100%">
 			<% else %>
@@ -102,7 +102,7 @@
 		</div>
 		<div style="height: 100px ">
 			et
-			<%= link_to User.find(t.owner_user_id).first_name.capitalize, user_path(owner_user_id) %>
+			<%= User.find(t.owner_user_id).first_name.capitalize %>
 			<% if User.find(t.owner_user_id).avatar? %>
 			<img src="<%= User.find(t.owner_user_id).avatar %>", style="height: 100%">
 			<% else %>
