@@ -44,11 +44,13 @@ class ArticlesController < ApplicationController
     @category = params[:category_id]
     id = Category.all_category.index(@category).to_i + 1
     @article = Article.create(user_id: @user.id, category_id: id, title: params[:article][:title], description: params[:article][:description], size: params[:article][:size], image: params[:article][:image])
-    puts params[:category_id]
 
-    
+    if @article.save
+        redirect_to @article, alert: "Felicitations, vous venez d'enregistrer un nouvel article !"
+    else
+        redirect_to new_article_path, alert: "Oups...! Avez vous bien rempli toutes les cases ?"
+    end
   end
-  
   def destroy
   @article = Article.find(params[:id])
   Exchange.where(applicant_article_id: params[:id]).delete_all
