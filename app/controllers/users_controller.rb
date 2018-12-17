@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       end
     end
-    
+
     @exchanges = Exchange.all
     @user_exchanges = @exchanges.where(applicant_user_id: @user.id).where(status: true)
     @my_articles = []
