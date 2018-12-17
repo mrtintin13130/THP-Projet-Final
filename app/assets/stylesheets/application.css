@@ -29,6 +29,7 @@
  *= require fonts/linea/software/linea-icons
  *= require css/boomerang.min
  *= require css/custom-style
+ *= require font-awesome
 
  *= require_tree .
  *= require_self
