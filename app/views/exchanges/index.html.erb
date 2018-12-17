@@ -49,7 +49,7 @@
 		<div style="height: 100px ">
 			<%= @users.find(t.applicant_user_id).first_name.capitalize %>
 			<% if @users.find(t.owner_user_id).avatar? %>
-			<%= @users.find(t.owner_user_id).avatar %>
+			<%= image_tag @users.find(t.owner_user_id).avatar %>
 			<% else %>
 			<%= image_tag "avatar-1606916_960_720.png", style:"height: 100%" %>
 			<% end %>
@@ -59,7 +59,7 @@
 			d'echanger :
 			<%= @article.find(t.owner_article_id).title %>
 			<% if @article.find(t.owner_article_id).image? %>
-			<%= @article.find(t.owner_article_id).image %>
+			<%= image_tag @article.find(t.owner_article_id).image %>
 			<% else %>
 			<%= image_tag "no_image.png", style:"height: 100%"  %>
 			<% end %>
@@ -93,7 +93,7 @@
 	<div style="display: flex" >
 		<div style="height: 100px ">
 
-			<%= User.find(t.applicant_user_id).first_name.capitalize %>
+			<%= link_to User.find(t.applicant_user_id).first_name.capitalize, user_path(applicant_user_id)%>
 			<% if User.find(t.applicant_user_id).avatar? %>
 			<img src="<%= User.find(t.applicant_user_id).avatar %>", style="height: 100%">
 			<% else %>
@@ -102,7 +102,7 @@
 		</div>
 		<div style="height: 100px ">
 			et
-			<%= User.find(t.owner_user_id).first_name.capitalize %>
+			<%= link_to User.find(t.owner_user_id).first_name.capitalize, user_path(owner_user_id) %>
 			<% if User.find(t.owner_user_id).avatar? %>
 			<img src="<%= User.find(t.owner_user_id).avatar %>", style="height: 100%">
 			<% else %>
