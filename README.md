@@ -1,4 +1,4 @@
-# Projet final THP : Stratton, où comment disrupter le secteur de la location de jets privés
+# Projet final THP : Sw&T StreetWear & Trading
 
 
 ## 📋 Récap :
@@ -10,7 +10,7 @@ La version V1 production est en ligne. La V2 est en cours developpement.
 
 ## 🚀 Lien Heroku :
 
-https://swt-production.herokuapp.com/
+https://swt-staging.herokuapp.com/
 
 Made with ❤️ and 💦
 
